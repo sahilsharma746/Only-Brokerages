@@ -25,7 +25,7 @@
                         <div class="card d-flex flex-column {{ $user->account_type == $plan_id ? 'my-plan' : '' }}">
                             <div class="card-badge w-max">{{ $planName }}</div>
                             <div class="card-title">${{ number_format($planPrice, 0) }}</div>
-                            <dl class="item-list d-grid g-10">
+                            <dl class="item-list d-flex flex-column g-10">
                                 @foreach ($features as $feature)
                                 @php
                                      $style = ( $feature->feature_available != 1 ) ? 'visibility:hidden' : '';

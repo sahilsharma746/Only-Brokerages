@@ -1,17 +1,4 @@
 @extends('layouts.app')
-@section('styles')
-<style>
-    section.account-plan {
-        margin-block: 40px 100px;
-
-        .card-group {
-            margin-top: 42px;
-        }
-    }
-
-    
-</style>
-@endsection
 @section('content')
 <main>
         <section class="account-plan">
