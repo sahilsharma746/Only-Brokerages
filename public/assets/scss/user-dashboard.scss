@@ -1,0 +1,1417 @@
+// @use "mixin" as m;
+@use "variables" as *;
+@use "common";
+@use "layout";
+
+// * section common area start ===========
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-content: center;
+    background-color: $secondary-Color-40;
+    // display: flex;
+    display: none;
+
+    .modal-dialog {
+        width: 600px;
+        margin-inline: auto;
+        min-height: 300px;
+        background-color: $secondaryColor;
+        border: 1px solid $secondaryFontColor-15;
+
+        @media only screen and (max-width: 767px) {
+            width: calc(100vw - 30px);
+            padding: 30px 50px;
+        }
+
+        .modal-body {
+            @media only screen and (min-width: 768px) {
+                width: 418px;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .modal-text {
+                font-size: 16px;
+                font-weight: 400;
+                margin-block: 24px 16px;
+            }
+
+            .btn-area {
+                @media only screen and (max-width: 767px) {
+                    // flex-direction: column;
+                }
+
+                .btn {
+                    width: max-content;
+                    @media only screen and (min-width: 768px) {
+                        flex-grow: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+section {
+    &.common-section {
+        padding: 40px;
+        @media only screen and (max-width: 991px) {
+            padding: 16px;
+        }
+
+        .area-title {
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: capitalize;
+            margin-bottom: 16px;
+        }
+    }
+
+    .back-btn-area {
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 35px;
+
+        .btn-tab {
+            color: $secondaryFontColor;
+
+            .text:not(:hover) {
+                color: $secondaryFontColor-65;
+            }
+        }
+        .section-name {
+            font-weight: 400;
+        }
+        // @media only screen and (max-width: 767px) {
+        //     .btn-tab .text,
+        //     .section-name > span:first-child {
+        //         display: none;
+        //     }
+        // }
+    }
+
+    .navigation-card-group {
+        @media only screen and (min-width: 768px) and (max-width: 1199px) {
+            li:last-of-type {
+                grid-column: span 2;
+            }
+        }
+
+        .card {
+            background-color: $secondaryFontColor-5;
+            color: $secondaryFontColor;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 400;
+            transition: 0.4s;
+            text-transform: capitalize;
+
+            &:hover {
+                background-color: $secondaryFontColor-10;
+            }
+
+            @media only screen and (min-width: 768px) {
+                justify-content: center;
+
+                .icon {
+                    grid-column: span 2;
+                }
+            }
+
+            .icon {
+                --icon-size: 72px;
+                background-color: $secondaryFontColor-5;
+                width: var(--icon-size);
+                height: var(--icon-size);
+                border-radius: 50px;
+                margin-inline: auto;
+                font-size: 35px;
+                display: grid;
+                justify-content: center;
+                align-items: center;
+
+                @media only screen and (max-width: 768px) {
+                    --icon-size: 44px;
+                    font-size: 28px;
+
+                    & img {
+                        width: 28px;
+                    }
+                }
+
+                & img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .card.common-card {
+        background-color: $secondaryFontColor-5;
+        padding: 24px 40px;
+        border-radius: 5px;
+        margin-bottom: 31px;
+
+        @media only screen and (max-width: 991px) {
+            padding: 16px;
+        }
+
+        & > .card-body {
+            gap: 16px 24px;
+            @media only screen and (min-width: 991px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .card-footer {
+            margin-top: 24px;
+
+            .btn {
+                min-width: 200px;
+                font-size: 14px;
+                font-weight: 500;
+
+                @media only screen and (max-width: 767px) {
+                    min-width: 131px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .qr-code-area {
+        .form-label {
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .img-qr-code {
+            --img-qr-code-size: 161px;
+            width: var(--img-qr-code-size);
+            height: var(--img-qr-code-size);
+            border-radius: 8px;
+
+            @media only screen and (max-width: 767px) {
+                --img-qr-code-size: 70px;
+                border-radius: 4px;
+            }
+        }
+    }
+
+    .table-area {
+        padding: 0 10px;
+        border-radius: 8px;
+        @media only screen and (min-width: 768px) {
+            margin-left: -20px;
+        }
+
+        &.scroll {
+            width: 100%;
+            max-height: 500px;
+            overflow: auto;
+            padding-inline: 20px;
+        }
+
+        table {
+            --table-cell-height: 57px;
+            border-collapse: collapse;
+            border: 1px solid var(--secondary-font-color-10);
+
+            thead > tr > th,
+            tbody > tr > td {
+                height: var(--table-cell-height);
+                padding-inline: 24px;
+                font-size: 14px;
+            }
+
+            thead > tr > th {
+                background-color: $secondaryFontColor-10;
+                color: var(--secondary-font-color-75);
+                &:not(.text-center) {
+                    text-align: left;
+                }
+            }
+            tbody > tr > td {
+                font-weight: 400;
+                color: var(--secondary-font-color-90);
+                border-top: 1px solid var(--secondary-font-color-10);
+
+                &[isConfirmed="true"] {
+                    background-color: $primaryColor-10;
+                    color: $primaryColor;
+                }
+                &[isConfirmed="false"] {
+                    background-color: $warningColor-5;
+                    color: $warningColor-2;
+                }
+
+                @media only screen and (max-width: 767px) {
+                    padding-inline: 15px;
+                }
+            }
+
+            tbody > tr:last-child {
+                border-bottom: 1px solid var(--secondary-font-color-10);
+            }
+
+            .btn {
+                min-height: 40px;
+                margin-block: 16px;
+            }
+            .btn-pending {
+                background-color: var(--warning-color);
+                color: var(--secondary-color);
+            }
+        }
+    }
+
+    .card-indicators {
+        --scroll-bg-color: transparent;
+        --scroll-border-radius: 50px;
+        display: flex;
+        gap: 8px;
+        padding-block: 8px;
+        max-width: 100%;
+        overflow-x: auto;
+
+        .btn-pill {
+            min-width: 80px;
+            height: 40px;
+            border-radius: 50px;
+            align-content: center;
+            line-height: 1.2em;
+            border: 1px solid var(--secondary-font-color-10);
+        }
+    }
+}
+// * section common area end ===========
+
+main > article {
+    @media only screen and (min-width: 992px) {
+        height: calc(100vh - 75px);
+        overflow: auto;
+    }
+
+    .admin-account-grid {
+        width: calc(100% - 80px);
+        margin-inline: auto;
+        padding-block: 28px;
+        gap: 25px;
+        margin-bottom: 50px;
+
+        @media only screen and (max-width: 991px) {
+            padding-block: 16px;
+            width: calc(100% - 30px);
+            gap: 16px;
+        }
+
+        .balance-board {
+            background-color: var(--secondary-font-color-5);
+            padding: 20px;
+            border-radius: 5px;
+            gap: 24px;
+
+            @media only screen and (min-width: 1200px) {
+                padding: 40px;
+                grid-template-columns: auto 1fr;
+                gap: 38px;
+            }
+
+            .btn-area {
+                @media only screen and (max-width: 991px) {
+                    order: 2;
+                }
+
+                .btn {
+                    min-width: 140px;
+
+                    @media only screen and (max-width: 767px) {
+                        min-width: max-content;
+                        width: auto;
+                        padding-inline: 10px;
+                    }
+                }
+
+                .btn-withdraw {
+                    background-color: $warningColor-2;
+                    color: $secondaryColor;
+                }
+
+                @media only screen and (max-width: 1199px) {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 16px;
+
+                    .btn {
+                        min-height: 56px;
+                        border-radius: 12px;
+                    }
+                }
+
+                @media only screen and (max-width: 767px) {
+                    .btn-deposit {
+                        order: 2;
+                    }
+                }
+            }
+
+            .card-group {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 38px;
+
+                @media only screen and (max-width: 1199px) {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 12px;
+
+                    .card:first-child {
+                        grid-column: span 2;
+                    }
+                    .card:last-child {
+                        grid-template-columns: auto auto;
+                        column-gap: 8px;
+                        .card-title {
+                            grid-column: span 2;
+                        }
+                    }
+
+                    * {
+                        justify-content: center;
+                        text-align: center;
+                    }
+                }
+
+                .card {
+                    @media only screen and (max-width: 1200px) {
+                        padding-inline: 16px;
+                    }
+
+                    @media only screen and (min-width: 1200px) {
+                        &:not(:last-child) {
+                            border-right: 1px solid var(--secondary-font-color-15);
+                        }
+                    }
+                    @media only screen and (max-width: 767px) {
+                        &:not(:first-child) {
+                            padding-inline: 0;
+                            .card-title {
+                                font-size: 12px;
+                                text-align: start;
+                            }
+                        }
+                    }
+
+                    .card-title {
+                        font-size: 16px;
+                        font-weight: 500;
+                        color: var(--secondary-font-color-75);
+                        text-transform: capitalize;
+                    }
+                    .card-price {
+                        img {
+                            --country-img-size: 30px;
+                            width: var(--country-img-size);
+                            height: var(--country-img-size);
+                            border-radius: 50%;
+
+                            @media only screen and (max-width: 767px) {
+                                --country-img-size: 24px;
+                            }
+                        }
+                        .amount {
+                            font-size: 32px;
+                            font-weight: 600;
+
+                            @media only screen and (max-width: 1200px) {
+                                font-size: 25px;
+                            }
+                            @media only screen and (max-width: 991px) {
+                                font-size: 32px;
+                            }
+                            @media only screen and (max-width: 767px) {
+                                font-size: 20px;
+                            }
+                            @media only screen and (max-width: 380px) {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                    .card-status {
+                        font-weight: 300;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+
+        .company-trade-percentage-card-group {
+            gap: 12px;
+
+            @media only screen and (min-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @media only screen and (min-width: 1200px) {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .card {
+                background-color: $secondaryFontColor-5;
+                border-radius: 5px;
+                padding: 16px 20px;
+                border-left: 3px solid #f7932a;
+                grid-template-columns: 40px 1fr auto;
+                gap: 12px;
+                font-size: 16px;
+                font-weight: 400;
+
+                &:nth-child(2) {
+                    border-color: #e82127;
+                }
+                &:nth-child(3) {
+                    border-color: #f56600;
+                }
+                &:nth-child(4) {
+                    border-color: #916be0;
+                }
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50px;
+                }
+
+                .card-price {
+                    font-size: 14px;
+                    color: $secondaryFontColor-75;
+                    .amount {
+                        margin-top: 4px;
+                    }
+                }
+                .card-status .status {
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            }
+        }
+
+        .navigation-card-group {
+            gap: 16px;
+
+            @media only screen and (min-width: 768px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media only screen and (min-width: 1200px) {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .card {
+                border-radius: 5px;
+                padding: 8px 24px;
+                grid-template-columns: auto 1fr auto;
+
+                @media only screen and (min-width: 768px) {
+                    grid-template-columns: auto auto;
+                    padding-block: 30px;
+                }
+
+                p {
+                    white-space: nowrap;
+
+                    @media only screen and (max-width: 767px) {
+                        text-align: start;
+                    }
+                }
+            }
+        }
+    }
+
+    .personal-information .profile-picture-card-area {
+        .card .card-body {
+            gap: 16px;
+
+            @media only screen and (min-width: 768px) {
+                grid-template-columns: 410px 1fr;
+            }
+
+            fieldset {
+                min-height: 311px;
+                height: max-content;
+                padding: 24px;
+                border: 1px solid $secondaryFontColor-10;
+                border-radius: 5px;
+
+                ul {
+                    padding-left: 20px;
+                    li {
+                        font-size: 16px;
+                        font-weight: 300;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    .account-verification {
+        .verification-status {
+            font-size: 14px;
+            font-weight: 400;
+            color: $warningColor-2;
+
+            &[verified] {
+                color: $primaryColor;
+            }
+
+            .icon {
+                border: 1px solid;
+                border-radius: 50px;
+                width: 15px;
+                height: 15px;
+                font-size: 9px;
+            }
+        }
+
+        .card {
+            .card-title {
+                font-size: 17px;
+                font-weight: 500;
+                margin-bottom: 16px;
+            }
+            .attach-icon [hasFile] {
+                opacity: 1;
+                color: $primaryColor;
+            }
+        }
+        .check-files-valid-grid {
+            gap: 16px;
+
+            @media only screen and (min-width: 992px) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .card {
+                border: 1px solid $secondaryFontColor-15;
+                min-height: 56px;
+                padding-inline: 24px;
+                border-radius: 5px;
+                text-transform: capitalize;
+
+                .document-verification-status {
+                    color: $secondaryFontColor;
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid;
+                    border-radius: 50px;
+                    font-size: 12px;
+                    &[verified] {
+                        background-color: $primaryColor;
+                        outline: 2px solid;
+                    }
+                }
+            }
+        }
+    }
+
+    .security-settings .common-card.card-2fa > .card-body {
+        gap: 22px 24px;
+
+        @media only screen and (max-width: 767px) {
+            grid-template-columns: auto 1fr;
+            row-gap: 15px;
+
+            .input-group-area {
+                grid-column: span 2;
+                gap: 15px;
+            }
+            .btn-activation-2fa {
+                height: 35px;
+                align-self: self-end;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .live-chat-section {
+        grid-template-rows: auto 1fr;
+        padding-bottom: 0;
+        padding-right: 0;
+
+        @media only screen and (max-width: 767px) {
+            .back-btn-area {
+                margin-bottom: 15px;
+            }
+        }
+
+        .card {
+            grid-template-rows: 1fr auto;
+            height: calc(100vh - 200px);
+            // height: calc(100dvh - 200px);
+            margin-bottom: 10px;
+            overflow: auto;
+
+            @media only screen and (max-width: 767px) {
+                height: calc(100vh - 185px);
+                height: calc(100dvh - 185px);
+            }
+
+            .card-body {
+                max-width: 930px;
+                margin-inline: auto;
+                padding-right: 16px;
+                padding-bottom: 15px;
+
+                .icon-area {
+                    --chat-icon-size: 40px;
+                    min-width: var(--chat-icon-size);
+                    width: var(--chat-icon-size);
+                    height: var(--chat-icon-size);
+                    border-radius: 50%;
+                    background-color: $secondaryFontColor;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        position: relative;
+                    }
+                }
+                p.message {
+                    max-width: 283px;
+                    text-wrap: balance;
+                    padding: 16px 24px;
+                    background-color: #ffffff1a;
+                    border-radius: 10px 10px 10px 0;
+                }
+
+                .user-text-box {
+                    margin-left: auto;
+                    text-align: end;
+
+                    p.message {
+                        background-color: $primaryColor-80;
+                        border-radius: 10px 10px 0;
+                    }
+                }
+            }
+            .card-footer {
+                padding-right: 15px;
+                position: sticky;
+                bottom: 0;
+                background-color: $secondaryColor;
+                box-shadow: $secondary-Color-90 25px 22px 40px 25px;
+
+                @media only screen and (max-width: 767px) {
+                    // position: fixed;
+                    // bottom: 15px;
+                    // left: 15px;
+                    // right: 0;
+                }
+                // padding-top: 15px;
+
+                .live-chat-input-group {
+                    input.form-control {
+                        min-height: 56px;
+                        padding-inline: 40px 130px;
+                        border-width: 0;
+
+                        @media only screen and (max-width: 767px) {
+                            width: 100%;
+                            min-height: 40px;
+                            padding-inline: 20px 50px;
+                        }
+                    }
+
+                    .form-icon {
+                        padding: 17px 40px;
+                        background: $primaryColor-10;
+
+                        @media only screen and (max-width: 767px) {
+                            padding: 14px 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .payment-method-and-history {
+        padding-top: 24px;
+
+        ul.navigation-card-group {
+            overflow: auto;
+            padding-bottom: 5px;
+
+            li {
+                min-height: 35px;
+                flex: 1 1 123px;
+                .card {
+                    border-right: 1px solid $secondaryFontColor-10;
+                    align-content: center;
+                    width: 100%;
+                    padding-inline: 15px;
+
+                    &.active {
+                        background-color: $secondaryFontColor;
+                        color: $fontColor;
+                        font-weight: bold;
+                    }
+                }
+
+                @media only screen and (min-width: 992px) {
+                    min-height: 80px;
+
+                    &:first-child .card {
+                        border-radius: 5px 0 0 5px;
+                    }
+                    &:last-child .card {
+                        border-width: 0;
+                        border-radius: 0 5px 5px 0;
+                    }
+                }
+            }
+
+            @media only screen and (max-width: 991px) {
+                gap: 8px;
+
+                li > .card {
+                    border-radius: 8px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    padding: 10px 12px;
+                }
+            }
+        }
+
+        .area-title {
+            margin-block: 24px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .collapsible-card-group {
+            @media only screen and (max-width: 767px) {
+                display: grid;
+                gap: 16px;
+            }
+
+            .card {
+                .card-header > a {
+                    background-color: $secondaryFontColor-5;
+                    color: $secondaryFontColor;
+                    min-height: 100px;
+                    border-radius: 5px;
+                    text-transform: uppercase;
+                    font-size: 17px;
+                    padding-inline: 63px;
+                    border: 1px solid transparent;
+
+                    @media only screen and (max-width: 767px) {
+                        min-height: 60px;
+                        padding: 10px 16px;
+                        gap: 25px;
+                    }
+
+                    &.active {
+                        border-color: $secondaryFontColor-50;
+                    }
+
+                    img {
+                        --icon-size: 40px;
+                        width: var(--icon-size);
+                        height: var(--icon-size);
+                    }
+                    @media only screen and (min-width: 768px) {
+                        span {
+                            max-width: 120px;
+                        }
+                    }
+                }
+
+                .card-body {
+                    background: transparent;
+                    @media only screen and (max-width: 767px) {
+                        padding: 24px 16px;
+                        margin-top: 16px;
+                        background-color: $secondaryFontColor-5;
+                    }
+
+                    .card-title {
+                        font-size: 16px;
+                        font-weight: 300;
+
+                        @media only screen and (max-width: 767px) {
+                            font-size: 12px;
+                        }
+                    }
+
+                    .payment-details-area {
+                        gap: 40px;
+                        @media only screen and (max-width: 767px) {
+                            grid-template-columns: 1fr auto;
+                            gap: 10px;
+
+                            .input-group-area {
+                                grid-column: span 2;
+                            }
+                        }
+
+                        .input-group {
+                            margin-top: 40px;
+
+                            @media only screen and (max-width: 767px) {
+                                margin-top: 15px;
+
+                                .form-label {
+                                    font-size: 12px;
+                                }
+                                .form-control {
+                                    &::placeholder,
+                                    [type="placeholder"] {
+                                        font-size: 10px;
+                                    }
+                                }
+                            }
+
+                            .attach-icon {
+                                padding-left: 20px;
+                                [hasFile] {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        .btn {
+                            min-width: 200px;
+
+                            @media only screen and (max-width: 767px) {
+                                font-size: 12px;
+                                min-width: 128px;
+                                margin-top: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media only screen and (min-width: 1100px) {
+            --card-header-width: 294px;
+        }
+        @media only screen and (min-width: 768px) and (max-width: 1099px) {
+            --card-header-width: 150px;
+            .card-header > a {
+                padding-inline: 10px !important;
+            }
+        }
+        @media only screen and (min-width: 768px) {
+            .collapsible-card-group {
+                position: relative;
+
+                & > .card > .card-header {
+                    max-width: var(--card-header-width);
+                    margin-bottom: 16px;
+                }
+
+                & > .card > .card-body {
+                    position: absolute;
+                    top: 0;
+                    left: calc(var(--card-header-width) + 24px);
+                    right: 0;
+                    min-height: 564px;
+                    border: 1px solid $secondaryFontColor-5;
+                    border-radius: 5px;
+                    padding: 24px;
+
+                    .payment-details-area {
+                        grid-template-columns: 1fr auto;
+                    }
+                }
+            }
+        }
+        @media only screen and (min-width: 1350px) {
+            .payment-details-area {
+                grid-template-columns: 563px auto !important;
+            }
+        }
+
+        .user-deposit-area {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .user-withdraw-area {
+            width: 100%;
+            overflow-x: hidden;
+
+            .support-text {
+                font-size: 14px;
+                margin-top: 16px;
+
+                a {
+                    color: $primaryColor;
+                }
+            }
+
+            .btn-modal-close {
+                max-width: 200px;
+            }
+        }
+
+        .user-upgrade-account .account-plan .card-group {
+            margin-block: 56px 48px;
+            gap: 16px;
+
+            @media only screen and (min-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @media only screen and (min-width: 992px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media only screen and (min-width: 1200px) {
+                gap: 24px;
+            }
+
+            .card {
+                padding: 24px;
+                background-color: var(--secondary-font-color-10);
+                border-radius: 8px;
+
+                &.my-plan {
+                    background-color: $primaryColor-10;
+                }
+
+                .card-badge {
+                    font-size: 14px;
+                    font-weight: 600;
+                    border-radius: 50px;
+                    padding: 10px 40px;
+                    background-color: var(--secondary-font-color-10);
+                    margin-bottom: 8px;
+                }
+                .card-title {
+                    font-size: 32px;
+                    font-weight: 700;
+                    margin-bottom: 16px;
+                }
+                dl.item-list {
+                    flex-grow: 1;
+
+                    dt {
+                        display: grid;
+                        grid-template-columns: auto 1fr;
+                        align-items: center;
+                        gap: 8px;
+                    }
+
+                    span {
+                        font-size: 15px;
+                        font-weight: 500;
+                        text-align: start;
+                    }
+                }
+
+                .btn {
+                    min-width: 135px;
+                    margin-top: 24px;
+                }
+            }
+        }
+
+        .trading-history .table-area {
+            margin-inline: 0;
+            padding-inline: 0 5px;
+
+            thead > tr > th {
+                border-right: 1px solid $secondaryFontColor-5;
+                text-align: center;
+            }
+
+            tbody > tr > td {
+                text-align: center;
+            }
+
+            div.dt-container .dt-search input {
+                height: 48px;
+                padding-left: 35px;
+                border-radius: 5px;
+                background-color: $secondaryFontColor-5;
+
+                @media only screen and (min-width: 768px) {
+                    min-width: 300px;
+                }
+            }
+            #trading-history-table {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+
+            .trading-history-table-label {
+                // position: absolute;
+                margin-right: -30px;
+                opacity: 0.5;
+            }
+            #btn-download-trading-history {
+                margin-left: 8px;
+
+                @media only screen and (min-width: 768px) {
+                    float: right;
+                }
+            }
+        }
+    }
+
+    .market-watch-grid {
+        @media only screen and (min-width: 1100px) {
+            grid-template-columns: 280px 1fr;
+        }
+        @media only screen and (max-width: 767px) {
+            margin-bottom: 50px;
+        }
+
+        .card.trade-status-card {
+            border-right: 1px solid var(--secondary-font-color-10);
+
+            @media only screen and (max-width: 1099px) {
+                order: 2;
+                margin-top: 15px;
+            }
+
+            a {
+                color: var(--secondary-font-color);
+                font-size: 13px;
+                font-weight: 500;
+                text-align: center;
+                transition: 0.4s;
+
+                &.active,
+                &:hover {
+                    background-color: var(--secondary-font-color-10);
+                }
+            }
+
+            .card-header {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid var(--secondary-font-color-10);
+
+                .btn-tab {
+                    flex-grow: 1;
+                    align-content: center;
+                    min-height: 42px;
+                }
+
+                @media only screen and (max-width: 991px) {
+                    margin-inline: 15px;
+                    border: 1px solid $secondaryFontColor-10;
+                    border-radius: 5px;
+                }
+            }
+            .card-body {
+                padding-inline: 8px;
+                @media only screen and (max-width: 991px) {
+                    padding-inline: 15px;
+                }
+
+                .trade-update-table {
+                    height: calc(100vh - 250px);
+                    overflow: auto;
+                    padding-right: 8px;
+                    padding: 0 8px 20px 0;
+
+                    @media only screen and (max-width: 1099px) {
+                        height: 463px;
+                        padding-right: 24px;
+                    }
+
+                    dt {
+                        border-bottom: 1px solid var(--secondary-font-color-10);
+                        padding-block: 10px;
+                        * {
+                            font-size: 14px;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+
+        .market-watch-chart-area {
+            overflow: auto;
+            @media only screen and (min-width: 992px) {
+                height: calc(100vh - 75px);
+                grid-template-columns: 1fr 280px;
+                grid-template-rows: calc(100vh - 200px) auto;
+            }
+            @media only screen and (max-width: 991px) {
+                display: block;
+
+                .market-watch-chart-parent {
+                    height: 373px;
+                    margin-bottom: 12px;
+                }
+            }
+            .market-watch-chart {
+                color: $fontColor;
+            }
+        }
+        .market-watch-chart-filter {
+            border-left: 1px solid $secondaryFontColor-5;
+
+            @media only screen and (min-width: 992px) {
+                height: calc(100vh - 200px);
+                overflow: auto;
+            }
+
+            .card-header {
+                padding: 10px 24px;
+                border-bottom: 1px solid $secondaryFontColor-10;
+                .flag {
+                    width: 32px;
+                }
+                .name {
+                    text-transform: uppercase;
+                    color: $primaryColor;
+                    font-weight: bold;
+                }
+                .details {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+            .card-body {
+                padding: 10px 24px;
+
+                .market-watch-short-history tbody {
+                    tr {
+                        td {
+                            border-bottom: 1px dashed $secondaryFontColor-10;
+                            font-size: 14px;
+                            font-weight: 400;
+                            padding-block: 10px;
+                        }
+                    }
+                }
+            }
+            .card-footer {
+                padding: 10px 24px;
+
+                .btn {
+                    min-width: auto;
+                    flex-grow: 1;
+                    font-size: 12px;
+                    padding-block: 5px;
+                    .name {
+                        font-size: 14px;
+                    }
+
+                    &.btn-sell {
+                        background-color: $dangerColor;
+                    }
+                }
+                .payout-area {
+                    grid-template-columns: auto 1fr auto;
+                    margin-top: 15px;
+                    font-size: 14px;
+                }
+            }
+        }
+        .market-details-summery-card-group {
+            @media only screen and (max-width: 1300px) {
+                flex-direction: column;
+                text-align: center;
+                & > div {
+                    margin-inline: auto;
+                    margin-bottom: 12px;
+                    width: 100%;
+
+                    p {
+                        text-align: left;
+                    }
+                }
+            }
+
+            grid-column: span 2;
+            padding: 12px 24px;
+            border-top: 1px solid $secondaryFontColor-5;
+            @media only screen and (max-width: 767px) {
+                padding: 12px 15px;
+            }
+
+            & > div {
+                p {
+                    font-size: 14px;
+                    margin-bottom: 8px;
+                }
+                .card {
+                    height: 64px;
+                    min-width: 120px;
+                    background-color: $secondaryFontColor-5;
+                    border-right: 1px solid $secondaryFontColor-10;
+                    padding: 5px 12px;
+
+                    &:first-child {
+                        border-radius: 10px 0 0 10px;
+                    }
+                    &:last-child {
+                        border-right-width: 0;
+                    }
+
+                    .key {
+                        font-size: 12px;
+                        color: $secondaryFontColor-70;
+                    }
+                    .value {
+                        font-size: 15px;
+                    }
+
+                    @media only screen and (max-width: 1299px) {
+                        min-width: auto;
+                        flex-grow: 1;
+
+                        .key {
+                            font-size: 10px;
+                        }
+                        .value {
+                            font-size: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .tradable-assets-area {
+            padding: 16px;
+            overflow: hidden;
+
+            .trading-assets-table-area.table-area {
+                margin-inline: 0;
+                padding-inline: 0 5px;
+                border-radius: 0;
+
+                &.scroll {
+                    overflow: auto;
+                }
+
+                thead > tr > th {
+                    border-right: 1px solid $secondaryFontColor-5;
+                    text-align: center;
+                }
+
+                tbody > tr > td {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .market-news-section {
+        @media only screen and (min-width: 768px) {
+            grid-template-columns: 280px 1fr;
+        }
+        .news-search-card {
+            padding-inline: 5px;
+            border-right: 1px solid $secondaryFontColor-10;
+
+            .card-indicators a {
+                color: var(--secondary-font-color);
+                font-size: 13px;
+                font-weight: 500;
+                text-align: center;
+                transition: 0.4s;
+
+                &.active,
+                &:hover {
+                    background-color: var(--secondary-font-color-10);
+                }
+            }
+
+            .card-body {
+                &.scroll {
+                    height: calc(100vh - 75px - 150px);
+                    overflow: auto;
+                }
+
+                ul li a {
+                    text-decoration: none;
+                    color: $secondaryFontColor;
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    font-size: 14px;
+                    padding: 18px 8px;
+                    border-bottom: 1px solid $secondaryFontColor-5;
+
+                    &.active {
+                        background-color: $primaryColor-10;
+                    }
+                    .news-time {
+                        white-space: nowrap;
+                        color: $secondaryFontColor-50;
+                    }
+                }
+            }
+        }
+
+        .news-page {
+            &.scroll {
+                height: calc(100vh - 75px);
+                overflow: auto;
+            }
+
+            .trading-news-container {
+                width: min(calc(100% - 30px), 790px);
+                margin-inline: auto;
+                padding-block: 24px;
+
+                .news-title-img {
+                    max-width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                .news-label-area {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    margin-bottom: 5px;
+
+                    .label {
+                        background-color: $secondaryFontColor-10;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                    }
+                }
+                .news-title {
+                    font-size: 24px;
+                    text-align: center;
+                    text-wrap: balance;
+                    margin-bottom: 8px;
+                }
+                .news-post-time {
+                    font-size: 14px;
+                    color: $secondaryFontColor-50;
+                    text-align: center;
+                    margin-bottom: 24px;
+                }
+                .news-body {
+                    font-size: 15px;
+                    a {
+                        color: $secondaryFontColor;
+                        text-decoration: underline;
+                        // margin-inline: 5px;
+                        &::before,
+                        &::after {
+                            content: " ";
+                        }
+
+                        &:hover {
+                            color: $primaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

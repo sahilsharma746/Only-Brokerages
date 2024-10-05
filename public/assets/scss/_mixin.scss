@@ -1,0 +1,4 @@
+@mixin appearance($property) {
+    -webkit-appearance: $property;
+    appearance: $property;
+}

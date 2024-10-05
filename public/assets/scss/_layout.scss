@@ -1,0 +1,245 @@
+@use "variables" as *;
+@use "common";
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    background-color: var(--secondary-color);
+    color: var(--secondary-font-color);
+    overflow-x: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    @media only screen and (min-width: 992px) {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        overflow: hidden;
+    }
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    box-shadow: var(--secondary-font-color-10) 0 1px 2px;
+    background-color: $secondaryColor;
+
+    .container {
+        width: calc(100% - 40px);
+        margin-inline: auto;
+
+        @media only screen and (max-width: 768px) {
+            width: calc(100% - 30px);
+        }
+    }
+
+    .account-status-header {
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50px;
+        }
+        .account-status {
+            font-size: 13px;
+            font-weight: 500;
+        }
+    } /** common style */
+
+    .main-header {
+        .container {
+            min-height: 75px;
+            padding-block: 5px;
+        }
+
+        .site-logo {
+            height: 28px;
+        }
+
+        .site-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary-font-color);
+
+            @media only screen and (max-width: 767px) {
+                font-size: 13px;
+            }
+        }
+
+        @media only screen and (min-width: 992px) {
+            .btn-nav-toggle {
+                display: none !important;
+            }
+        }
+
+        .header-btns {
+            @media only screen and (max-width: 991px) {
+                display: none !important;
+            }
+
+            .btn {
+                font-size: 14px;
+                min-width: 116px;
+            }
+            .btn-account-balance {
+                min-width: 149px;
+                display: flex;
+                flex-direction: column;
+                background-color: var(--warning-color-2);
+                color: var(--secondary-color);
+                padding-right: 30px;
+                position: relative;
+
+                .icon {
+                    position: absolute;
+                    top: 16px;
+                    right: 15px;
+                }
+                .text {
+                    font-size: 12px;
+                }
+                .account-amount {
+                    font-weight: 700;
+                    font-size: 15px;
+                }
+            }
+
+            .dropdown-menu {
+                padding: 0;
+                background-color: var(--secondary-color);
+                box-shadow: var(--secondary-font-color-15) 0 1px 20px 0;
+                border-radius: 5px;
+                right: 0;
+                min-width: 237px;
+
+                .dropdown-item {
+                    min-height: 48px;
+                    padding: 12px 24px;
+                    align-content: center;
+                    border-bottom: 1px solid var(--secondary-font-color-15);
+                    font-size: 14px;
+                    font-weight: 300;
+
+                    &:last-child {
+                        border-bottom-width: 0;
+                    }
+
+                    a {
+                        color: var(--secondary-font-color);
+                    }
+
+                    .account-amount-header {
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+main {
+    width: 100%;
+    overflow: hidden;
+
+    @media only screen and (min-width: 991px) {
+        display: grid;
+        grid-template-columns: 130px 1fr;
+    }
+
+    nav.left-nav {
+        --scrollbar-width: 1px;
+        --scroll-bg-color: transparent;
+        --scroll-thumb-color: var(--danger-color);
+        --scroll-thumb-color-hover: var(--danger-color);
+
+        ul.nav {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 75px);
+            overflow: auto;
+            box-shadow: var(--secondary-font-color-10) 0 1px 2px;
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
+
+            li.nav-item {
+                margin: 0;
+
+                &.active {
+                    background-color: var(--secondary-font-color-10);
+                }
+
+                a {
+                    min-height: 64px;
+                    display: flex;
+                    text-align: center;
+                    align-items: center;
+                    gap: 8px;
+                    color: var(--secondary-font-color-70);
+                    padding-inline: 24px;
+                    font-size: 15px;
+
+                    @media only screen and (min-width: 992px) {
+                        font-size: 20px;
+                        min-height: 100px;
+                        justify-content: center;
+                        flex-direction: column;
+                        gap: 5px;
+                    }
+                }
+
+                span {
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        @media only screen and (max-width: 991px) {
+            --left-nav-width: 50vw;
+            background-color: $secondaryColor;
+            width: var(--left-nav-width);
+            position: fixed;
+            top: 75px;
+            bottom: 0;
+            right: -100%;
+            transition:
+                right 0.4s ease,
+                opacity 0.4s ease; /* Specify the properties to transition */
+            z-index: 1030;
+            opacity: 0;
+
+            &::before {
+                content: "";
+                width: 200vw;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                background-color: $secondary-Color-90;
+                right: 100%;
+                opacity: 1;
+                display: none;
+            }
+
+            &.active {
+                // display: block;
+                right: 0;
+                opacity: 1;
+                box-shadow: 0 -1px 0 $primaryColor-50;
+
+                &::before {
+                    display: block;
+                    opacity: 1;
+                    box-shadow: 0 -1px 0 $primaryColor-50;
+                }
+            }
+
+            & > ul.nav {
+                padding-bottom: 50px;
+            }
+        }
+    }
+}
