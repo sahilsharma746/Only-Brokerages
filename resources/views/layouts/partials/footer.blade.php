@@ -32,7 +32,7 @@
                 <dt class="text-end"><a href="{{ route('register') }}">sign up</a></dt>
             </dl>
         </div>
-        <p class="footer-text text-center">&copy; 2024 Only-Brokrage. All Rights Reserved.</p>
+        <p class="footer-text text-center">&copy; 2024 Only-brokerage. All Rights Reserved.</p>
     </div>
 </footer>
 

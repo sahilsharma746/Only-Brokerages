@@ -1,7 +1,7 @@
 <nav id="left-nav" class="left-nav">
     <a href="{{ asset('admin/dashboard') }}" class="logo-area">
         <img src="{{ asset('assets') }}/img/site-logo.png" alt="Site Logo" class="site-logo">
-        <span class="site-name">Only-Brokrage</span>
+        <span class="site-name">Only-brokerage</span>
     </a>
     <ul class="nav-menu list-style-none scroll">
         <li>

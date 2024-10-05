@@ -8,7 +8,7 @@
     @if(isset($page_title))
         <title>Admin | {{ $page_title }}</title>
     @else
-        <title>Only-Brokrage | Admin</title>
+        <title>Only-brokerage | Admin</title>
     @endif
     <link rel="icon" href="{{ asset('assets') }}/img/site-favicon-only-brokerage.png">
     <meta name="description" content="Open up a world of possibilities with Only Brokerage">
