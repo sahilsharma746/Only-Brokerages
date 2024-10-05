@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Krust-Markets | Admin</title>
-    <link rel="icon" href="{{ asset('assets') }}/img/site-logo.png">
-    <meta name="description" content="Open up a world of possibilities with Krust Investments">
-    <meta name="keywords" content="Investments, krust, trade">
+    <title>Only-Brokrage | Admin</title>
+    <link rel="icon" href="{{ asset('assets') }}/img/site-favicon-only-brokerage.png">
+    <meta name="description" content="Open up a world of possibilities with Only Brokerage">
+    <meta name="keywords" content="Investments, Only Brokerage, trade">
 
      <script>
         var apiUrlCrypto = "{{ url('/crypto.json') }}";
@@ -22,13 +22,9 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/data-table-2.1.4/dataTables.dataTables.css">
     
     <link rel="stylesheet" href="{{ asset('assets/css/user-dashboard.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
-    
-    @if (Route::currentRouteName() === 'users.trading-bots.index' || Route::currentRouteName() === 'users.trading-history.index'  )
-        <link rel="stylesheet" href="{{ asset('assets/css/user-style.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
-    @endif
+    <link rel="stylesheet" href="{{ asset('assets/css/user-style.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
 
     @if (Route::currentRouteName() === 'user.trade.index' || Route::currentRouteName() === 'user.marketWatch.index')
-         <link rel="stylesheet" href="{{ asset('assets/css/user-style.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
           <link rel="stylesheet" href="{{ asset('assets/css/trade-and-market.min.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
     @endif
 
@@ -43,10 +39,10 @@
     <header>
         <div class="main-header">
             <div class="container d-flex flex-wrap justify-content-between align-items-center g-10">
-                <div>
+                <div class="user-logo-area-only-brokerage">
                     <a href="{{ route('home') }}" class="logo-area d-flex align-items-center g-4">
-                        <img src="{{ asset('assets') }}/img/site-logo.png" alt="Site Logo" class="site-logo">
-                        <span class="site-name">Krust-Markets</span>
+                        <img src="{{ asset('assets') }}/img/site-favicon-only-brokerage.png" alt="Site Logo" class="site-logo">
+                        <span class="site-name">Only-Brokrage</span>
                     </a>
                     <div class="account-status-header d-flex align-items-center g-15" >
                         <span class="dot"></span>

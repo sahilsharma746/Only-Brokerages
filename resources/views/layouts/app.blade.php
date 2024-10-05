@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" mode="black">
 
 <head>
     @include('layouts.partials.styles')

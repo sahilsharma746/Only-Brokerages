@@ -59,6 +59,14 @@ html {
   background-color: var(--bg-color);
 }
 
+[mode=black] {
+  --font-color: #ffffff;
+  --bg-color: #111111;
+}
+[mode=black] body {
+  background-color: var(--bg-color);
+}
+
 h1,
 h2,
 h3,
@@ -1279,6 +1287,30 @@ header .navigation-area .container .contact-details a svg {
   background-color: #07142a;
 }
 
+[mode=black] header {
+  background-color: var(--bg-color);
+}
+[mode=black] header .marquee {
+  background-color: transparent;
+  border-bottom: 1px solid var(--secondary-font-color-10);
+}
+[mode=black] header .main-header {
+  background-color: transparent;
+}
+[mode=black] header .navigation-area {
+  border-top: 1px solid var(--secondary-font-color-10);
+  transition: background-color 0.4s;
+}
+[mode=black] header .navigation-area:hover {
+  background-color: #151801;
+}
+[mode=black] header .navigation-area nav.nav-main a {
+  color: var(--secondary-font-color-75);
+}
+[mode=black] header .navigation-area nav.nav-main a.active, [mode=black] header .navigation-area nav.nav-main a:hover {
+  color: var(--secondary-font-color-90);
+}
+
 footer {
   background-color: var(--footer-bg-color);
   padding-block: 40px 20px;
@@ -1360,6 +1392,27 @@ footer .footer-text {
   color: var(--secondary-font-color);
 }
 [mode=dark] footer .footer-nav dl dt:not(:first-child) {
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+[mode=black] footer {
+  background-color: transparent;
+  border-top: 1px solid var(--secondary-font-color-10);
+}
+@media only screen and (max-width: 767px) {
+  [mode=black] footer .logo-area .site-logo {
+    margin-bottom: 10px;
+  }
+}
+[mode=black] footer .subscribe-area .btn {
+  background-color: #c4df2b;
+  color: var(--secondary-color);
+}
+[mode=black] footer .footer-nav dl dt a {
+  color: var(--secondary-font-color);
+}
+[mode=black] footer .footer-nav dl dt:not(:first-child) {
   opacity: 0.75;
   font-weight: 300;
 }

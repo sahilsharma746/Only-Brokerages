@@ -2,33 +2,36 @@
 @section('styles')
 @endsection
 @section('content')
-    <main>
-        <section class="hero-section-2">
+<main>
+        <section class="hero-section-4">
             <div class="container">
-                <div class="d-flex flex-wrap">
+                <div class="hero-section-main-area d-flex flex-wrap">
                     <div class="col d-flex flex-column justify-content-center">
-                        <h1 class="title">Open up a world of possibilities with <span class="text-primary">Krust</span>
-                            Investments</h1>
-                        <p class="subtitle">Take control of your financial future. Our platform offers a seamless
-                            investing experience, from beginner to pro.
-                            Explore a diverse range of investment options, gain valuable insights, and watch your
-                            portfolio grow. Join the Krust
-                            community today.
+                        <h1 class="title">Reach out to new trading <span class="highlight">experience</span></h1>
+                        <p class="subtitle">with <span class="highlight">Only brokerage</span> control of your financial
+                            future. Our platform is a seamless investing experience, from beginner to
+                            pro. Explore a diverse range of investment options, gain valuable insights, and watch your
+                            portfolio grow. Join the
+                            Only-Brokerage today.
                         </p>
-                        <a href="{{route('register')}}" class="btn w-max">Start Trading Today</a>
+                        <a href="{{route('register')}}" class="btn w-max">Get started</a>
                     </div>
                     <div class="col d-flex">
-                        <img class="hero-image" src="{{ asset('assets') }}/img/hero-section-2-mopbile-phone.png" alt="">
+                        <div class="hero-image-area">
+                            <img class="hero-image-1" src="{{ asset('assets') }}/img/hero-section-4-img.png">
+                            <img class="hero-image-2" src="{{ asset('assets') }}/img/hero-section-4-img-2.png">
+                        </div>
                     </div>
                 </div>
-
-                <div class="trade-counter d-grid w-100">
+            </div>
+            <div class="trade-counter w-100">
+                <div class="container d-grid">
                     <div class="item">
-                        <span value="300">300+</span>
+                        <span value="300" endWith="+">300+</span>
                         <span class="text d-inline-block">CFDS to Trade</span>
                     </div>
                     <div class="item">
-                        <span value="500" startWith="1:">1:500</span>
+                        <span value="800" startWith="1:">1:800</span>
                         <span class="text d-inline-block">Leverage Up To</span>
                     </div>
                     <div class="item">
@@ -100,7 +103,7 @@
             <div class="container">
                 <div class="sliders d-flex flex-wrap justify-content-between align-items-center">
                     <div class="item">
-                        <img src="{{ asset('assets') }}/img/awards-2020-investopedia-overall.png" alt="">
+                    <img src="{{ asset('assets') }}/img/awards-2020-investopedia-overall.png" alt="">
                     </div>
                     <div class="item">
                         <img src="{{ asset('assets') }}/img/award-nw-2020-crop.png" alt="">
@@ -126,7 +129,3 @@
 @endsection
 @section('scripts')
 @endsection
-
-
-
-

@@ -12,11 +12,11 @@
                 <div class="card-collapsible-group">
                     <div class="card mx-auto">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <span>How does Krust Investments work?</span>
+                            <span>How does Only brokerage work?</span>
                             <a class="btn-collapse"><i class="fa-solid fa-plus"></i></a>
                         </div>
                         <div class="card-body">
-                            Krust Investments simplifies your entry into the financial markets by providing a platform
+                            Only brokerage simplifies your entry into the financial markets by providing a platform
                             where you can trade a variety
                             of assets, including stocks, cryptocurrencies, and forex. We offer tools that help you make
                             informed decisions, whether
@@ -29,7 +29,7 @@
                             <a class="btn-collapse"><i class="fa-solid fa-plus"></i></a>
                         </div>
                         <div class="card-body">
-                            No problem! Krust Investments is beginner-friendly. We have tons of helpful tutorials and
+                            No problem! Only brokerage is beginner-friendly. We have tons of helpful tutorials and
                             articles to get you started.
                         </div>
                     </div>
@@ -55,10 +55,10 @@
                     </div>
                     <div class="card mx-auto">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <span>What trading tools are available on Krust Investments?</span>
+                            <span>What trading tools are available on Only brokerage?</span>
                             <a class="btn-collapse"><i class="fa-solid fa-plus"></i></a>
                         </div>
-                        <div class="card-body">Krust Investments provides a wide range of tools to enhance your trading
+                        <div class="card-body">Only brokerage provides a wide range of tools to enhance your trading
                             experience, including advanced charting
                             software, real-time market data, technical indicators, and customizable alerts. These tools
                             are designed to help you
@@ -66,7 +66,7 @@
                     </div>
                     <div class="card mx-auto">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <span>What account plans does Krust Investments offer?</span>
+                            <span>What account plans does Only brokerage offer?</span>
                             <a class="btn-collapse"><i class="fa-solid fa-plus"></i></a>
                         </div>
                         <div class="card-body">We offer several account plans tailored to different trading needs and

@@ -146,6 +146,13 @@ section.identity-section .card-group .card:nth-child(6) .card-badge {
   background-color: var(--secondary-font-color-5);
 }
 
+[mode=black] section.identity-section .card-group .card:first-child {
+  background-color: var(--secondary-font-color-10);
+}
+[mode=black] section.identity-section .card-group .card .card-badge {
+  background-color: var(--secondary-font-color-5);
+}
+
 section.work-policy .policy-details-area {
   min-height: 205px;
   margin-block: 56px 70px;
@@ -233,6 +240,13 @@ section.account-plan .card-group .card .btn {
   background-color: var(--secondary-font-color-5);
 }
 [mode=dark] section.account-plan .card-group .card .card-badge {
+  background-color: var(--secondary-font-color-5);
+}
+
+[mode=black] section.account-plan .card-group .card {
+  background-color: var(--secondary-font-color-15);
+}
+[mode=black] section.account-plan .card-group .card .card-badge {
   background-color: var(--secondary-font-color-5);
 }
 
@@ -395,15 +409,18 @@ section.award-section {
 
 /** ======== Home page 2 style start =========  */
 section.hero-section-2,
-section.hero-section-3 {
+section.hero-section-3,
+section.hero-section-4 {
   margin-block: 10px 64px;
 }
 section.hero-section-2 .col,
-section.hero-section-3 .col {
+section.hero-section-3 .col,
+section.hero-section-4 .col {
   flex: 1 0 50%;
 }
 section.hero-section-2 .title,
-section.hero-section-3 .title {
+section.hero-section-3 .title,
+section.hero-section-4 .title {
   max-width: 882px;
   line-height: 53.25px;
   font-family: "Merriweather", serif;
@@ -412,40 +429,48 @@ section.hero-section-3 .title {
   text-transform: none;
 }
 section.hero-section-2 .title span,
-section.hero-section-3 .title span {
+section.hero-section-3 .title span,
+section.hero-section-4 .title span {
   font-family: "Merriweather", serif;
 }
 section.hero-section-2 .subtitle,
-section.hero-section-3 .subtitle {
+section.hero-section-3 .subtitle,
+section.hero-section-4 .subtitle {
   margin-block: 8px 16px;
 }
 section.hero-section-2 .btn,
-section.hero-section-3 .btn {
+section.hero-section-3 .btn,
+section.hero-section-4 .btn {
   font-size: 14px;
 }
 section.hero-section-2 .hero-image,
-section.hero-section-3 .hero-image {
+section.hero-section-3 .hero-image,
+section.hero-section-4 .hero-image {
   max-width: 100%;
 }
 @media only screen and (min-width: 992px) {
   section.hero-section-2 .hero-image,
-  section.hero-section-3 .hero-image {
+  section.hero-section-3 .hero-image,
+  section.hero-section-4 .hero-image {
     margin-inline: auto -50px;
   }
 }
 @media only screen and (max-width: 767px) {
   section.hero-section-2 .hero-image,
-  section.hero-section-3 .hero-image {
+  section.hero-section-3 .hero-image,
+  section.hero-section-4 .hero-image {
     margin-top: 15px;
   }
 }
 section.hero-section-2 .trade-counter,
-section.hero-section-3 .trade-counter {
+section.hero-section-3 .trade-counter,
+section.hero-section-4 .trade-counter {
   background-color: var(--secondary-color);
   padding-block: 31px;
 }
 section.hero-section-2 .trade-counter .item,
-section.hero-section-3 .trade-counter .item {
+section.hero-section-3 .trade-counter .item,
+section.hero-section-4 .trade-counter .item {
   color: var(--secondary-font-color);
   font-size: 32px;
   font-weight: 700;
@@ -457,23 +482,27 @@ section.hero-section-3 .trade-counter .item {
 }
 @media only screen and (max-width: 767px) {
   section.hero-section-2 .trade-counter .item,
-  section.hero-section-3 .trade-counter .item {
+  section.hero-section-3 .trade-counter .item,
+  section.hero-section-4 .trade-counter .item {
     text-align: center;
     padding-inline: 5px;
     font-size: 25px;
     gap: 5px;
   }
   section.hero-section-2 .trade-counter .item:nth-child(odd),
-  section.hero-section-3 .trade-counter .item:nth-child(odd) {
+  section.hero-section-3 .trade-counter .item:nth-child(odd),
+  section.hero-section-4 .trade-counter .item:nth-child(odd) {
     justify-self: start;
   }
 }
 section.hero-section-2 .trade-counter .item span:first-child,
-section.hero-section-3 .trade-counter .item span:first-child {
+section.hero-section-3 .trade-counter .item span:first-child,
+section.hero-section-4 .trade-counter .item span:first-child {
   text-align: end;
 }
 section.hero-section-2 .trade-counter .item .text,
-section.hero-section-3 .trade-counter .item .text {
+section.hero-section-3 .trade-counter .item .text,
+section.hero-section-4 .trade-counter .item .text {
   max-width: 95px;
   padding-inline: 5px;
   color: var(--secondary-font-color-85);
@@ -541,6 +570,11 @@ section.hero-section-3 .hero-section-main-area .content-area .title {
     line-height: 1.2;
   }
 }
+@media only screen and (max-width: 567px) {
+  section.hero-section-3 .hero-section-main-area .content-area .title {
+    font-size: 32px;
+  }
+}
 section.hero-section-3 .hero-section-main-area .content-area .title img.icon {
   margin-bottom: -10px;
   margin-left: 5px;
@@ -548,6 +582,12 @@ section.hero-section-3 .hero-section-main-area .content-area .title img.icon {
 @media only screen and (max-width: 991px) {
   section.hero-section-3 .hero-section-main-area .content-area .title img.icon {
     height: 39px;
+  }
+}
+@media only screen and (max-width: 567px) {
+  section.hero-section-3 .hero-section-main-area .content-area .title img.icon {
+    height: 32px;
+    margin-bottom: -6px;
   }
 }
 section.hero-section-3 .hero-section-main-area .content-area .subtitle {
@@ -691,6 +731,112 @@ section.hero-section-3 .trade-counter .container {
   background-color: #0b4dc7;
 }
 
+@media only screen and (max-width: 991px) {
+  section.hero-section-4 .hero-section-main-area {
+    flex-direction: column;
+  }
+  section.hero-section-4 .hero-section-main-area .col:first-child {
+    padding-block: 48px 58px;
+  }
+  section.hero-section-4 .hero-section-main-area .col:first-child .title {
+    font-size: 36px;
+    line-height: 1.02em;
+    text-align: center;
+  }
+  section.hero-section-4 .hero-section-main-area .col:first-child .subtitle {
+    text-align: center;
+  }
+  section.hero-section-4 .hero-section-main-area .col:first-child .btn {
+    margin-inline: auto;
+  }
+}
+@media only screen and (min-width: 992px) {
+  section.hero-section-4 .hero-section-main-area {
+    min-height: calc(100vh - 167px);
+    padding-block: 100px;
+  }
+  section.hero-section-4 .hero-section-main-area .title {
+    font-size: 48px;
+    line-height: 60.34px;
+  }
+}
+@media only screen and (min-width: 992px) and (min-height: 740px) {
+  section.hero-section-4 .hero-section-main-area {
+    min-height: calc(100vh - 267px);
+  }
+}
+section.hero-section-4 .hero-section-main-area .highlight {
+  color: #c4df2b;
+}
+section.hero-section-4 .hero-section-main-area .btn {
+  min-width: 150px;
+}
+section.hero-section-4 .hero-section-main-area .hero-image-area {
+  position: relative;
+  width: 100%;
+}
+section.hero-section-4 .hero-section-main-area .hero-image-area img {
+  --hero-image-offset: 40px;
+}
+@media only screen and (min-width: 992px) {
+  section.hero-section-4 .hero-section-main-area .hero-image-area img {
+    max-width: calc(100% + var(--hero-image-offset));
+    position: absolute;
+    inset-block: 0;
+    margin-block: auto;
+  }
+  section.hero-section-4 .hero-section-main-area .hero-image-area img.hero-image-1 {
+    left: calc(var(--hero-image-offset) * -1);
+  }
+  section.hero-section-4 .hero-section-main-area .hero-image-area img.hero-image-2 {
+    right: calc(var(--hero-image-offset) * -2);
+  }
+}
+@media only screen and (max-width: 991px) {
+  section.hero-section-4 .hero-section-main-area .hero-image-area img {
+    max-width: 100%;
+  }
+  section.hero-section-4 .hero-section-main-area .hero-image-area img.hero-image-2 {
+    height: 118px;
+    inset-block: 0;
+    margin-block: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+section.hero-section-4 .hero-section-main-area .hero-image-area::after {
+  content: "";
+  --circle-shadow-area-size: 180px;
+  background: #000;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 var(--circle-shadow-area-size) var(--circle-shadow-area-size) hsla(69, 74%, 52%, 0.5);
+  z-index: -1;
+}
+@media only screen and (max-width: 767px) {
+  section.hero-section-4 .hero-section-main-area .hero-image-area::after {
+    --circle-shadow-area-size: 100px;
+  }
+}
+section.hero-section-4 .trade-counter .container {
+  row-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media only screen and (min-width: 992px) {
+  section.hero-section-4 .trade-counter .container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+[mode=black] section.hero-section-4 .trade-counter {
+  background-color: var(--secondary-font-color-5);
+}
+
 section.work-policy-2 .title {
   font-size: 26px;
   margin-bottom: 80px;
@@ -808,6 +954,31 @@ section.work-policy-2 .policy-area .can-invest-area .card .card-footer ul li::ma
 [mode=dark] section.work-policy-2 .policy-area .can-invest-area .card .card-footer {
   border-width: 0;
   background: linear-gradient(92.7deg, rgba(58, 163, 26, 0.25) 0%, rgba(11, 77, 199, 0.25) 100%);
+}
+
+[mode=black] section.work-policy-2 .title {
+  color: #ffffff;
+}
+[mode=black] section.work-policy-2 .title span {
+  color: #c4df2b !important;
+}
+[mode=black] section.work-policy-2 .policy-area .can-invest-area .card {
+  background: #eeffe9;
+  color: rgba(17, 17, 17, 0.7490196078);
+}
+[mode=black] section.work-policy-2 .policy-area .can-invest-area .card .card-badge {
+  background-color: rgba(196, 223, 43, 0.5019607843);
+}
+[mode=black] section.work-policy-2 .policy-area .can-invest-area .card .card-text {
+  opacity: 1;
+}
+[mode=black] section.work-policy-2 .policy-area .can-invest-area .card .card-footer {
+  border-width: 0;
+  background: linear-gradient(92.7deg, #74860e 0%, #217408 100%);
+  color: var(--secondary-font-color);
+}
+[mode=black] section.work-policy-2 .policy-area .can-invest-area .card .card-footer ul li {
+  font-size: 15px;
 }
 
 /** ======== Home page 2 style end =========  */
@@ -973,6 +1144,17 @@ section.faq-section .card-collapsible-group .card .card-body {
   background-color: transparent;
 }
 [mode=dark] section.faq-section .card-collapsible-group .card {
+  background-color: var(--secondary-font-color-5);
+}
+
+[mode=black] section.faq-section {
+  padding-block: 40px 63px;
+  background-color: transparent;
+}
+[mode=black] section.faq-section .card-collapsible-group .card {
+  background-color: var(--secondary-font-color-15);
+}
+[mode=black] section.faq-section .card-collapsible-group .card .card-group .card:first-child .card-badge {
   background-color: var(--secondary-font-color-5);
 }
 

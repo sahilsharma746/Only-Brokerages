@@ -47,7 +47,7 @@
     "trade_percentage" => "10",
 
     // admin email
-    'admin_email' => 'admin@krustinvestement.com',
-    'support_email' => 'support@krustinvestement.com',
+    'admin_email' => 'admin@onlybrokerage.com',
+    'support_email' => 'support@onlybrokerage.com',
     
 ];

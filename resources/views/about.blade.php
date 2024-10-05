@@ -117,7 +117,7 @@
 
         <section class="text-section">
             <div class="container">
-                <p class="section-text">At <b>Krust Investments</b>, we've dedicated years to providing you with the
+                <p class="section-text">At <b>Only brokerage</b>, we've dedicated years to providing you with the
                     best tools
                     and guidance for navigating the
                     financial markets. Our mission is straightforward: whether you're a seasoned professional or just
@@ -126,7 +126,7 @@
                     user-friendly
                     platform, we believe anyone can become a successful trader.
                     2024 has been a milestone year for us. With a growing user base and our cutting-edge trading tools,
-                    Krust Investments is
+                    Only brokerage is
                     on track to become one of the world’s leading trading platforms. Join us as we continue to innovate
                     and empower traders
                     worldwide.</p>

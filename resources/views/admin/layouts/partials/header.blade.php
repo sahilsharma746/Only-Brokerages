@@ -8,11 +8,11 @@
     @if(isset($page_title))
         <title>Admin | {{ $page_title }}</title>
     @else
-        <title>Krust-Markets | Admin</title>
+        <title>Only-Brokrage | Admin</title>
     @endif
-    <link rel="icon" href="{{ asset('assets') }}/img/site-logo.png">
-    <meta name="description" content="Open up a world of possibilities with Krust Investments">
-    <meta name="keywords" content="Investments, krust, trade">
+    <link rel="icon" href="{{ asset('assets') }}/img/site-favicon-only-brokerage.png">
+    <meta name="description" content="Open up a world of possibilities with Only Brokerage">
+    <meta name="keywords" content="Investments, Only Brokerage, trade">
     
     <link rel="stylesheet" href="{{ asset('assets') }}/nice-select-2/nice-select2.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/font-awesome-6.6.6-web/css/all.min.css">

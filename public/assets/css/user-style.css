@@ -51,6 +51,22 @@ html {
   color: var(--font-color);
 }
 
+[mode=dark] {
+  --font-color: #ffffff;
+  --bg-color: #0f1a2a;
+}
+[mode=dark] body {
+  background-color: var(--bg-color);
+}
+
+[mode=black] {
+  --font-color: #ffffff;
+  --bg-color: #111111;
+}
+[mode=black] body {
+  background-color: var(--bg-color);
+}
+
 h1,
 h2,
 h3,
@@ -509,6 +525,17 @@ section .subtitle {
   background-color: var(--scroll-thumb-color-hover, #888);
 }
 
+@keyframes floating {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
 @keyframes right-to-left-animation {
   from {
     transform: translateX(100%);
@@ -902,14 +929,10 @@ header .container {
     width: calc(100% - 30px);
   }
 }
-header .account-status-header{
-
-  padding-left: 10px
-
-}
 header .account-status-header .dot {
-  width: 8px;
-  height: 8px;
+  --dot-size: 8px;
+  width: var(--dot-size);
+  height: var(--dot-size);
   background-color: var(--primary-color);
   border-radius: 50px;
 }
@@ -995,6 +1018,32 @@ header .main-header .header-btns .dropdown-menu .dropdown-item .account-amount-h
   font-size: 20px;
   font-weight: 600;
   margin-top: 5px;
+}
+header .main-header .user-logo-area-brokerage {
+  display: grid;
+  gap: 3px;
+}
+header .main-header .user-logo-area-brokerage .account-status-header {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 57px 1fr;
+}
+header .main-header .user-logo-area-brokerage .account-status-header .dot {
+  --dot-size: 12px;
+  margin-inline: auto 0;
+}
+header .main-header .user-logo-area-krust {
+  display: grid;
+  gap: 3px;
+}
+header .main-header .user-logo-area-krust .account-status-header {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 22px 1fr;
+}
+header .main-header .user-logo-area-krust .account-status-header .dot {
+  --dot-size: 12px;
+  margin-inline: auto 0;
 }
 
 main {
@@ -1957,9 +2006,6 @@ main > article .payment-method-and-history .user-upgrade-account .account-plan .
   font-weight: 700;
   margin-bottom: 16px;
 }
-main > article .payment-method-and-history .user-upgrade-account .account-plan .card-group .card dl.item-list {
-  flex-grow: 1;
-}
 main > article .payment-method-and-history .user-upgrade-account .account-plan .card-group .card dl.item-list dt {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -2470,4 +2516,19 @@ main > article .market-news-section .news-page .trading-news-container .news-bod
 }
 main > article .market-news-section .news-page .trading-news-container .news-body a:hover {
   color: var(--primary-color);
+}
+
+
+header .main-header .user-logo-area-only-brokerage {
+  display: grid;
+  gap: 3px;
+}
+header .main-header .user-logo-area-only-brokerage .account-status-header {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 34px 1fr;
+}
+header .main-header .user-logo-area-only-brokerage .account-status-header .dot {
+  --dot-size: 12px;
+  margin-inline: auto 0;
 }
