@@ -59,11 +59,12 @@
             </nav>
             <div class="contact-details d-flex g-20">
                 <p>Opening Hours Mon - Fri: 8AM to 6PM</p>
-                <a href="https://api.whatsapp.com/send?phone=01707101100" target="_blank">
+                <a href="javascript:void(0)">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>Whatsapp</span>
                 </a>
-                <a href="mailto:{{ config('settingkeys.support_email') }}">                    <i class="fa-regular fa-envelope"></i>
+                <a href="mailto:{{ config('settingkeys.support_email') }}">       
+                    <i class="fa-regular fa-envelope"></i>
                     <span>Email</span>
                 </a>
             </div>
