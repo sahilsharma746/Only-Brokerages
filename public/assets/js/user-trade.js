@@ -266,9 +266,9 @@ function show_assets_marketwatch(apiUrl, searchTerm = "", type = "crypto") {
         table_row_html += "<td>";
         table_row_html += '<div class="d-flex align-items-center g-8">';
         if (type === 'crypto') {
-          table_row_html += `<img src="${item.image}" class="icon crypto_image" alt="${item.name}" style="width: 30px; height: 30px;">`;
+          table_row_html += `<img src="${item.image}" class="icon crypto_image" alt="${item.name}" style="width: 30px; height: 30px;border-radius:50%">`;
         } else if (type === 'forex') {
-          table_row_html += `<img src="${item.base_currency_image}" class="icon" alt="${item.name}" style="width: 30px; height: 30px;">`;
+          table_row_html += `<img src="${item.base_currency_image}" class="icon" alt="${item.name}" style="width: 30px; height: 30px;border-radius:50%">`;
           // table_row_html += `<img src="${item.quote_currency_image}" class="icon" alt="${item.name}" style="width: 30px; height: 30px;">`;
         }
         table_row_html += `<span>${item.name}</span>`;
