@@ -1497,7 +1497,10 @@ main>article .trade-and-market-common-grid .card.trade-and-market-common-card .c
 }
 
 main>article .trade-and-market-common-grid .card.trade-and-market-common-card .card-body .trade-and-market-common-table dt img.flag {
-    width: 18px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 main>article .trade-and-market-common-grid .user-trade-chart-area {

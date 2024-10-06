@@ -15,15 +15,15 @@
                           </div>
                         </div>
                         <div class="market-watch-table-indicators scroll">
-                          <a href="#user-market-watch-table-crypto" class="btn trade-type active" data-type="crypto">
+                          <a href="#user-market-watch-table-crypto" class="btn trade-type-market-watch active" data-type="crypto">
                             <span>Crypto</span>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </a>
-                          {{-- <a href="#user-market-watch-table-forex" class="btn" data-type="forex">
+                          <a href="#user-market-watch-table-forex" class="btn trade-type-market-watch" data-type="forex">
                             <span>Forex</span>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </a>
-                          <a href="#user-market-watch-table-indices" class="btn" data-type="indices">
+                          {{--  <a href="#user-market-watch-table-indices" class="btn" data-type="indices">
                             <span>Indices</span>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </a>
@@ -43,7 +43,6 @@
                                 <tr>
                                     <th>Asset</th>
                                     <th>Market Cap</th>
-                                    <!-- <th>FD Market Cap</th> -->
                                     <th>Price</th>
                                     <th>Traded Volume</th>
                                     <th>Available Volume</th>

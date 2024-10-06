@@ -9,10 +9,9 @@
                 </div>
                 <div class="card-body">
                     <div class="card-indicators scroll">
-                        <a data-label="BITSTAMP:BTCUSD" data-type="crypto"
-                            class="btn-pill trade-type active btn-crypto">Crypto</a>
-                        {{-- <a data-label="FX:EURUSD" data-type="forex"- class="btn-pill trade-type btn-forex ">Forex</a> --}}
-                        {{-- <a data-label="TVC:DXY" data-type="indices" class="btn-pill trade-type btn-indices">Indices</a> --}}
+                        <a data-type="crypto" class="btn-pill trade-type active btn-crypto">Crypto</a>
+                        <a data-type="forex" class="btn-pill trade-type btn-forex ">Forex</a>
+                        <!-- <a data-type="indices" class="btn-pill trade-type btn-indices">Indices</a> -->
                     </div>
                     <div class="trade-and-market-common-table-area">
                         <div class="input-group search-input-group">
@@ -40,7 +39,7 @@
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <div class="d-flex g-8 selected-asset">
                                     <img src="" alt="country flag" class="flag_image" name="trade_image"
-                                        style="width: 30px; height:30px;">
+                                        style="width: 30px; height:30px; border-radius: 50%;">
                                     <div class="d-grid">
                                         <span class="name"></span>
                                         <span class="details fullname"></span>
@@ -191,7 +190,7 @@
                                                 {{ $trade->asset }}
                                             </td>
 
-                                            <td>{{ $trade->margin }}</td>
+                                            <td>{{ $trade->margin }}x</td>
                                             <td style="color:  #F8E40F;">${{ $trade->contract_size }}</td>
                                             <td>${{ $trade->capital }}</td>
                                             <td

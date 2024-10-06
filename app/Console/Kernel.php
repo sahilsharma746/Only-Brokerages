@@ -23,6 +23,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule){
         $schedule->command('app:processed-completed-trades')->everyMinute();
         $schedule->command('app:updated-trades-status')->everyMinute();
+
+        $schedule->command('app:get-crypto-data')->twiceDaily(1, 13);
+        $schedule->command('app:get-forex-data')->twiceDaily(1, 13);
+        // $schedule->command('app:get-indices-data')->twiceDaily(1, 13);
     }
 
     /**
