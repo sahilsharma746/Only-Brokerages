@@ -63,7 +63,7 @@
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>Whatsapp</span>
                 </a>
-                <a href="mailto:{{ config('settingkeys.support_email') }}">       
+                <a target="_blank" href="mailto:{{ config('settingkeys.support_email') }}">       
                     <i class="fa-regular fa-envelope"></i>
                     <span>Email</span>
                 </a>

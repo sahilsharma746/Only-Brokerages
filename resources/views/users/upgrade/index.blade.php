@@ -2,7 +2,7 @@
 @section('content')
     <article class="tab-content trade-article">
         <section id="payment-method-and-history" class="tab-pane common-section in active payment-method-and-history">
-            @include('users.upgrade.top-nav')
+            @include('users.deposit.payment-method-menu')
             <div id="user-upgrade-account" class="user-upgrade-account collapse">
                 <div class="account-plan">
                     <style>

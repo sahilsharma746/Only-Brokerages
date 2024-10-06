@@ -70,38 +70,23 @@
                         <dl class="dropdown-menu d-flex flex-column">
                             <dt class="dropdown-item">Current Plan: <span class="user-plan-name">{{ $user_plan }}</span> </dt>
                             <dt class="dropdown-item">Account Profit : <span class="user-plan-name"  style="color: #3AAC1A"><b>${{ number_format ( $account_profit ) }}</b></span> </dt>
-
-                            <!-- <dt class="dropdown-item">
-                                <div class="account-status-header d-flex align-items-center g-10">
-                                    <span class="account-status text-primary">Profit</span>
-                                </div>
-                                <div class="account-amount-header">
-                                    ${{ number_format(auth()->user()->balance) }}
-                                </div>
-                            </dt> -->
                             <dt class="dropdown-item">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                     <span>Logout</span>
                                 </a>
-                                <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form> -->
                             </dt>
-
                             @if(session()->has('admin_id'))
                                 <dt class="dropdown-item">
                                     <a href="{{ route('user.admin.restore') }}" class="btn btn-warning">Return to Admin</a>
                                 </dt>
                             @endif
-
                         </dl>
                     </dt>
                 </dl>
             </div>
         </div>
     </header>
-
 
     <script type="text/javascript">
         // JQUERY FOR DISPLAYING THE MENU ON MOBILE 

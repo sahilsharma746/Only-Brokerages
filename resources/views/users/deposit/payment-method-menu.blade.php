@@ -40,13 +40,13 @@
         </a>
     </li>
     <li class="nav-item d-flex">
-        <a class="card" href="{{ route('user.upgrade.index') }}">
-            <p>Upgrade</p>
+    <a class="card {{ Request::url() == route('user.upgrade.index') ? 'active' : '' }}" href="{{ route('user.upgrade.index') }}">
+    <p>Upgrade</p>
         </a>
     </li>
-    <li class="nav-item d-flex">
-        <a class="card" href="#">
-            <p>Payment Settings</p>
+    <li class="nav-item d-flex"  onclick="localStorage.setItem('activeLeftTab', '#security-settings');">
+        <a class="card" href="{{ route('user.dashboard') }}">
+            <p> Settings </p>
         </a>
     </li>
 </ul>
