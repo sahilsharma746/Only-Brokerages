@@ -49,5 +49,5 @@
     // admin email
     'admin_email' => 'admin@onlybrokerage.com',
     'support_email' => 'support@onlybrokerage.com',
-    
+    'phone_number' => '+1(213)293-2886',
 ];

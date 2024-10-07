@@ -47,7 +47,9 @@
                             </div>
                             <div class="card-footer">
                                 <a data-toggle="modal" href="#withDrawRequestModal" class="btn btn-request-withdrawal w-max">Request Withdrawal</a>
-                                <p class="support-text">For other payment methods please <a href="{{ route('frontend.contact') }}">Contact Support</a>
+                                {{-- <p class="support-text">For other payment methods please <a href="{{ route('frontend.contact') }}">Contact Support</a> --}}
+                                    <p class="support-text">For other payment methods please <a href="#" class="live-chat-withdraw-section">Contact Support</a></p>
+
                                 </p>
                             </div>
                         </div>

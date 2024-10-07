@@ -59,9 +59,9 @@
             </nav>
             <div class="contact-details d-flex g-20">
                 <p>Opening Hours Mon - Fri: 8AM to 6PM</p>
-                <a href="javascript:void(0)">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>Whatsapp</span>
+                <a target="_blank" href="tel:{{ config('settingkeys.phone_number') }}">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span>+1(213)293-2886</span>
                 </a>
                 <a target="_blank" href="mailto:{{ config('settingkeys.support_email') }}">       
                     <i class="fa-regular fa-envelope"></i>

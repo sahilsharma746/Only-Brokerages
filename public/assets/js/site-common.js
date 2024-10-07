@@ -65,3 +65,8 @@ if( jQuery('#site-main-nav').length > 0 ) {
 jQuery(document).on('click', '.live-chat-section', function(){
 	tidioChatApi.open();
 })
+
+jQuery(document).on('click', '.live-chat-withdraw-section', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    tidioChatApi.open(); // Open the chat
+});
