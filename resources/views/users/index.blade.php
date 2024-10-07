@@ -223,7 +223,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="card d-grid align-items-center g-8" data-toggle="tab" href="#live-chat-section">
+                    <a class="card d-grid align-items-center g-8 live-chat-section" data-toggle="tab" href="#live-chat-section">
                         <div class="icon">
                             <i class="fa-brands fa-rocketchat"></i>
                         </div>
@@ -664,7 +664,7 @@
                 </div>
             </div>
         </section>
-        <section id="live-chat-section" class="tab-pane common-section in live-chat-section">
+        <!-- <section id="live-chat-section" class="tab-pane common-section in live-chat-section">
             <div class="back-btn-area">
                 <ul class="nav nav-tabs list-style-none">
                     <li class="nav-item d-flex align-items-center g-15">
@@ -704,7 +704,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
     </article>
 @endsection

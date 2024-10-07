@@ -26,6 +26,8 @@
 <!-- font-awesome added here ================ -->
 <link rel="stylesheet" href="{{ asset('assets') }}/font-awesome-6.6.6-web/css/all.min.css">
 
+<script src="{{ env('TIDO_APP_JS') ?? '' }}" async></script>
+
 <script>
     var apiUrlCrypto = "{{ url('/crypto.json') }}";
     var apiUrlForex = "{{ url('/forex.json') }}";

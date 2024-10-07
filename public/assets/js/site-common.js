@@ -62,4 +62,6 @@ if( jQuery('#site-main-nav').length > 0 ) {
 	}
 });
 
-
+jQuery(document).on('click', '.live-chat-section', function(){
+	tidioChatApi.open();
+})

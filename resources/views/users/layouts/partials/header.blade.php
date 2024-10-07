@@ -11,12 +11,14 @@
     <meta name="description" content="Open up a world of possibilities with Only Brokerage">
     <meta name="keywords" content="Investments, Only Brokerage, trade">
 
-     <script>
+    <script src="{{ env('TIDO_APP_JS') ?? '' }}" async></script>
+
+    <script>
         var apiUrlCrypto = "{{ url('/crypto.json') }}";
         var apiUrlForex = "{{ url('/forex.json') }}";
         var apiUrlIndisis = "{{ url('/indisis.json') }}";
-
     </script>
+    
     <link rel="stylesheet" href="{{ asset('assets') }}/nice-select-2/nice-select2.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/font-awesome-6.6.6-web/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/data-table-2.1.4/dataTables.dataTables.css">
@@ -32,6 +34,7 @@
     <script src="{{ asset('assets') }}/data-table-2.1.4/dataTables.js"></script>
 
     <script src="{{ asset('assets/js/site-common.js') }}?v={{ env('SITE_CSS_JS_VERSION') }}"></script>
+
     
 </head>
 
