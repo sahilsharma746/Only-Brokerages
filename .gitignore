@@ -1,5 +1,8 @@
 /.phpunit.cache
 /node_modules
+/public/crypto.json
+/public/forex.json
+/public/indices.json
 /public/build
 /public/uploads
 /public/api-test
