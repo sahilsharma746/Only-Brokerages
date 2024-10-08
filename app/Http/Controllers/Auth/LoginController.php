@@ -52,6 +52,15 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
+
+            // Check if the user's status is banned or inactive
+            if ($user->status === 'banned' || $user->status === 'deactive') {
+                Auth::logout(); // Log the user out if they are banned or inactive
+                return back()->withErrors([
+                    'email' => 'Your account is '.$user->status.'. Please contact support.',
+                ]);
+            }
+
              $user_account_type = UserAccountType::where('id', $user->account_type)->pluck('name')->first();
             session()->put('user_name', $user->first_name . ' ' . $user->last_name);
             session()->put('user_account_type', $user_account_type);

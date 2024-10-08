@@ -32,24 +32,48 @@ class UserWithdrawController extends Controller
 
 
     public function SaveUserWithdrawlRequest(Request $request) {
+       
         $user = Auth::user();
 
         $request->validate([
-            'amount' => 'required|numeric|min:1',
             'getway' => 'required|numeric',
-            'address' => 'required',
-            'address_tag' => 'nullable'
+            'amount' => 'required|numeric|min:1',
         ]);
-    
+
+        $getway = Getway::find($request->getway);
+        if (!$getway) {
+            return back()->with('error', 'Invalid withdrawal method selected.');
+        }
+
+        if( strtolower($getway->name) == 'bitcoin' || strtolower($getway->name) == 'xmr' || strtolower($getway->name) == 'usdt' ) {
+
+            $request->validate([
+                'address' => 'required',
+                'address_tag' => 'required',
+            ]);
+
+
+        }else if ( strtolower($getway->name) == 'deposit via paypal' ) {
+            $request->validate([
+                'paypal_email' => 'required',
+            ]);
+
+        }else if ( strtolower($getway->name) == 'deposit via bank' ) {
+            
+            $request->validate([
+                'bank_name' => 'required|string',
+                'account_number' => 'required|numeric',
+                'account_type' => 'required|string',
+                'short_code' => 'required|string',
+                'account_holder_name' => 'required|string',
+            ]);
+
+        }
+
         $user = User::where('id', $user->id)->first();
      
         if ($user->balance < $request->amount) {
             return back()->with('error', 'You don’t have enough balance.');
-        }
-    
-        $getway = Getway::find($request->getway);
-        if (!$getway) {
-            return back()->with('error', 'Invalid withdrawal method selected.');
         }
     
         Withdraw::insert([
@@ -60,6 +84,12 @@ class UserWithdrawController extends Controller
             'address_tag' => $request->address_tag,
             'payment_method' => $getway->name,
             'withdrawl_by' => 'user',
+            'bank_name' => $request->bank_name,
+            'account_number' =>$request->account_number,
+            'account_type' => $request->account_type,
+            'short_code' => $request->short_code,
+            'account_holder_name' => $request->account_holder_name,
+            'paypal_email' => $request->paypal_email, 
             'created_at' => Carbon::now()
         ]);
        

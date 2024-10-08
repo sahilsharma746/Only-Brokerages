@@ -182,6 +182,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['is_admin']], function () {
     
     // admin all banned verified users dashboard view url 
     Route::get('/banned-users', [AdminUserController::class, 'bannedVerified'])->name('admin.user.bannedVerified');
+        // admin all deleted users dashboard view url 
+    Route::get('/deleted-users', [AdminUserController::class, 'deletedUser'])->name('admin.user.deletedUsers');
 
     // admin all banned verified users dashboard view url 
     Route::post('/kyc-admin-action/{user}', [AdminUserController::class, 'kycAdminAction'])->name('admin.kyc.action');
