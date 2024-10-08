@@ -108,6 +108,12 @@ class AdminUserController extends Controller
         return view('admin.users.index', compact('all_users', 'page_title'));
     }
 
+    public function deletedUser()
+    {
+        $page_title = 'Deleted Users';
+        $all_users = User::with('addresses')->where([['role', 'user'], ['status', 'deactive']])->get();
+        return view('admin.users.index', compact('all_users', 'page_title'));
+    }
 
     
     public function details(User $user){
@@ -274,8 +280,10 @@ class AdminUserController extends Controller
         $arr = explode('/', $user->avatar);
         $img = end($arr);
         if ($img != 'avatar.png') {
-            $file_path = public_path('uploads/user_avatar/' . $user_data->avatar);
-            unlink(base_path($user->avatar));
+            $file_path = public_path('uploads/user_avatar/' . $user->avatar);
+            if (file_exists($file_path)) {
+                unlink(base_path($file_path));
+            }
         }
         // $user->delete();
         return back()->with('success', 'Deleted Successfully');

@@ -73,7 +73,6 @@ $(document).ready(function () {
     } else {
         console.log(activeLeftTabLocalStorage);
     } 
-
     
 
     //? active tab with localStorage
@@ -120,47 +119,6 @@ $(document).ready(function () {
         }
     }); //? Password show/hide icon script end =========
 
-    //* live Chat script start ========================
-    const sendMessage = () => {
-        const textBox = (text, imgSrc) => {
-            return `
-<div class="user-text-box d-flex align-items-start g-8">
-    <p class="message">${text}</p>
-    <div class="icon-area d-flex justify-content-center align-items-center">
-        <img class="user-icon" src="${
-            imgSrc ? imgSrc : './assets/img/site-logo.png'
-        }" alt="user name">
-    </div>
-</div>`;
-        };
-        const message = $('#live-chat-input');
-        if (message.val()) {
-            try {
-                const $newElement = $(textBox(message.val())).css({
-                    opacity: 0,
-                });
-                $('#chat-body').append($newElement);
-                $newElement.animate({ opacity: 1 }, 500); // 500 is the duration in milliseconds
-
-                $('#live-chat-section .scroll').animate(
-                    {
-                        scrollTop: $('#live-chat-section .scroll')[0]
-                            .scrollHeight,
-                    },
-                    1000,
-                );
-                message.val('');
-                message.focus();
-            } catch (error) {
-                console.warn(error);
-            }
-        }
-    };
-    $('#send-message').on('click', sendMessage);
-    $(document).on('keypress', '#live-chat-input', function (e) {
-        if (e.which === 13) sendMessage();
-    });
-    //* live Chat script end ===========================
 
     //* Payment Method collapsible script start ========
     $(document).on(
@@ -233,7 +191,8 @@ $(document).ready(function () {
 $(document).on('click', '.clone-icon', function () {
     const targetId = $(this).attr('for');
     if (targetId) copyToClipboard(`#${targetId}`);
-}); 
+});
+
 
 if( jQuery( '#trading-history-table' ).length > 0) {
     let table = new DataTable('#trading-history-table', {
@@ -334,5 +293,96 @@ jQuery(document).ready(function() {
     // Fetch and update the data for the specified cryptocurrencies
     fetchCryptoData(apiUrlCrypto, cryptoNames);
 });
+
+
+
+    jQuery(document).on('click', '.news_type', function(e) {
+        e.preventDefault(); // Prevent the default link behavior
+
+        // Remove the 'active' class from all news type buttons
+        jQuery('.news_type').removeClass('active');
+
+        // Add the 'active' class to the clicked button
+        jQuery(this).addClass('active');
+
+        // Get the type of news to show
+        var type = jQuery(this).data('type');
+
+        // Hide all news sections
+        jQuery('#news-title-area ul').hide();
+
+        // Show the selected news section
+        jQuery('#news-title-area .' + type).show();
+
+        // Trigger click on the first news item of the selected type
+        var firstItem = jQuery('#news-title-area .' + type + ' li:first-child');
+        if (firstItem.length) {
+            firstItem.click(); // Simulate a click on the first item
+        }
+    });
+
+    // Click event for news items
+    jQuery(document).on('click', '#news-title-area ul li', function() {
+        
+        jQuery('#news-title-area ul li a').removeClass('active');
+
+        // Add 'active' class to the <a> element of the clicked news item
+        jQuery(this).find('a').addClass('active');
+
+        // Get data attributes from the clicked news item
+        var image = jQuery(this).data('image');
+        var title = jQuery(this).data('title');
+        var description = jQuery(this).data('description');
+        var pubDate = jQuery(this).find('.news-time').text(); // Get publication date
+        var link = jQuery(this).data('link');
+
+        // Update the details section with the selected news information
+        jQuery('#news-image').attr('src', image).show(); // Show the news image
+        jQuery('#selected-news-title').text(title); // Set the title
+        jQuery('#selected-news-time').text(pubDate); // Set the publication date
+        jQuery('#selected-news-body').html(description); // Set the description
+        jQuery('#selected-news-body-footer a').attr('href', link);
+    });
+
+    // Optional: If you want to show the first item of the default selected news type on page load
+    jQuery(document).ready(function() {
+        var defaultNewsType = 'crypto-news'; // Set your default news type here
+        jQuery('.news_type[data-type="' + defaultNewsType + '"]').click(); // Simulate a click to show default news
+        if( jQuery('#userWithdrawalMethod' ).length > 0 ) {
+            const selectedMethod = localStorage.getItem('previous_selected_method');
+            if( selectedMethod != null ) {
+                $('#userWithdrawalMethod option').filter(function() {
+                    return $(this).data('method') == selectedMethod;
+                }).prop('selected', true);
+            }
+        }
+    });
+
+
+    jQuery('#userWithdrawalMethod').change(function() {
+        var selectedMethod = jQuery('#userWithdrawalMethod option:selected').data('method');
+
+        console.log( selectedMethod );
+
+        if( selectedMethod != undefined ) {
+            localStorage.setItem('previous_selected_method', selectedMethod);
+        }
+
+        // Hide all method fields initially
+        jQuery('#crypto-fields, #crypto-address-tag, #paypal-field, #bank-fields, #bank-account-number, #bank-account-type, #bank-short-code, #bank-account-holder').hide();
+    
+        // Show the relevant fields based on the selected method
+        if (selectedMethod === 'bitcoin' || selectedMethod === 'usdt' || selectedMethod === 'xmr') {
+            jQuery('#crypto-fields, #crypto-address-tag').show();
+        } else if (selectedMethod === 'deposit via paypal') {
+            jQuery('#paypal-field').show();
+        } else if (selectedMethod === 'deposit via bank') {
+            jQuery('#bank-fields, #bank-account-number, #bank-account-type, #bank-short-code, #bank-account-holder').show();
+        }
+    });
+    
+    // Trigger the change event to handle pre-selected methods (optional)
+    jQuery('#userWithdrawalMethod').trigger('change');
+
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 use App\Models\User;
 use App\Models\Trade;
 use App\Models\Deposit;
+use DOMDocument;
 
 use App\Models\Withdraw;
 use App\Models\UserSetting;
@@ -138,6 +139,138 @@ class UserHomeController extends Controller
     
 
     public function news() {
-        return view('users.news');
+
+        $crypto_feed_data = $this->get_feed_for_crypto();
+        $forex_feed_data = $this->get_feed_for_forex();
+        $indices_feed_data = $this->get_feed_for_indices();
+
+        return view('users.news' , compact('crypto_feed_data','forex_feed_data','indices_feed_data'));
     }
+
+
+
+
+    public function get_feed_for_crypto(){
+        $crypto_feed_data = [];
+
+        $rss_feed_newsBTC = 'https://www.newsbtc.com/feed/';
+        $newsBTC_feed = simplexml_load_file($rss_feed_newsBTC);
+        
+        if ($newsBTC_feed !== false) {
+            $namespaces = $newsBTC_feed->getNamespaces(true);
+            $i = 0;
+            foreach ($newsBTC_feed->channel->item as $key => $item) {
+                // Get media content using the correct namespace
+                $mediaContent = $item->children($namespaces['media'])->content;
+                $imageUrl = (string) $mediaContent->attributes()->url;
+        
+                $description = trim(preg_replace('/<.*?>/i', '', (string) $item->description));
+        
+                // Initialize DOMDocument to parse description
+                $doc = new DOMDocument();
+                @$doc->loadHTML($description);
+        
+                $crypto_feed_data[$i]['title'] = htmlspecialchars($item->title);
+                $crypto_feed_data[$i]['link'] = htmlspecialchars($item->link);
+                $crypto_feed_data[$i]['pub_date'] = date('M d, Y', strtotime($item->pubDate));
+                $crypto_feed_data[$i]['description'] = $description;
+                $crypto_feed_data[$i]['image'] = $imageUrl;
+                $i++;
+            }
+        }
+
+        $rss_feed_crypto = 'https://cointelegraph.com/rss'; 
+        $crypto_feed = simplexml_load_file($rss_feed_crypto);
+        if ($crypto_feed != false) {
+            foreach ($crypto_feed->channel->item as $key => $item) {
+                $crypto_feed_data[$i]['title'] = htmlspecialchars($item->title);
+                $crypto_feed_data[$i]['link'] = htmlspecialchars($item->link);
+                $crypto_feed_data[$i]['pub_date'] = date('M d, Y', strtotime($item->pubDate));
+                $crypto_feed_data[$i]['description'] = trim(preg_replace('/<.*?>/i', '', (string) $item->description));
+                $crypto_feed_data[$i]['image'] = (string) $item->enclosure['url'];
+                $i++;
+            }
+        }
+        return $crypto_feed_data;
+    }
+
+
+    public function get_feed_for_forex() {
+        $rss_feed_url = 'https://www.actionforex.com/feed/';
+        $feed_data = [];
+
+        // Fetch the RSS feed
+        $rss_content = @file_get_contents($rss_feed_url);
+        if ($rss_content === false) {
+            return ['error' => 'Failed to load RSS feed.'];
+        }
+
+        // Load the RSS feed into a SimpleXMLElement
+        $rss = simplexml_load_string($rss_content);
+        if ($rss === false) {
+            return ['error' => 'Failed to parse RSS feed.'];
+        }
+
+        // Iterate over each item in the RSS feed
+        foreach ($rss->channel->item as $item) {
+            $title = (string) $item->title;
+            $link = (string) $item->link;
+            $description = strip_tags((string) $item->description);
+            preg_match('/<img.*?src=["\'](.*?)["\']/', $item->description, $matches);
+            $image = $matches[1] ?? '';  // Get the first matched image URL
+            $feed_data[] = [
+                'title' => $title,
+                'link' => $link,
+                'description' => $description,
+                'pub_date' => date('M d, Y', strtotime($item->pubDate)),
+                'image' => $image
+            ];
+        }
+        return $feed_data;
+    }
+    
+    
+
+
+    public function get_feed_for_Indices() {
+        $indices_feed_data = [];
+        // Valid RSS feed for indices news
+        $rss_feed_indices = 'https://finance.yahoo.com/rss/';
+    
+        $options = [
+            "http" => [
+                "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3\r\n"
+            ]
+        ];
+        $context = stream_context_create($options);
+        $response = @file_get_contents($rss_feed_indices, false, $context);
+
+        if ($response !== false) {
+            $indices_feed = simplexml_load_string($response);
+
+            if ($indices_feed !== false) {
+                $i = 0;
+                foreach ($indices_feed->channel->item as $item) {
+
+                    $media = $item->children('media', true); // Handling media namespace
+                    $indices_feed_data[$i]['title'] = (string) $item->title;
+                    $indices_feed_data[$i]['link'] = (string) $item->link;
+                    $indices_feed_data[$i]['pub_date'] = date('M d, Y', strtotime((string) $item->pubDate));
+                    $indices_feed_data[$i]['description'] = strip_tags((string) $item->description);
+                    
+                    // Extract image from the 'media:content' element
+                    $indices_feed_data[$i]['image'] = isset($media->content) ? (string) $media->content->attributes()->url : '';
+                    $i++;
+                }
+            } else {
+                return ['error' => 'Failed to parse the RSS feed.'];
+            }
+        } else {
+            return ['error' => 'Failed to load RSS feed.'];
+        }
+
+        return $indices_feed_data;
+    }
+
+
 }
