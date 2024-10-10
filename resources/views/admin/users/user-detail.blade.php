@@ -1075,7 +1075,7 @@
 
                 <div class="section-title">Payment Information</div>
                 <div class="card common-card">
-                    <form action= "{{ route('admin.user.payments', $full_data['user_data']->id) }}" method="POST">
+                    <form action= "{{ route('admin.user.payments', $full_data['user_data']->id) }}" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="input-group">
@@ -1153,6 +1153,50 @@
                                     value="{{ isset($full_data['user_settings'][config('settingkeys.sort_code_key')]) ? $full_data['user_settings'][config('settingkeys.sort_code_key')] : '' }}"
                                     placeholder="Enter Sort Code">
                             </div>
+                            <br>
+                            <div class="input-group attach-file-input-group">
+                                <label class="form-label">Bitcoin QR Code</label>
+                                <div class="form-control">
+                                    <label class="attach-icon d-flex justify-content-between align-items-center w-100">
+                                        @if(isset($full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]))
+                                        <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]}}</span>
+                                        @else
+                                        <span type="placeholder">XMR QR Code</span>
+                                        @endif                                      
+                                        <input class="d-none" type="file" name="{{ config('settingkeys.bitcoin_qr_code_key') }}">
+                                        <i class="fa-solid fa-link"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-group attach-file-input-group">
+                                <label class="form-label">XMR QR Code</label>
+                                <div class="form-control">
+                                    <label class="attach-icon d-flex justify-content-between align-items-center w-100">
+                                        @if(isset($full_data['user_settings'][config('settingkeys.xmr_qr_code_key')]))
+                                        <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.xmr_qr_code_key')]}}</span>
+                                        @else
+                                        <span type="placeholder">XMR QR Code</span>
+                                        @endif
+                                        <input class="d-none" type="file" name="{{ config('settingkeys.xmr_qr_code_key') }}">                                            <i class="fa-solid fa-link"></i>
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-group attach-file-input-group">
+                                <label class="form-label">USDT QR Code</label>
+                                <div class="form-control">
+                                    <label class="attach-icon d-flex justify-content-between align-items-center w-100">
+                                        @if(isset($full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]))
+                                        <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]}}</span>
+                                        @else
+                                        <span type="placeholder">XMR QR Code</span>
+                                        @endif                                            
+                                        <input  class="d-none" type="file" name="{{ config('settingkeys.usdt_qr_code_key') }}" >
+                                            <i class="fa-solid fa-link"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            
                             <br>
                             <div class="">
                                 <button type="submit" class="btn btn-primary btn-sm"> Save Payment Info </button>

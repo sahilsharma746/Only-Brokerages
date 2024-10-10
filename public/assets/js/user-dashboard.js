@@ -348,41 +348,9 @@ jQuery(document).ready(function() {
     jQuery(document).ready(function() {
         var defaultNewsType = 'crypto-news'; // Set your default news type here
         jQuery('.news_type[data-type="' + defaultNewsType + '"]').click(); // Simulate a click to show default news
-        if( jQuery('#userWithdrawalMethod' ).length > 0 ) {
-            const selectedMethod = localStorage.getItem('previous_selected_method');
-            if( selectedMethod != null ) {
-                $('#userWithdrawalMethod option').filter(function() {
-                    return $(this).data('method') == selectedMethod;
-                }).prop('selected', true);
-            }
-        }
+       
     });
 
 
-    jQuery('#userWithdrawalMethod').change(function() {
-        var selectedMethod = jQuery('#userWithdrawalMethod option:selected').data('method');
 
-        console.log( selectedMethod );
-
-        if( selectedMethod != undefined ) {
-            localStorage.setItem('previous_selected_method', selectedMethod);
-        }
-
-        // Hide all method fields initially
-        jQuery('#crypto-fields, #crypto-address-tag, #paypal-field, #bank-fields, #bank-account-number, #bank-account-type, #bank-short-code, #bank-account-holder').hide();
     
-        // Show the relevant fields based on the selected method
-        if (selectedMethod === 'bitcoin' || selectedMethod === 'usdt' || selectedMethod === 'xmr') {
-            jQuery('#crypto-fields, #crypto-address-tag').show();
-        } else if (selectedMethod === 'deposit via paypal') {
-            jQuery('#paypal-field').show();
-        } else if (selectedMethod === 'deposit via bank') {
-            jQuery('#bank-fields, #bank-account-number, #bank-account-type, #bank-short-code, #bank-account-holder').show();
-        }
-    });
-    
-    // Trigger the change event to handle pre-selected methods (optional)
-    jQuery('#userWithdrawalMethod').trigger('change');
-
-
-

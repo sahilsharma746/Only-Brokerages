@@ -1,5 +1,16 @@
 @extends('users.layouts.app_user')
 @section('content')
+<style>
+    .input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-danger {
+    font-size: 16px; 
+    margin-top: 4px; 
+}
+</style>
     <article class="tab-content trade-article">
         <section id="payment-method-and-history" class="tab-pane common-section in active payment-method-and-history">
             @include('users.deposit.payment-method-menu')
@@ -21,8 +32,7 @@
                     
                                 <div class="input-group">
                                     <label class="form-label">Withdrawal Method</label>
-                                    <select class="form-control" id="userWithdrawalMethod" name="getway">
-                                        <option value="">Select Method</option>
+                                    <select class="form-control userWithdrawalMethodClass" id="userWithdrawalMethod" name="getway">
                                         @foreach ($getways as $getway)
                                             @if (strtolower($getway->name) !== 'admin_loan' && strtolower($getway->name) !== 'admin_credit')
                                                 <option value="{{ $getway->id }}" data-method="{{ strtolower($getway->name) }}">
@@ -41,7 +51,7 @@
                                     <label class="form-label">Wallet Address</label>
                                     <input class="form-control" type="text" placeholder="Enter Wallet Address" name="address">
                                     @error('address')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <span class="text-danger" >{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="input-group" id="crypto-address-tag" style="display: none;">
@@ -107,10 +117,7 @@
                                 <p class="support-text">For other payment methods please <a href="#" class="live-chat-withdraw-section">Contact Support</a></p>
                             </div>
                         </div>
-                    </div>
-                  
-                  
-
+                    </div>                  
                     <div id="withDrawRequestModal" class="modal withDrawRequestModal">
                         <div class="modal-dialog d-flex flex-column justify-content-center align-items-center">
                             <div class="modal-body text-center">

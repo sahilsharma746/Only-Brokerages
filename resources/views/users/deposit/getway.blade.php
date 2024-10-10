@@ -94,11 +94,25 @@
                                         </div>
                                         <div class="qr-code-area">
                                             <div class="input-group">
-                                                <label class="form-label">QR Code</label>
-                                                <img class="img-qr-code" src="{{ asset('assets/img/dev-qr-code.png') }}"
-                                                    alt="qr-code">
+                                                @php
+                                                    $qrCodeImage = null;
+                                        
+                                                    if ($getway->name == 'BITCOIN' && isset($user_settings[config('settingkeys.bitcoin_qr_code_key')])) {
+                                                        $qrCodeImage = asset('uploads/qr_code/' . $user_settings[config('settingkeys.bitcoin_qr_code_key')]);
+                                                    } elseif ($getway->name == 'XMR' && isset($user_settings[config('settingkeys.xmr_qr_code_key')])) {
+                                                        $qrCodeImage = asset('uploads/qr_code/' . $user_settings[config('settingkeys.xmr_qr_code_key')]);
+                                                    } elseif ($getway->name == 'USDT' && isset($user_settings[config('settingkeys.usdt_qr_code_key')])) {
+                                                        $qrCodeImage = asset('uploads/qr_code/' . $user_settings[config('settingkeys.usdt_qr_code_key')]);
+                                                    }
+                                                @endphp
+                                        
+                                                @if ($qrCodeImage)
+                                                    <label class="form-label">QR Code</label>
+                                                    <img class="img-qr-code" src="{{ $qrCodeImage }}" alt="qr-code">
+                                                @endif
                                             </div>
                                         </div>
+                                        
                                         @if (isset( $plan->id))
                                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                                         @else

@@ -213,6 +213,53 @@ class AdminUserController extends Controller
             $this->user_setting->updatUserSetting( $sort_code_key, $request->$sort_code_key, $user->id );
         }
 
+        $bitcoin_qr_code_key = config('settingkeys.bitcoin_qr_code_key');
+        $xmr_qr_code_key = config('settingkeys.xmr_qr_code_key');
+        $usdt_qr_code_key = config('settingkeys.usdt_qr_code_key');
+        $user_id = $user->id;
+
+        $validated = $request->validate([
+            $bitcoin_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+            $xmr_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+            $usdt_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+        ]);
+
+        // Bitcoin QR Code
+        if ($request->hasFile($bitcoin_qr_code_key)) {
+            $bitcoin_qr_file = $request->file($bitcoin_qr_code_key);
+            $bitcoin_qr_code = time() . '-bitcoin_qr_code.' . $user_id . '.' . $bitcoin_qr_file->getClientOriginalExtension();
+            $upload_dir = public_path('uploads/qr_code/');
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            $bitcoin_qr_file->move($upload_dir, $bitcoin_qr_code);
+            $this->user_setting->updatUserSetting($bitcoin_qr_code_key, $bitcoin_qr_code, $user->id);
+        }
+
+        // Monero (XMR) QR Code
+        if ($request->hasFile($xmr_qr_code_key)) {
+            $xmr_qr_file = $request->file($xmr_qr_code_key);
+            $xmr_qr_code = time() . '-xmr_qr_code.' . $user_id . '.' . $xmr_qr_file->getClientOriginalExtension();
+            $upload_dir = public_path('uploads/qr_code/');
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            $xmr_qr_file->move($upload_dir, $xmr_qr_code);
+            $this->user_setting->updatUserSetting($xmr_qr_code_key, $xmr_qr_code, $user->id);
+        }
+
+        // USDT QR Code
+        if ($request->hasFile($usdt_qr_code_key)) {
+            $usdt_qr_file = $request->file($usdt_qr_code_key);
+            $usdt_qr_code = time() . '-usdt_qr_code.' . $user_id . '.' . $usdt_qr_file->getClientOriginalExtension();
+            $upload_dir = public_path('uploads/qr_code/');
+            if (!file_exists($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            $usdt_qr_file->move($upload_dir, $usdt_qr_code);
+            $this->user_setting->updatUserSetting($usdt_qr_code_key, $usdt_qr_code, $user->id);
+        }
+
         return to_route('admin.user.details', $user->id )->with('success', 'Updated Successfully');
 
     }
