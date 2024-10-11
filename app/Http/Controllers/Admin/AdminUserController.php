@@ -156,114 +156,178 @@ class AdminUserController extends Controller
 
  
 
+    // public function editUserPaymentSettings(Request $request, User $user) {    return to_route('admin.user.details', $user_id)->with('success', 'Updated Successfully');
+
+    //     $bitcoin_address = config('settingkeys.bitcoin_address_key');
+    //     if ( isset( $request->$bitcoin_address ) && !empty( $request->$bitcoin_address)) {
+    //         $this->user_setting->updatUserSetting( $bitcoin_address, $request->$bitcoin_address, $user->id );
+    //     }
+
+    //     $bitcoin_address_tag_key = config('settingkeys.bitcoin_address_tag_key');
+    //     if ( isset( $request->$bitcoin_address_tag_key ) && !empty( $request->$bitcoin_address_tag_key)) {
+    //         $this->user_setting->updatUserSetting( $bitcoin_address_tag_key, $request->$bitcoin_address_tag_key, $user->id );
+    //     }
+
+    //     $usdt_address_key = config('settingkeys.usdt_address_key');
+    //     if ( isset( $request->$usdt_address_key ) && !empty( $request->$usdt_address_key)) {
+    //         $this->user_setting->updatUserSetting( $usdt_address_key, $request->$usdt_address_key, $user->id );
+    //     }
+
+    //     $usdt_address_tag_key = config('settingkeys.usdt_address_tag_key');
+    //     if ( isset( $request->$usdt_address_tag_key ) && !empty( $request->$usdt_address_tag_key)) {
+    //         $this->user_setting->updatUserSetting( $usdt_address_tag_key, $request->$usdt_address_tag_key, $user->id );
+    //     }
+
+    //     $xmr_address_key = config('settingkeys.xmr_address_key');
+    //     if ( isset( $request->$xmr_address_key ) && !empty( $request->$xmr_address_key)) {
+    //         $this->user_setting->updatUserSetting( $xmr_address_key, $request->$xmr_address_key, $user->id );
+    //     }
+
+    //     $xmr_address_tag_key = config('settingkeys.xmr_address_tag_key');
+    //     if ( isset( $request->$xmr_address_tag_key ) && !empty( $request->$xmr_address_tag_key)) {
+    //         $this->user_setting->updatUserSetting( $xmr_address_tag_key, $request->$xmr_address_tag_key, $user->id );
+    //     }
+
+    //     $paypal_key = config('settingkeys.paypal_key');
+    //     if ( isset( $request->$paypal_key ) && !empty( $request->$paypal_key)) {
+    //         $this->user_setting->updatUserSetting( $paypal_key, $request->$paypal_key, $user->id );
+    //     }
+
+    //     $bank_key = config('settingkeys.bank_key');
+    //     if ( isset( $request->$bank_key ) && !empty( $request->$bank_key)) {
+    //         $this->user_setting->updatUserSetting( $bank_key, $request->$bank_key, $user->id );
+    //     }
+
+    //     $account_type_key = config('settingkeys.account_type_key');
+    //     if ( isset( $request->$account_type_key ) && !empty( $request->$account_type_key)) {
+    //         $this->user_setting->updatUserSetting( $account_type_key, $request->$account_type_key, $user->id );
+    //     }
+
+    //     $account_number_key = config('settingkeys.account_number_key');
+    //     if ( isset( $request->$account_number_key ) && !empty( $request->$account_number_key)) {
+    //         $this->user_setting->updatUserSetting( $account_number_key, $request->$account_number_key, $user->id );
+    //     }
+
+    //     $sort_code_key = config('settingkeys.sort_code_key');
+    //     if ( isset( $request->$sort_code_key ) && !empty( $request->$sort_code_key)) {
+    //         $this->user_setting->updatUserSetting( $sort_code_key, $request->$sort_code_key, $user->id );
+    //     }
+
+    //     $bitcoin_qr_code_key = config('settingkeys.bitcoin_qr_code_key');
+    //     $xmr_qr_code_key = config('settingkeys.xmr_qr_code_key');
+    //     $usdt_qr_code_key = config('settingkeys.usdt_qr_code_key');
+    //     $user_id = $user->id;
+
+    //     $validated = $request->validate([
+    //         $bitcoin_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+    //         $xmr_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+    //         $usdt_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+    //     ]);
+
+    //     // Bitcoin QR Code
+    //     if ($request->hasFile($bitcoin_qr_code_key)) {
+    //         $bitcoin_qr_file = $request->file($bitcoin_qr_code_key);
+    //         $bitcoin_qr_code = time() . '-bitcoin_qr_code.' . $user_id . '.' . $bitcoin_qr_file->getClientOriginalExtension();
+    //         $upload_dir = public_path('uploads/qr_code/');
+    //         if (!file_exists($upload_dir)) {
+    //             mkdir($upload_dir, 0777, true);
+    //         }
+    //         $bitcoin_qr_file->move($upload_dir, $bitcoin_qr_code);
+    //         $this->user_setting->updatUserSetting($bitcoin_qr_code_key, $bitcoin_qr_code, $user->id);
+    //     }
+
+    //     // Monero (XMR) QR Code
+    //     if ($request->hasFile($xmr_qr_code_key)) {
+    //         $xmr_qr_file = $request->file($xmr_qr_code_key);
+    //         $xmr_qr_code = time() . '-xmr_qr_code.' . $user_id . '.' . $xmr_qr_file->getClientOriginalExtension();
+    //         $upload_dir = public_path('uploads/qr_code/');
+    //         if (!file_exists($upload_dir)) {
+    //             mkdir($upload_dir, 0777, true);
+    //         }
+    //         $xmr_qr_file->move($upload_dir, $xmr_qr_code);
+    //         $this->user_setting->updatUserSetting($xmr_qr_code_key, $xmr_qr_code, $user->id);
+    //     }
+
+    //     // USDT QR Code
+    //     if ($request->hasFile($usdt_qr_code_key)) {
+    //         $usdt_qr_file = $request->file($usdt_qr_code_key);
+    //         $usdt_qr_code = time() . '-usdt_qr_code.' . $user_id . '.' . $usdt_qr_file->getClientOriginalExtension();
+    //         $upload_dir = public_path('uploads/qr_code/');
+    //         if (!file_exists($upload_dir)) {
+    //             mkdir($upload_dir, 0777, true);
+    //         }
+    //         $usdt_qr_file->move($upload_dir, $usdt_qr_code);
+    //         $this->user_setting->updatUserSetting($usdt_qr_code_key, $usdt_qr_code, $user->id);
+    //     }
+
+    //     return to_route('admin.user.details', $user->id )->with('success', 'Updated Successfully');
+
+    // }
     public function editUserPaymentSettings(Request $request, User $user) {
-
-        $bitcoin_address = config('settingkeys.bitcoin_address_key');
-        if ( isset( $request->$bitcoin_address ) && !empty( $request->$bitcoin_address)) {
-            $this->user_setting->updatUserSetting( $bitcoin_address, $request->$bitcoin_address, $user->id );
-        }
-
-        $bitcoin_address_tag_key = config('settingkeys.bitcoin_address_tag_key');
-        if ( isset( $request->$bitcoin_address_tag_key ) && !empty( $request->$bitcoin_address_tag_key)) {
-            $this->user_setting->updatUserSetting( $bitcoin_address_tag_key, $request->$bitcoin_address_tag_key, $user->id );
-        }
-
-        $usdt_address_key = config('settingkeys.usdt_address_key');
-        if ( isset( $request->$usdt_address_key ) && !empty( $request->$usdt_address_key)) {
-            $this->user_setting->updatUserSetting( $usdt_address_key, $request->$usdt_address_key, $user->id );
-        }
-
-        $usdt_address_tag_key = config('settingkeys.usdt_address_tag_key');
-        if ( isset( $request->$usdt_address_tag_key ) && !empty( $request->$usdt_address_tag_key)) {
-            $this->user_setting->updatUserSetting( $usdt_address_tag_key, $request->$usdt_address_tag_key, $user->id );
-        }
-
-        $xmr_address_key = config('settingkeys.xmr_address_key');
-        if ( isset( $request->$xmr_address_key ) && !empty( $request->$xmr_address_key)) {
-            $this->user_setting->updatUserSetting( $xmr_address_key, $request->$xmr_address_key, $user->id );
-        }
-
-        $xmr_address_tag_key = config('settingkeys.xmr_address_tag_key');
-        if ( isset( $request->$xmr_address_tag_key ) && !empty( $request->$xmr_address_tag_key)) {
-            $this->user_setting->updatUserSetting( $xmr_address_tag_key, $request->$xmr_address_tag_key, $user->id );
-        }
-
-        $paypal_key = config('settingkeys.paypal_key');
-        if ( isset( $request->$paypal_key ) && !empty( $request->$paypal_key)) {
-            $this->user_setting->updatUserSetting( $paypal_key, $request->$paypal_key, $user->id );
-        }
-
-        $bank_key = config('settingkeys.bank_key');
-        if ( isset( $request->$bank_key ) && !empty( $request->$bank_key)) {
-            $this->user_setting->updatUserSetting( $bank_key, $request->$bank_key, $user->id );
-        }
-
-        $account_type_key = config('settingkeys.account_type_key');
-        if ( isset( $request->$account_type_key ) && !empty( $request->$account_type_key)) {
-            $this->user_setting->updatUserSetting( $account_type_key, $request->$account_type_key, $user->id );
-        }
-
-        $account_number_key = config('settingkeys.account_number_key');
-        if ( isset( $request->$account_number_key ) && !empty( $request->$account_number_key)) {
-            $this->user_setting->updatUserSetting( $account_number_key, $request->$account_number_key, $user->id );
-        }
-
-        $sort_code_key = config('settingkeys.sort_code_key');
-        if ( isset( $request->$sort_code_key ) && !empty( $request->$sort_code_key)) {
-            $this->user_setting->updatUserSetting( $sort_code_key, $request->$sort_code_key, $user->id );
-        }
-
-        $bitcoin_qr_code_key = config('settingkeys.bitcoin_qr_code_key');
-        $xmr_qr_code_key = config('settingkeys.xmr_qr_code_key');
-        $usdt_qr_code_key = config('settingkeys.usdt_qr_code_key');
         $user_id = $user->id;
-
+        $upload_dir = public_path('uploads/qr_code/');
+        $settings_to_update = [];
+    
+        // Ensure the QR code upload directory exists
+        if (!file_exists($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+    
+        // Address and Tag keys
+        $configKeys = [
+            'bitcoin_address_key',
+            'bitcoin_address_tag_key',
+            'usdt_address_key',
+            'usdt_address_tag_key',
+            'xmr_address_key',
+            'xmr_address_tag_key',
+            'paypal_key',
+            'bank_key',
+            'account_type_key',
+            'account_number_key',
+            'sort_code_key'
+        ];
+    
+        foreach ($configKeys as $configKey) {
+            $key = config("settingkeys.$configKey");
+            if (isset($request->$key) && !empty($request->$key)) {
+                $settings_to_update[$key] = $request->$key;
+            }
+        }
+    
+        // Update all settings in a batch if available
+        foreach ($settings_to_update as $key => $value) {
+            $this->user_setting->updatUserSetting($key, $value, $user_id);
+        }
+    
+        // QR Code keys and validation
+        $qrCodeKeys = [
+            'bitcoin_qr_code_key',
+            'xmr_qr_code_key',
+            'usdt_qr_code_key'
+        ];
+    
         $validated = $request->validate([
-            $bitcoin_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
-            $xmr_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
-            $usdt_qr_code_key => 'mimes:png,jpeg,jpg|max:2048',
+            config('settingkeys.bitcoin_qr_code_key') => 'mimes:png,jpeg,jpg|max:2048',
+            config('settingkeys.xmr_qr_code_key') => 'mimes:png,jpeg,jpg|max:2048',
+            config('settingkeys.usdt_qr_code_key') => 'mimes:png,jpeg,jpg|max:2048',
         ]);
-
-        // Bitcoin QR Code
-        if ($request->hasFile($bitcoin_qr_code_key)) {
-            $bitcoin_qr_file = $request->file($bitcoin_qr_code_key);
-            $bitcoin_qr_code = time() . '-bitcoin_qr_code.' . $user_id . '.' . $bitcoin_qr_file->getClientOriginalExtension();
-            $upload_dir = public_path('uploads/qr_code/');
-            if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
+    
+        foreach ($qrCodeKeys as $qrCodeKey) {
+            $key = config("settingkeys.$qrCodeKey");
+    
+            if ($request->hasFile($key)) {
+                $qr_file = $request->file($key);
+                $qr_code_name = time() . '-' . $qrCodeKey . '.' . $user_id . '.' . $qr_file->getClientOriginalExtension();
+                
+                $qr_file->move($upload_dir, $qr_code_name);
+                $this->user_setting->updatUserSetting($key, $qr_code_name, $user_id);
             }
-            $bitcoin_qr_file->move($upload_dir, $bitcoin_qr_code);
-            $this->user_setting->updatUserSetting($bitcoin_qr_code_key, $bitcoin_qr_code, $user->id);
         }
-
-        // Monero (XMR) QR Code
-        if ($request->hasFile($xmr_qr_code_key)) {
-            $xmr_qr_file = $request->file($xmr_qr_code_key);
-            $xmr_qr_code = time() . '-xmr_qr_code.' . $user_id . '.' . $xmr_qr_file->getClientOriginalExtension();
-            $upload_dir = public_path('uploads/qr_code/');
-            if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
-            $xmr_qr_file->move($upload_dir, $xmr_qr_code);
-            $this->user_setting->updatUserSetting($xmr_qr_code_key, $xmr_qr_code, $user->id);
-        }
-
-        // USDT QR Code
-        if ($request->hasFile($usdt_qr_code_key)) {
-            $usdt_qr_file = $request->file($usdt_qr_code_key);
-            $usdt_qr_code = time() . '-usdt_qr_code.' . $user_id . '.' . $usdt_qr_file->getClientOriginalExtension();
-            $upload_dir = public_path('uploads/qr_code/');
-            if (!file_exists($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
-            $usdt_qr_file->move($upload_dir, $usdt_qr_code);
-            $this->user_setting->updatUserSetting($usdt_qr_code_key, $usdt_qr_code, $user->id);
-        }
-
-        return to_route('admin.user.details', $user->id )->with('success', 'Updated Successfully');
-
+    
+        return to_route('admin.user.details', $user_id)->with('success', 'Updated Successfully');
     }
-
+    
 
     public function user_verification (User $user) {
         return view('admin.users.user-detail', compact('all_users', 'page_title'));
