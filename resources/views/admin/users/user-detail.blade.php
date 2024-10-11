@@ -1154,7 +1154,7 @@
                                     placeholder="Enter Sort Code">
                             </div>
                             <br>
-                            <div class="input-group attach-file-input-group">
+                            {{-- <div class="input-group attach-file-input-group">
                                 <label class="form-label">Bitcoin QR Code</label>
                                 <div class="form-control">
                                     <label class="attach-icon d-flex justify-content-between align-items-center w-100">
@@ -1167,8 +1167,30 @@
                                         <i class="fa-solid fa-link"></i>
                                     </label>
                                 </div>
-                            </div>
-                            <div class="input-group attach-file-input-group">
+                                @error(config('settingkeys.bitcoin_qr_code_key'))
+                                <span class="text-danger" style="font-size: 10px ">{{ $message }}</span>
+                            @enderror
+                            </div> --}}
+                            <div class="input-group attach-file-input-group" style="position: relative;">
+                                <label class="form-label">Bitcoin QR Code</label>
+                                <div class="form-control">
+                                    <label class="attach-icon d-flex justify-content-between align-items-center w-100">
+                                        @if(isset($full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]))
+                                            <span type="placeholder">{{ $full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')] }}</span>
+                                        @else
+                                            <span type="placeholder">Bitcoin QR Code</span>
+                                        @endif
+                                        <input class="d-none" type="file" name="{{ config('settingkeys.bitcoin_qr_code_key') }}">
+                                        <i class="fa-solid fa-link"></i>
+                                    </label>
+                                </div>
+                                @error(config('settingkeys.bitcoin_qr_code_key'))
+                                    <span class="text-danger" style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>                    
+                            <div class="input-group attach-file-input-group" style="position: relative;">
                                 <label class="form-label">XMR QR Code</label>
                                 <div class="form-control">
                                     <label class="attach-icon d-flex justify-content-between align-items-center w-100">
@@ -1181,20 +1203,30 @@
 
                                     </label>
                                 </div>
+                                @error(config('settingkeys.xmr_qr_code_key'))
+                                <span class="text-danger" style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                             </div>
-                            <div class="input-group attach-file-input-group">
+                            <div class="input-group attach-file-input-group" style="position: relative;">
                                 <label class="form-label">USDT QR Code</label>
                                 <div class="form-control">
                                     <label class="attach-icon d-flex justify-content-between align-items-center w-100">
                                         @if(isset($full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]))
                                         <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]}}</span>
                                         @else
-                                        <span type="placeholder">XMR QR Code</span>
+                                        <span type="placeholder">USDT QR Code</span>
                                         @endif                                            
                                         <input  class="d-none" type="file" name="{{ config('settingkeys.usdt_qr_code_key') }}" >
                                             <i class="fa-solid fa-link"></i>
                                     </label>
                                 </div>
+                                @error(config('settingkeys.usdt_qr_code_key'))
+                                <span class="text-danger" style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                             </div>
                             
                             <br>
