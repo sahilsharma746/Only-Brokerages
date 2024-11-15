@@ -16,8 +16,9 @@
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
 
 
-<link rel="stylesheet" href="{{ asset('assets/css/mystyle.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
-
+@if (Route::currentRouteName() === 'home' || Route::currentRouteName() === 'frontend.index')
+<link rel="stylesheet" href="{{ asset('assets/css/mystyle.css?v=' . env('SITE_CSS_JS_VERSION')) }}">
+@endif
 
 <!-- font added here (ital + Merriweather) ================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
