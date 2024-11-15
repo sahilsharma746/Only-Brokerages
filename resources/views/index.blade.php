@@ -297,6 +297,11 @@
                 </li>
               @endforeach
             </ul>
+            <a href="{{ route('frontend.accountPlan') }}" style="color: #FFFFFF; display: block; text-align: center; width: 100%;padding-top: 30px">
+                <button style="background-color: rgb(58, 163, 26); color: #FFFFFF; border: none; padding: 15px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; text-align: center;">
+                    View More Plans
+                </button>
+            </a>
           </div>
     
     </section>

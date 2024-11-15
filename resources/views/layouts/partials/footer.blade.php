@@ -29,7 +29,7 @@
                 <dt><a href="javascript:void(0)">Indices</a></dt>
                 <dt><a href="javascript:void(0)">Commodities</a></dt>
                 <dt><a href="javascript:void(0)">Crypto Currency</a></dt>
-            <dl>
+            </dl>
             <dl>
                 <dt class="text-end"><a href="{{ route('register') }}">Get started</a></dt>
                 <dt class="text-end"><a href="{{ route('login') }}">Log in</a></dt>

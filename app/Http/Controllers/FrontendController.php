@@ -22,7 +22,7 @@ class FrontendController extends Controller
         ->orderBy('user_account_types_features.id')  // Order features by 'feature_order'
         ->get();
 
-    $plans = $plan_with_features->groupBy('plan_id');
+    $plans = $plan_with_features->groupBy('plan_id')->take(6);
          // Check if the user is logged in
         if (!Auth::check()) {
             return view('index',compact('plans'));
