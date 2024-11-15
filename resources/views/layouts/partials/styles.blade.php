@@ -15,6 +15,10 @@
 <link rel="stylesheet" href="{{ asset('assets/css/site-layout.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
 
+
+<link rel="stylesheet" href="{{ asset('assets/css/mystyle.css') }}?v={{ env('SITE_CSS_JS_VERSION') }}">
+
+
 <!-- font added here (ital + Merriweather) ================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
