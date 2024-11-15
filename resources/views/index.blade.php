@@ -292,15 +292,17 @@ ick" src="{{ asset('assets') }}/img//tick.png"/>
                         </div>
                         @endforeach
                        </div>
-                       <a style="color:#FFFFFF;" href="{{ route('register', ['plan_type' => $plan_id]) }}"><button class="accaount-open">Open Account </button></a>
+                       <a style="color:#FFFFFF;" href="{{ route('register', ['plan_type' => $plan_id]) }}"><button class="accaount-open" style="cursor: pointer;">Open Account </button></a>
                     </li>
                   @endforeach
                 </ul>
-                <a href="{{ route('frontend.accountPlan') }}" style="color: #FFFFFF; display: block; text-align: center; width: 100%;padding-top: 30px">
-                    <button style="background-color: rgb(58, 163, 26); color: #FFFFFF; border: none; padding: 15px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; text-align: center;">
-                        View More Plans
-                    </button>
-                </a>
+                <div class="d-flex justify-content-center">
+                  <a href="{{ route('frontend.accountPlan') }}" >
+                   <button class="accaount-open see-more"  style="cursor: pointer;">See More
+                      <span> <i class="fa-solid fa-chevron-down"></i></span>
+                   </button>
+                  </a>
+                  </div>
               </div>
         
         </section>
