@@ -14,6 +14,7 @@ class Trade extends Model
         'user_id',
         'asset',
         'name',
+        'market',
         'margin',
         'contract_size',
         'capital',
@@ -25,12 +26,13 @@ class Trade extends Model
         'time_frame',
         'trade_result',
         'admin_trade_result_percentage',
-        'image'
+        'image',
+        'trade_execution_method',
     ];
 
 public function user()
 {
-    return $this->belongsTo(User::class, 'user_id'); 
+    return $this->belongsTo(User::class, 'user_id');
 }
 
 }

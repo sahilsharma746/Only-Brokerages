@@ -20,42 +20,65 @@ jQuery(document).ready(function () {
 
 // Function to handle trade type selection
 jQuery(document).on("click", ".trade-type", function () {
-  var type = jQuery(this).data("type"); 
+  var type = jQuery(this).data("type");
   var searchParameter = jQuery('#searchTableAssets').val().trim();
   const container = jQuery("#trade-and-market-common-table");
   container.empty();
+
+  if (window.innerWidth <= 1024) {
+    window.scrollTo(0, 0);
+}
+
   // Clear the container if Forex or Indices is selected
    if (type == "crypto") {
       update_crypto_assets(apiUrlCrypto, searchParameter);
   }else if( type == "forex" ){
       update_forex_assets(apiUrlForex, searchParameter);
+  }else if( type == "stocks" ){
+      update_stock_assets(apiUrlStocks, searchParameter);
   }else if( type == "indices" ){
-      update_indices_assets(apiUrlIndisis, searchParameter);
-  }
-  jQuery(".trade-type").removeClass("active"); 
+    update_indices_assets(apiUrlIndices, searchParameter);
+}else if( type == "future" ){
+    update_future_assets(apiUrlFutures, searchParameter);
+}else if( type == "etfs" ){
+    update_etfs_assets(apiUrletfs, searchParameter);
+}
+  jQuery(".trade-type").removeClass("active");
   jQuery(this).addClass("active");
 });
 
 // Function to handle trade type selection
 jQuery(document).on("click", ".trade-type-market-watch", function () {
-  var type = jQuery(this).data("type"); 
+  var type = jQuery(this).data("type");
   var searchParameter = jQuery('#searchTableAssetsMarketWatch').val().trim();
   const container = jQuery("#user-market-watch-table-data");
   container.empty();
+
+  if (window.innerWidth <= 1024) {
+    window.scrollTo(0, 0);
+}
   // Clear the container if Forex or Indices is selected
    if (type == "crypto") {
       show_assets_marketwatch(apiUrlCrypto, searchParameter, type);
   }else if( type == "forex" ){
       show_assets_marketwatch(apiUrlForex, searchParameter, type);
-  }else if( type == "indices" ){
-      show_assets_marketwatch(apiUrlIndisis, searchParameter, type);
   }
-  jQuery(".trade-type").removeClass("active"); 
+  else if( type == "indices" ){
+      show_assets_marketwatch(apiUrlIndices, searchParameter, type);
+  }
+  else if( type == "stocks" ){
+    show_assets_marketwatch(apiUrlStocks, searchParameter, type);
+}
+else if( type == "future" ){
+    show_assets_marketwatch(apiUrlFutures, searchParameter, type);
+}
+else if( type == "etfs" ){
+    show_assets_marketwatch(apiUrletfs, searchParameter, type);
+}
+  jQuery(".trade-type-market-watch").removeClass("active");
   jQuery(this).addClass("active");
 });
 
-
-// On search on the Trade page for the asset
 jQuery("#searchTableAssets").on("input", function () {
   var searchParameter = jQuery(this).val().trim();
   var activeType = jQuery(".trade-type.active").data("type");
@@ -63,8 +86,14 @@ jQuery("#searchTableAssets").on("input", function () {
     update_crypto_assets(apiUrlCrypto, searchParameter);
   }else if( activeType == "forex" ){
     update_forex_assets(apiUrlForex, searchParameter);
+  }else if( activeType == "stocks" ){
+    update_stock_assets(apiUrlStocks, searchParameter);
   }else if( activeType == "indices" ){
-    update_indices_assets(apiUrlIndisis, searchParameter);
+    update_indices_assets(apiUrlIndices, searchParameter);
+  }else if( activeType == "future" ){
+    update_future_assets(apiUrlFutures, searchParameter);
+  }else if( activeType == "etfs" ){
+    update_etfs_assets(apiUrletfs, searchParameter);
   }
 });
 
@@ -77,9 +106,17 @@ jQuery("#searchTableAssetsMarketWatch").on("input", function () {
      show_assets_marketwatch(apiUrlCrypto, searchParameter, activeType);
   }else if( activeType == "forex" ){
       show_assets_marketwatch(apiUrlForex, searchParameter, activeType);
+  }else if( activeType == "stocks" ){
+      show_assets_marketwatch(apiUrlStocks, searchParameter, activeType);
   }else if( activeType == "indices" ){
-      show_assets_marketwatch(apiUrlIndisis, searchParameter, activeType);
-  }
+    show_assets_marketwatch(apiUrlIndices, searchParameter, activeType);
+}
+else if( activeType == "future" ){
+    show_assets_marketwatch(apiUrlFutures, searchParameter, activeType);
+}
+else if( activeType == "etfs" ){
+    update_etfs_assets(apiUrletfs, searchParameter, activeType);
+}
 });
 
 
@@ -105,11 +142,12 @@ function update_crypto_assets(apiUrlCrypto, searchTerm = "") {
       filteredData.forEach((pair) => {
         const crypto_current_price = pair.current_price;
         const crypto_name = pair.name;
+        const crypto_market = "crypto";
         // Create a <dt> element
         const dtElement = document.createElement("dt");
         dtElement.className =
           "d-flex justify-content-between align-items-center g-10 asset-data";
-        dtElement.dataset.symbol = pair.symbol.toUpperCase() + "USD"; // Add symbol for click handling
+        dtElement.dataset.symbol = pair.symbol.toUpperCase(); // Add symbol for click handling
 
         // Create the inner HTML content
         let cryptoassetdata = '<div class="country-name d-flex align-items-center g-8">';
@@ -118,6 +156,7 @@ function update_crypto_assets(apiUrlCrypto, searchTerm = "") {
         cryptoassetdata += ' data-price="' + crypto_current_price + '"';
         cryptoassetdata += ' data-name="' + crypto_name + '"';
         cryptoassetdata += ' data-image="' + pair.image + '"';
+        cryptoassetdata += ' data-market="' + crypto_market + '"';
         cryptoassetdata += ' data-fullname="' + pair.symbol.toUpperCase() + ' / U.S Dollar">';
         cryptoassetdata += pair.symbol.toUpperCase() + "/USD";
         cryptoassetdata += "</span>";
@@ -162,6 +201,7 @@ function update_forex_assets(apiUrlForex, searchTerm = "") {
       filteredData.forEach((pair) => {
         const forex_current_price = parseFloat(pair.current_price).toFixed(4);
         const forex_symbol = pair.symbol;
+        const market = "forex";
 
         // Create a <dt> element
         const dtElement = document.createElement("dt");
@@ -177,6 +217,7 @@ function update_forex_assets(apiUrlForex, searchTerm = "") {
         forexAssetData += ' data-symbol="' + forex_symbol + '"';
         forexAssetData += ' data-image="' + pair.base_currency_image + '"';
         forexAssetData += ' data-name="' + pair.symbol + '"';
+        forexAssetData += ' data-market="' + market + '"';
         forexAssetData += ' data-fullname="' + pair.name + '">';
         forexAssetData += forex_symbol.toUpperCase();
         forexAssetData += "</span>";
@@ -207,8 +248,265 @@ function update_forex_assets(apiUrlForex, searchTerm = "") {
 }
 
 
-function update_indices_assets(apiUrlIndisis, searchTerm = "") {
-}
+function update_stock_assets(apiUrlStocks, searchTerm = "") {
+    fetch(apiUrlStocks)
+      .then((response) => response.json())
+      .then((data) => {
+        const container = document.getElementById("trade-and-market-common-table");
+        container.innerHTML = "";
+
+        const filteredData = data.filter((pair) => {
+            const firstWordName = pair.name.split(" ")[0].toLowerCase();
+            const firstWordSymbol = pair.symbol.toLowerCase();
+
+            return firstWordName.startsWith(searchTerm.toLowerCase()) ||
+                   firstWordSymbol.startsWith(searchTerm.toLowerCase());
+          });
+
+          filteredData.forEach((pair) => {
+            const pair_current_price = pair.current_price;
+            // const pair_name = pair.symbol;
+            const market = "stocks";
+
+            const dtElement = document.createElement("dt");
+            dtElement.className =
+              "d-flex justify-content-between align-items-center g-10 asset-data";
+            dtElement.dataset.symbol = pair.symbol.toUpperCase();
+
+            // Create the inner HTML content
+            let stocksAssetData = '<div class="country-name d-flex align-items-center g-8">';
+            stocksAssetData += '<img class="flag" src="' + pair.logo + '" alt="' + pair.symbol + ' logo">';
+            // forexAssetData += '<img class="flag" src="' + pair.quote_currency_image + '" alt="' + pair.symbol + ' logo">';
+            stocksAssetData += '<span class="details"';
+            stocksAssetData += ' data-price="' + pair_current_price + '"';
+            stocksAssetData += ' data-symbol="' + pair.symbol + '"';
+            stocksAssetData += ' data-image="' + pair.logo + '"';
+            stocksAssetData += ' data-market="' + market + '"';
+            stocksAssetData += ' data-name="' + pair.symbol + '"';
+            stocksAssetData += ' data-fullname="' + pair.name + '">';
+            stocksAssetData += pair.symbol.toUpperCase();
+            stocksAssetData += "</span>";
+            stocksAssetData += "</div>";
+            stocksAssetData += '<div class="pair-price">$' +  pair_current_price+ "</div>";
+            stocksAssetData += '<div class="percentage ' + (parseFloat(pair.percent_change) < 0 ? "text-danger" : "text-success") + '">';
+            stocksAssetData += pair.percent_change;
+            stocksAssetData += "</div>";
+
+            dtElement.innerHTML = stocksAssetData;
+
+            container.appendChild(dtElement);
+
+            dtElement.addEventListener("click", function () {
+              loadTradingViewChart(pair.symbol.toUpperCase());
+            });
+          });
+
+        if (filteredData.length > 0) {
+          jQuery("#trade-and-market-common-table").find("dt:first").click();
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+
+  function update_indices_assets(apiUrlIndices, searchTerm = "") {
+    fetch(apiUrlIndices)
+      .then((response) => response.json())
+      .then((data) => {
+        const container = document.getElementById(
+          "trade-and-market-common-table"
+        );
+        container.innerHTML = ""; // Clear the existing content
+
+        const filteredData = data.filter((pair) => {
+          const firstWordName = pair.company_name.split(" ")[0].toLowerCase();
+          const firstWordSymbol = pair.symbol.toLowerCase();
+
+          // Check if the first word matches the search term (case insensitive)
+          return firstWordName.startsWith(searchTerm.toLowerCase()) ||
+                 firstWordSymbol.startsWith(searchTerm.toLowerCase());
+      });
+
+        filteredData.forEach((pair) => {
+          const current_price = pair.current_price;
+          const name = pair.company_name;
+          const market = "indices";
+          // Create a <dt> element
+          const dtElement = document.createElement("dt");
+          dtElement.className =
+            "d-flex justify-content-between align-items-center g-10 asset-data";
+          dtElement.dataset.symbol = pair.symbol.toUpperCase(); // Add symbol for click handling
+
+          // Create the inner HTML content
+          let indicesassetdata = '<div class="country-name d-flex align-items-center g-8">';
+          indicesassetdata +='<img class="flag" src="' + pair.logo +'" alt="' +pair.symbol +' logo">';
+          indicesassetdata += '<span class="details"';
+          indicesassetdata += ' data-price="' + current_price + '"';
+          indicesassetdata += ' data-name="' + name + '"';
+          indicesassetdata += ' data-market="' + market + '"';
+          indicesassetdata += ' data-image="' + pair.logo + '"';
+
+          indicesassetdata += ' data-fullname="' + pair.symbol.toUpperCase() + ' ">';
+
+          indicesassetdata += pair.symbol.toUpperCase() ;
+          indicesassetdata += "</span>";
+          indicesassetdata += "</div>";
+          indicesassetdata += '<div class="pair-price">$' + pair.current_price.toFixed(2) + "</div>";
+          indicesassetdata += '<div class="percentage ' +(pair.change_percentage < 0 ? "text-danger" : "text-success") + '">';
+          indicesassetdata += pair.change_percentage.toFixed(2) + "%";
+          indicesassetdata += "</div>";
+
+          // Set the inner HTML of the dtElement
+          dtElement.innerHTML = indicesassetdata;
+
+          // Append the dtElement to the container
+          container.appendChild(dtElement);
+
+          // Add click event listener to the dtElement
+          dtElement.addEventListener("click", function () {
+            loadTradingViewChart(pair.symbol.toUpperCase());
+          });
+        });
+
+        // Trigger click on the first <dt> element to load the chart by default
+        if (filteredData.length > 0) {
+          jQuery("#trade-and-market-common-table").find("dt:first").click();
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+
+  function update_future_assets(apiUrlFutures, searchTerm = "") {
+    fetch(apiUrlFutures)
+      .then((response) => response.json())
+      .then((data) => {
+        const container = document.getElementById(
+          "trade-and-market-common-table"
+        );
+        container.innerHTML = ""; // Clear the existing content
+
+        const filteredData = data.filter((pair) => {
+          const firstWordName = pair.company_name.split(" ")[0].toLowerCase();
+          const firstWordSymbol = pair.symbol.toLowerCase();
+
+          // Check if the first word matches the search term (case insensitive)
+          return firstWordName.startsWith(searchTerm.toLowerCase()) ||
+                 firstWordSymbol.startsWith(searchTerm.toLowerCase());
+      });
+
+        filteredData.forEach((pair) => {
+          const current_price = pair.regularMarketPrice;
+          const name = pair.company_name;
+          const market = "futures";
+          // Create a <dt> element
+          const dtElement = document.createElement("dt");
+          dtElement.className =
+            "d-flex justify-content-between align-items-center g-10 asset-data";
+            dtElement.dataset.symbol = pair.symbol.toUpperCase().replace('=F', ''); // Add symbol for click handling
+
+          // Create the inner HTML content
+          let indicesassetdata = '<div class="country-name d-flex align-items-center g-8">';
+          indicesassetdata +='<img class="flag" src="' + pair.logo_url +'" alt="' +pair.symbol.replace('=F', '') +' logo">';
+          indicesassetdata += '<span class="details"';
+          indicesassetdata += ' data-price="' + current_price + '"';
+          indicesassetdata += ' data-name="' + name + '"';
+          indicesassetdata += ' data-market="' + market + '"';
+          indicesassetdata += ' data-image="' + pair.logo_url + '"';
+          indicesassetdata += ' data-fullname="' + pair.symbol.replace('=F', '').toUpperCase() + '">';
+          indicesassetdata += pair.symbol.replace('=F', '').toUpperCase() ;
+          indicesassetdata += "</span>";
+          indicesassetdata += "</div>";
+          indicesassetdata += '<div class="pair-price">$' + current_price.toFixed(2) + "</div>";
+          indicesassetdata += '<div class="percentage ' +(pair.change_percentage < 0 ? "text-danger" : "text-success") + '">';
+          indicesassetdata += pair.change_percentage.toFixed(2) + "%";
+          indicesassetdata += "</div>";
+
+          // Set the inner HTML of the dtElement
+          dtElement.innerHTML = indicesassetdata;
+
+          // Append the dtElement to the container
+          container.appendChild(dtElement);
+
+          // Add click event listener to the dtElement
+          dtElement.addEventListener("click", function () {
+            loadTradingViewChart(pair.symbol.toUpperCase().replace('=F', ''));
+        });
+        });
+
+        // Trigger click on the first <dt> element to load the chart by default
+        if (filteredData.length > 0) {
+          jQuery("#trade-and-market-common-table").find("dt:first").click();
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+
+  function update_etfs_assets(apiUrletfs, searchTerm = "") {
+    fetch(apiUrletfs)
+      .then((response) => response.json())
+      .then((data) => {
+        const container = document.getElementById(
+          "trade-and-market-common-table"
+        );
+        container.innerHTML = ""; // Clear the existing content
+
+        const filteredData = data.filter((pair) => {
+          const firstWordName = pair.name.split(" ")[0].toLowerCase();
+          const firstWordSymbol = pair.symbol.toLowerCase();
+
+          // Check if the first word matches the search term (case insensitive)
+          return firstWordName.startsWith(searchTerm.toLowerCase()) ||
+                 firstWordSymbol.startsWith(searchTerm.toLowerCase());
+      });
+
+        filteredData.forEach((pair) => {
+          const current_price = pair.current_price;
+          const name = pair.name;
+          const market = "etfs";
+          // Create a <dt> element
+          const dtElement = document.createElement("dt");
+          dtElement.className =
+            "d-flex justify-content-between align-items-center g-10 asset-data";
+          dtElement.dataset.symbol = pair.symbol.toUpperCase(); // Add symbol for click handling
+
+          // Create the inner HTML content
+          let indicesassetdata = '<div class="country-name d-flex align-items-center g-8">';
+          indicesassetdata +='<img class="flag" src="' + pair.logo_url +'" alt="' +pair.symbol +' logo">';
+          indicesassetdata += '<span class="details"';
+          indicesassetdata += ' data-price="' + current_price + '"';
+          indicesassetdata += ' data-name="' + name + '"';
+          indicesassetdata += ' data-market="' + market + '"';
+          indicesassetdata += ' data-image="' + pair.logo_url + '"';
+
+          indicesassetdata += ' data-fullname="' + pair.symbol.toUpperCase() + ' ">';
+
+          indicesassetdata += pair.symbol.toUpperCase() ;
+          indicesassetdata += "</span>";
+          indicesassetdata += "</div>";
+          indicesassetdata += '<div class="pair-price">$' + pair.current_price.toFixed(2) + "</div>";
+          indicesassetdata += '<div class="percentage ' +(pair.change_percent < 0 ? "text-danger" : "text-success") + '">';
+          indicesassetdata += pair.change_percent.toFixed(2) + "%";
+          indicesassetdata += "</div>";
+
+          // Set the inner HTML of the dtElement
+          dtElement.innerHTML = indicesassetdata;
+
+          // Append the dtElement to the container
+          container.appendChild(dtElement);
+
+          // Add click event listener to the dtElement
+          dtElement.addEventListener("click", function () {
+            loadTradingViewChart(pair.symbol.toUpperCase());
+          });
+        });
+
+        // Trigger click on the first <dt> element to load the chart by default
+        if (filteredData.length > 0) {
+          jQuery("#trade-and-market-common-table").find("dt:first").click();
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+
 
 function loadTradingViewChart(symbol) {
   // Get the container element
@@ -240,41 +538,49 @@ function show_assets_marketwatch(apiUrl, searchTerm = "", type = "crypto") {
     .then((response) => response.json())
     .then((data) => {
       const container = document.getElementById("user-market-watch-table-data");
-      container.innerHTML = ""; // Clear the existing content
-
-      // Update headers based on the type
+      container.innerHTML = "";
       setTableHeadersMarketWatch(type);
 
-      // Filter data based on search term
       const filteredData = data.filter((item) => {
-        const firstWordName = item.name.split(" ")[0].toLowerCase();
+        // const firstWordName = item.name.split(" ")[0].toLowerCase();
+        // const nameToCheck = (type === 'indices') ? item.company_name : item.name;
+        const nameToCheck = (type === 'indices' || type === 'future') ? item.company_name : item.name;
+        const firstWordName = nameToCheck.split(" ")[0].toLowerCase();
         const firstWordSymbol = item.symbol.toLowerCase();
         return firstWordName.startsWith(searchTerm.toLowerCase()) || firstWordSymbol.startsWith(searchTerm.toLowerCase());
       });
 
-      // If no data matches the search, show a message
       if (filteredData.length === 0) {
         container.innerHTML = "<tr><td colspan='6'>No results found</td></tr>";
         return;
       }
 
-      // Loop through filtered data and populate the table
       filteredData.forEach((item) => {
         let table_row_html = "<tr>";
-        
-        // Asset column (for both crypto and forex)
+
         table_row_html += "<td>";
         table_row_html += '<div class="d-flex align-items-center g-8">';
         if (type === 'crypto') {
-          table_row_html += `<img src="${item.image}" class="icon crypto_image" alt="${item.name}" style="width: 30px; height: 30px;border-radius:50%">`;
+          table_row_html += `<img src="${item.image}" class="icon crypto_image" alt="${item.name}" style="width: 30px; height: 30px; border-radius:50%">`;
         } else if (type === 'forex') {
-          table_row_html += `<img src="${item.base_currency_image}" class="icon" alt="${item.name}" style="width: 30px; height: 30px;border-radius:50%">`;
-          // table_row_html += `<img src="${item.quote_currency_image}" class="icon" alt="${item.name}" style="width: 30px; height: 30px;">`;
+          table_row_html += `<img src="${item.base_currency_image}" class="icon" alt="${item.name}" style="width: 30px; height: 30px; border-radius:50%">`;
         }
-        table_row_html += `<span>${item.name}</span>`;
+        else if (type === 'stocks') {
+            table_row_html += `<img src="${item.logo}" class="icon" alt="${item.name}" style="width: 30px; height: 30px; border-radius:50%">`;
+          }
+          else if (type === 'indices') {
+            table_row_html += `<img src="${item.logo}" class="icon" alt="${item.company_name}" style="width: 30px; height: 30px; border-radius:50%">`;
+          }
+          else if (type === 'future') {
+            table_row_html += `<img src="${item.logo_url}" class="icon" alt="${item.company_name}" style="width: 30px; height: 30px; border-radius:50%">`;
+          }else if (type === 'etfs') {
+            table_row_html += `<img src="${item.logo_url}" class="icon" alt="${item.name}" style="width: 30px; height: 30px; border-radius:50%">`;
+          }
+        // table_row_html += `<span>${item.symbol}</span>`;
+        table_row_html += `<span>${item.symbol.replace('=F', '').toUpperCase()}</span>`;
+
         table_row_html += "</div></td>";
 
-        // Other columns based on type
         if (type === 'crypto') {
           table_row_html += `<td>${item.market_cap.toLocaleString()}</td>`;
           table_row_html += `<td>${item.current_price.toLocaleString()}</td>`;
@@ -288,7 +594,38 @@ function show_assets_marketwatch(apiUrl, searchTerm = "", type = "crypto") {
           table_row_html += `<td>${item.low_24h}</td>`;
           table_row_html += `<td style="color: ${(item.percentage_change.startsWith('-') ? "red" : "green")}">${item.percentage_change}</td>`;
         }
+        else if (type === 'stocks') {
+            table_row_html += `<td>${item.type}</td>`;
+            table_row_html += `<td>${item.current_price}</td>`;
+            table_row_html += `<td>${item.high}</td>`;
+            table_row_html += `<td>${item.low}</td>`;
+            table_row_html += `<td style="color: ${(item.percent_change < 0 ? "red" : "green")}">${item.percent_change.toFixed(2)}%</td>`;
 
+          }
+          else if (type === 'indices') {
+            table_row_html += `<td>${item.volume}</td>`;
+            table_row_html += `<td>${item.current_price}</td>`;
+            table_row_html += `<td>${item.high_price}</td>`;
+            table_row_html += `<td>${item.low_price}</td>`;
+            table_row_html += `<td style="color: ${(item.change_percentage < 0 ? "red" : "green")}">${item.change_percentage.toFixed(2)}%</td>`;
+
+          }
+          else if (type === 'future') {
+            table_row_html += `<td>${item.regularMarketVolume}</td>`;
+            table_row_html += `<td>${item.regularMarketPrice}</td>`;
+            table_row_html += `<td>${item.regularMarketDayHigh}</td>`;
+            table_row_html += `<td>${item.regularMarketDayLow}</td>`;
+            table_row_html += `<td style="color: ${(item.change_percentage < 0 ? "red" : "green")}">${item.change_percentage.toFixed(2)}%</td>`;
+
+          }
+          else if (type === 'etfs') {
+            table_row_html += `<td>${item.fifty_day_average}</td>`;
+            table_row_html += `<td>${item.current_price}</td>`;
+            table_row_html += `<td>${item.fifty_two_week_high}</td>`;
+            table_row_html += `<td>${item.fifty_two_week_low}</td>`;
+            table_row_html += `<td style="color: ${(item.change_percent < 0 ? "red" : "green")}">${item.change_percent.toFixed(2)}%</td>`;
+
+          }
         table_row_html += "</tr>";
         container.innerHTML += table_row_html;
       });
@@ -298,7 +635,7 @@ function show_assets_marketwatch(apiUrl, searchTerm = "", type = "crypto") {
 
 function setTableHeadersMarketWatch(type) {
   const container = document.querySelector('.user-market-watch-table thead tr');
-  container.innerHTML = ''; // Clear existing headers
+  container.innerHTML = '';
 
   let headers = [];
 
@@ -306,8 +643,14 @@ function setTableHeadersMarketWatch(type) {
     headers = ['Asset', 'Market Cap', 'Price', 'Traded Volume', 'Available Volume', 'Change'];
   } else if (type === 'forex') {
     headers = ['Asset', 'Price', 'Open Price', 'High 24h', 'Low 24h', 'Change'];
-  } else if (type === 'indices') {
-    headers = ['Asset', 'Market Cap', 'Price', 'Change', 'Volume', 'High 24h', 'Low 24h'];
+  } else if (type === 'stocks') {
+    headers = ['Asset', 'Type', 'Price', 'High 24h', 'Low 24h','Change'];
+  }else if (type === 'indices') {
+    headers = ['Asset', 'Volume', 'Price', 'High 24h', 'Low 24h','Change'];
+  }else if (type === 'future') {
+    headers = ['Asset', 'Volume', 'Price', 'High 24h', 'Low 24h','Change'];
+  }else if (type === 'etfs') {
+    headers = ['Asset', 'Average', 'Price', 'High ', 'Low ','Change'];
   }
 
   headers.forEach(header => {
@@ -328,11 +671,14 @@ jQuery(document).on("click", "#trade-and-market-common-table .asset-data", funct
   let fullname = jQuery(this).find("span").data("fullname");
   let assetPrice = jQuery(this).find("span").data("price");
   let assetImage = jQuery(this).find("span").data("image");
+  let market = jQuery(this).find("span").data("market");
+
 
   jQuery(".user-trade-chart-filter .selected-asset").find(".name").text(name);
   jQuery(".user-trade-chart-filter .selected-asset").find(".fullname").text(fullname);
   jQuery("input.asset-unitprice").val(assetPrice);
   jQuery("input.name_input").val(name);
+  jQuery("input.asset_market").val(market);
   jQuery("input.image").val(assetImage);
   jQuery(".flag_image").attr("src", assetImage).show();
 
@@ -417,23 +763,16 @@ function trade_logic() {
 function checkAndUpdateTheCurrentTradesTimings(){
   $("#trade-details-summery-current tbody tr").each(function () {
 
-    // Get the trade_id from the data attribute
     var trade_id = $(this).data("id");
     var pnl_value = parseFloat($(this).find(".pnl_value").val());
     var trade_created = $(this).find(".trade_created").val();
     var current_date_time = $(this).find(".current_date_time").val();
     var time_frame = $(this).find(".timeframe").val();
 
-    // Convert trade_created and current_date_time to Date objects
     var tradeCreatedDate = new Date(trade_created);
     var currentDateTime = new Date(current_date_time);
 
-    // Calculate the time difference between the current time and the trade created time
     var timeDifference = currentDateTime - tradeCreatedDate;
-
-    console.log(timeDifference);
-
-    // Convert time_frame to milliseconds
     var timeFrameInMilliseconds;
     switch (time_frame) {
       case "5minutes":
@@ -468,10 +807,8 @@ function checkAndUpdateTheCurrentTradesTimings(){
     var sign = pnl_value < 0 ? "-" : "+";
     pnl_value = Math.abs(pnl_value);
 
-    // Calculate remaining time
     var remainingTime = timeFrameInMilliseconds - timeDifference;
 
-    console.log(remainingTime);
 
     function formatTime(ms) {
       if (ms <= 0) {
@@ -498,13 +835,12 @@ function checkAndUpdateTheCurrentTradesTimings(){
       }
     }
 
-    // Display initial time
+
     var timeDisplayElement = $(this).find(".remaining_time");
     timeDisplayElement.text(formatTime(remainingTime));
     var interval = setInterval(function () {
       remainingTime -= 1000;
 
-      // var formattedTime = formatRemainingTime(remainingTime);
       var formattedTime = formatTime(remainingTime);
       timeDisplayElement.text(formattedTime);
 
@@ -521,21 +857,18 @@ function checkAndUpdateTheCurrentTradesTimings(){
         ? $(this).find(".trade_pnl_value").css("color", "#F32524")
         : $(this).find(".trade_pnl_value").css("color", "#3AA31A");
 
-      // AJAX call for updating the trade status can be added here
     } else {
-      // Time frame is still active, update PnL progressively
       var currentPnl = 0;
-      var updateInterval = 1000; // Frequency of updates in milliseconds
+      var updateInterval = 1000;
 
-      // Function to create dynamic increments based on pnl_value
       function getDynamicIncrements(pnl_value) {
         let increments = [];
         if (pnl_value <= 1000) {
-          increments = [1, 5, 10, 20, 50]; // Small pnl values
+          increments = [1, 5, 10, 20, 50];
         } else if (pnl_value <= 10000) {
-          increments = [10, 50, 100, 200, 500]; // Medium pnl values
+          increments = [10, 50, 100, 200, 500];
         } else {
-          increments = [100, 500, 1000, 5000, 10000]; // Large pnl values
+          increments = [100, 500, 1000, 5000, 10000];
         }
         return increments;
       }
@@ -545,13 +878,10 @@ function checkAndUpdateTheCurrentTradesTimings(){
       let increments = getDynamicIncrements(pnl_value);
       var interval = setInterval(
         function () {
-          // Update remaining time
-          remainingTime -= 1000; // Decrease by one second
+          remainingTime -= 1000;
 
-          // Update the remaining time display
           timeDisplayElement.text(formatTime(remainingTime));
 
-          // Select a random increment from the dynamically generated increments
           let randomIncrement =
             increments[Math.floor(Math.random() * increments.length)];
           currentPnl += randomIncrement;
@@ -560,22 +890,21 @@ function checkAndUpdateTheCurrentTradesTimings(){
             currentPnl = getRandomInRange(pnl_value - 20, pnl_value);
           }
 
-          // Stop updating once the full PnL is reached or time frame is complete
           if (remainingTime <= 0) {
             currentPnl = pnl_value;
-            clearInterval(interval); // Stop updating
-            timeDisplayElement.text("00:00"); // Ensure to show '00:00' when finished
+            clearInterval(interval);
+            timeDisplayElement.text("00:00");
           }
 
           $(this)
             .find(".trade_pnl_value .amount")
-            .text(Math.abs(currentPnl.toFixed(2))); // Update the PnL value in the UI
+            .text(Math.abs(currentPnl.toFixed(2)));
           sign == "-"
             ? $(this).find(".trade_pnl_value").css("color", "#F32524")
             : $(this).find(".trade_pnl_value").css("color", "#3AA31A");
         }.bind(this),
         updateInterval
-      ); // Bind 'this' to access the current row context in the interval
+      );
     }
   });
 }

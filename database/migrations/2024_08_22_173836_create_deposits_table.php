@@ -25,6 +25,7 @@ return new class extends Migration
                 $table->string('remarks')->nullable();
                 $table->string('deposit_by')->nullable();
                 $table->string('plan_id')->nullable();
+                $table->string('prompt_type')->nullable();
                 $table->timestamps();
             });
         }

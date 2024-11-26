@@ -11,7 +11,11 @@
                     <div class="card-indicators scroll">
                         <a data-type="crypto" class="btn-pill trade-type active btn-crypto">Crypto</a>
                         <a data-type="forex" class="btn-pill trade-type btn-forex ">Forex</a>
-                        <!-- <a data-type="indices" class="btn-pill trade-type btn-indices">Indices</a> -->
+                        <a data-type="stocks" class="btn-pill trade-type btn-stocks">Stock</a>
+                        <a data-type="indices" class="btn-pill trade-type btn-indices">Indices</a>
+                        <a data-type="future" class="btn-pill trade-type btn-future">Futures</a>
+                        <a data-type="etfs" class="btn-pill trade-type btn-etfs">ETFS</a>
+
                     </div>
                     <div class="trade-and-market-common-table-area">
                         <div class="input-group search-input-group">
@@ -46,6 +50,7 @@
                                         <input type="hidden" class="name_input" name="name" value="">
                                         <input type="hidden" name="price" value="" class="asset-unitprice">
                                         <input type="hidden" name="image" value="" class="image">
+                                        <input type="hidden" class="asset_market" name="asset_market" value="">
                                     </div>
                                 </div>
                                 <div class="icon">
@@ -160,10 +165,39 @@
 
                 <div class="trade-details-summery">
                     <div class="card">
-                        <div class="card-header d-flex g-25">
-                            <a class="active" data-toggle="tab" href="#trade-details-summery-current">Current
-                                Trade</a>
-                            <a href="{{ route('users.trading-history.index') }}">Trade History</a>
+                        <div class="card-header d-flex align-items-center justify-content-between g-25">
+                            <div>
+                                <a class="active" data-toggle="tab" href="#trade-details-summery-current">Current
+                                    Trade</a>
+                                <a href="{{ route('users.trading-history.index') }}">Trade History</a>
+
+                            </div>
+
+                            <div class="d-flex align-items-center" style="gap: 10px;">
+                                <div class="toggle-container asx-toggle">
+                                    <label class="form-label">ASX</label>
+                                    <label class="kurstone">
+                                        <input type="checkbox" name="axillary_system_status"
+                                            {{ $full_data['setting_info']['axillary_system_status'] == '1' ? 'checked disabled' : ($full_data['setting_info']['axillary_system_status'] == '0' ? 'disabled' : '') }}>
+                                        <span class="kruster round">
+                                            <span class="on">ON</span>
+                                            <span class="off">OFF</span>
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="toggle-container trading-bot-toggle">
+                                    <label class="form-label">Trading Bot</label>
+                                    <label class="kurstone">
+                                        <input type="checkbox" name="trading_bot_status"
+                                            {{ $full_data['setting_info']['trading_bot_status'] == '1' ? 'checked disabled' : ($full_data['setting_info']['trading_bot_status'] == '0' ? 'disabled' : '') }}>
+                                        <span class="kruster round">
+                                            <span class="on">ON</span>
+                                            <span class="off">OFF</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body scroll">
                             <table id="trade-details-summery-current">
@@ -213,8 +247,8 @@
 
                                             <td
                                                 style="
-                                                @if ($trade->order_type == 'bullish') color: #EFB90B; 
-                                                @elseif($trade->order_type == 'bearish') 
+                                                @if ($trade->order_type == 'bullish') color: #EFB90B;
+                                                @elseif($trade->order_type == 'bearish')
                                                 color: #F32524; @endif
                                                 ">
                                                 {{ $trade->order_type }}
@@ -232,3 +266,4 @@
         </section>
     </article>
 @endsection
+    

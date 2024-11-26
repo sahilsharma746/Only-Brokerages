@@ -31,7 +31,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="javascript:void(0)">
+            <a href="{{ route('user.education.index') }}">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <span>Education</span>
             </a>

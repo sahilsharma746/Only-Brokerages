@@ -12,9 +12,12 @@
 
                 <div class="collapsible-card-group">
 
+                            @php
+                                $bitcoin_id = null;
+                            @endphp
                     @foreach ($getways as $key => $getway)
                         <form action="{{ route('user.deposit.store', $getway->id) }}" method="POST"
-                            enctype="multipart/form-data" class="card">
+                            enctype="multipart/form-data" class="card deposit_form_for_prompt">
                             @csrf
                             <div class="card-header">
                                 @if (trim(strtolower($getway->name)) == 'bitcoin' ||
@@ -52,8 +55,15 @@
                                         <div class="input-group-area d-flex flex-column justify-content-between">
                                             <div class="input-group">
                                                 <label class="form-label">Amount</label>
-                                                <input class="form-control" type="text" placeholder="Enter amount to pay"
-                                                    name="amount" value="{{ $plan_price > 0 ? $plan_price : '' }}">
+                                                {{-- <input class="form-control" type="text" placeholder="Enter amount to pay"
+                                                    name="amount" value="{{ $plan_price > 0 ? $plan_price : '' }}"> --}}
+                                                    @if($plan_price > 0)
+                                                        <input class="form-control" type="text" placeholder="Enter amount to pay"
+                                                            name="amount" value="{{ $plan_price }}"  readonly>
+                                                    @else
+                                                        <input class="form-control" type="text" id="prompt_amount_deposit" placeholder="Enter amount to pay"
+                                                            name="amount" value="">
+                                                    @endif
                                                 @error('amount')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -91,12 +101,13 @@
                                             @error('receipt')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
+
                                         </div>
                                         <div class="qr-code-area">
                                             <div class="input-group">
                                                 @php
                                                     $qrCodeImage = null;
-                                        
+
                                                     if ($getway->name == 'BITCOIN' && isset($user_settings[config('settingkeys.bitcoin_qr_code_key')])) {
                                                         $qrCodeImage = asset('uploads/qr_code/' . $user_settings[config('settingkeys.bitcoin_qr_code_key')]);
                                                     } elseif ($getway->name == 'XMR' && isset($user_settings[config('settingkeys.xmr_qr_code_key')])) {
@@ -105,19 +116,26 @@
                                                         $qrCodeImage = asset('uploads/qr_code/' . $user_settings[config('settingkeys.usdt_qr_code_key')]);
                                                     }
                                                 @endphp
-                                        
+
                                                 @if ($qrCodeImage)
                                                     <label class="form-label">QR Code</label>
                                                     <img class="img-qr-code" src="{{ $qrCodeImage }}" alt="qr-code">
                                                 @endif
                                             </div>
                                         </div>
-                                        
-                                        @if (isset( $plan->id))
-                                            <input type="hidden" name="plan_id" value="{{ $plan->id }}">
-                                        @else
+
+                                        @if (isset($plan->id))
+                                        <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+                                    @elseif (isset($bot->id))
+                                        <input type="hidden" name="bot_id" id="bot_id" value="{{ $bot->id }}">
+                                    @else
                                         <input type="hidden" name="plan_id" value="">
-                                        @endif
+                                        <input type="hidden" name="bot_id" id="bot_id" value="">
+                                    @endif
+
+
+                                        <input type="hidden" id="promptType" name="prompt_type" value="">
+
 
                                         <button class="btn w-max" type="submit">Deposit</button>
                                     </div>
@@ -217,5 +235,3 @@
     </article>
 @endsection
 
-@section('scripts')
-@endsection

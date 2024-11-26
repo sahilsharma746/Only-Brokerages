@@ -16,23 +16,24 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('asset');
             $table->string('name');
-            $table->integer('margin');  // Changed margin to integer
-            $table->float('contract_size', 10, 10);  // Changed from decimal to float
-            $table->float('capital', 10, 10);  // Changed from decimal to float
+            $table->string('market');
+            $table->integer('margin');
+            $table->float('contract_size', 10, 10);
+            $table->float('capital', 10, 10);
             $table->string('trade_type');
-            $table->float('entry', 10, 10);  // Changed from decimal to float
-            $table->float('units', 10, 10);  // Changed from decimal to float
-            $table->float('pnl', 10, 10);  // Changed from decimal to float
-            $table->float('fees', 10, 10);  // Changed from decimal to float
-            $table->string('order_type'); 
-            $table->string('time_frame'); 
+            $table->float('entry', 10, 10);
+            $table->float('units', 10, 10);
+            $table->float('pnl', 10, 10);
+            $table->float('fees', 10, 10);
+            $table->string('order_type');
+            $table->string('time_frame');
             $table->string('trade_result');
-            $table->float('admin_trade_result_percentage', 8, 2);  // Changed from decimal to float (8,2 for percentage precision)
-            // $table->float('trade_win_loss_amount', 10, 10);  // Changed from decimal to float
+            $table->float('admin_trade_result_percentage', 8, 2);
             $table->tinyInteger('processed');
             $table->tinyInteger('status');
             $table->string('image');
             $table->string('avatar')->nullable();
+            $table->string('trade_execution_method');
             $table->timestamps();
         });
     }

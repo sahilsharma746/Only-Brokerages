@@ -55,6 +55,9 @@
                         <input type="checkbox" name="remember"> <span>Remember me</span>
                     </label>
                 </p>
+                <p class="text-center">Forgot password?
+                    <a href="{{ route('password.request') }}" class="btn-tab text-primary">Click Here</a>
+                </p>
                 <div class="card-footer">
                     <button type="submit" class="btn">Sign in</button>
                 </div>

@@ -31,6 +31,6 @@ class is_user
         } else{
              return redirect()->route('home');
         }
-      
+
     }
 }

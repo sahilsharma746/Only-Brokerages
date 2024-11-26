@@ -18,15 +18,19 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\ProcessedCompletedTrades::class,
         \App\Console\Commands\UpdatedTradesStatus::class,
     ];
-    
+
 
     protected function schedule(Schedule $schedule){
-        $schedule->command('app:processed-completed-trades')->everyMinute();
-        $schedule->command('app:updated-trades-status')->everyMinute();
+        $schedule->command('app:processed-completed-trades')->everyFiveMinutes();
+        $schedule->command('app:updated-trades-status')->everyFiveMinutes();
+        $schedule->command('app:fetch-in-progress-job')->everyFiveMinutes();
 
         $schedule->command('app:get-crypto-data')->twiceDaily(1, 13);
         $schedule->command('app:get-forex-data')->twiceDaily(1, 13);
-        // $schedule->command('app:get-indices-data')->twiceDaily(1, 13);
+        $schedule->command('app:get-stock-data')->twiceDaily(1, 13);
+        $schedule->command('app:get-indices-data')->twiceDaily(1, 13);
+        $schedule->command('app:get-future-data')->twiceDaily(1, 13);
+        $schedule->command('app:get-e-t-f-s-data')->twiceDaily(1, 13);
     }
 
     /**

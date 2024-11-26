@@ -23,17 +23,25 @@
                             <span>Forex</span>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </a>
-                          {{--  <a href="#user-market-watch-table-indices" class="btn" data-type="indices">
+                          <a href="#user-market-watch-table-stocks" class="btn trade-type-market-watch" data-type="stocks">
+                            <span>stocks</span>
+                            <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
+                          </a>
+                          <a href="#user-market-watch-table-indices" class="btn trade-type-market-watch" data-type="indices">
                             <span>Indices</span>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </a>
-                          <a href="#user-market-watch-table-futures" class="btn" data-type="futures">
+                          <a href="#user-market-watch-table-future" class="btn trade-type-market-watch" data-type="future">
                             <span>Futures</span>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
-                          </a> --}}
+                          </a>
+                          <a href="#user-market-watch-table-etfs" class="btn trade-type-market-watch" data-type="etfs">
+                            <span>ETFS</span>
+                            <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
+                          </a>
                         </div>
                       </div>
-                      
+
                 </div>
 
                 <div id="user-market-watch-area" class="user-market-watch-area w-100" style="max-height: fit-content;">
@@ -56,5 +64,6 @@
                     </div>
                 </div>
             </section>
+            @extends('users.user-prompts')
         </article>
 @endsection

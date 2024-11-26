@@ -788,3 +788,23 @@ main.main-area .modal.user-trade-result .modal-footer .btn {
 main.main-area .modal.user-trade-result .tagify {
   --tag-bg: var(--secondary-color-5);
 }
+
+
+
+
+.enalbled_disableds {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-enabled {
+  background-color: rgb(58, 163, 26); /* Green */
+}
+.btn-disabled {
+  background-color: red; /* Grey */
+}

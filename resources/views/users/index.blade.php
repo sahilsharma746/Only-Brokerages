@@ -20,10 +20,12 @@
                             <img src="{{ asset('assets/img/flag-eur.png') }}" alt="Eur currency">
                             <div class="amount">${{ number_format(auth()->user()->balance) }}</div>
                         </div>
-                        <div class="card-status d-flex align-items-center g-3 {{ $full_data['usertotoalpercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
+                        <div
+                            class="card-status d-flex align-items-center g-3 {{ $full_data['usertotoalpercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
                             <div class="percentage">{{ $full_data['usertotoalpercentage'] }}%</div>
-                            <span class="status {{($full_data['usertotoalpercentage'] > 0) ? 'up' : 'down'}}">
-                                <i class="fa-solid {{ ($full_data['usertotoalpercentage'] > 0) ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
+                            <span class="status {{ $full_data['usertotoalpercentage'] > 0 ? 'up' : 'down' }}">
+                                <i
+                                    class="fa-solid {{ $full_data['usertotoalpercentage'] > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
                             </span>
                         </div>
                     </div>
@@ -31,20 +33,23 @@
                         <div class="card-title">Total Deposit</div>
                         <div class="card-price d-flex align-items-center g-8">
                             <img src="{{ asset('assets/img/flag-eur.png') }}" alt="Eur currency">
-                            <div class="amount">${{ number_format( $full_data['total_deposit'] ) }}</div>
+                            <div class="amount">${{ number_format($full_data['total_deposit']) }}</div>
                         </div>
                     </div>
                     <div class="card d-grid g-4">
                         <div class="card-title">Profitable Trades</div>
                         <div class="card-price d-flex align-items-center g-8">
                             <img src="{{ asset('assets/img/flag-eur.png') }}" alt="Eur currency">
-                            <div class="amount">{{ $full_data['totalWinTradesCount']}}/{{$full_data['totalTradesCount']}}</div>
+                            <div class="amount">
+                                {{ $full_data['totalWinTradesCount'] }}/{{ $full_data['totalTradesCount'] }}</div>
                         </div>
-                        <div class="card-status d-flex align-items-center g-4 {{ $full_data['winPercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
+                        <div
+                            class="card-status d-flex align-items-center g-4 {{ $full_data['winPercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
                             <div class="percentage">{{ $full_data['winPercentage'] }}</div>
-                                <span class="status {{($full_data['winPercentage'] > 0) ? 'up' : 'down'}}">
-                                    <i class="fa-solid {{($full_data['winPercentage'] > 0) ? 'fa-arrow-up' : 'fa-arrow-down'}}"></i>
-                                </span>
+                            <span class="status {{ $full_data['winPercentage'] > 0 ? 'up' : 'down' }}">
+                                <i
+                                    class="fa-solid {{ $full_data['winPercentage'] > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -118,7 +123,7 @@
                 </div>
             </div>
 
-            
+
             <div class="company-trade-percentage-card-group d-grid">
                 <div class="card d-grid align-items-center">
                     <img src="{{ asset('assets/img/profit.png') }}" alt="company logo">
@@ -126,13 +131,15 @@
                         <div class="card-title">Profit</div>
                         <div class="card-price">
                             <span>USD</span>
-                            <span class="amount">{{ number_format( $full_data['totalWinAmount'] ) }}</span>
+                            <span class="amount">{{ number_format($full_data['totalWinAmount']) }}</span>
                         </div>
                     </div>
-                    <div class="card-status d-flex align-items-center g-4 {{ $full_data['win_percentage'] > 0 ? 'text-primary' : 'text-danger' }}">
-                        <div class="percentage">{{$full_data['win_percentage']}}%</div>
+                    <div
+                        class="card-status d-flex align-items-center g-4 {{ $full_data['win_percentage'] > 0 ? 'text-primary' : 'text-danger' }}">
+                        <div class="percentage">{{ $full_data['win_percentage'] }}%</div>
                         <span class="status up">
-                        <i class="fa-solid {{($full_data['win_percentage'] > 0) ? 'fa-arrow-up' : 'fa-arrow-down'}}"></i>
+                            <i
+                                class="fa-solid {{ $full_data['win_percentage'] > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
                         </span>
                     </div>
                 </div>
@@ -142,13 +149,15 @@
                         <div class="card-title">Loss</div>
                         <div class="card-price">
                             <span>USD</span>
-                            <span class="amount">{{ number_format ( $full_data['totalLossAmount'] ) }}</span>
+                            <span class="amount">{{ number_format($full_data['totalLossAmount']) }}</span>
                         </div>
                     </div>
-                    <div class="card-status d-flex align-items-center g-4 {{ $full_data['loss_percentage'] > 0 ? 'text-primary' : 'text-danger' }}">
-                        <div class="percentage">{{  $full_data['loss_percentage']}}%</div>
+                    <div
+                        class="card-status d-flex align-items-center g-4 {{ $full_data['loss_percentage'] > 0 ? 'text-primary' : 'text-danger' }}">
+                        <div class="percentage">{{ $full_data['loss_percentage'] }}%</div>
                         <span class="status">
-                            <i class="fa-solid {{($full_data['loss_percentage'] > 0) ? 'fa-arrow-up' : 'fa-arrow-down'}}"></i>
+                            <i
+                                class="fa-solid {{ $full_data['loss_percentage'] > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
                         </span>
                     </div>
                 </div>
@@ -161,10 +170,12 @@
                             <span class="amount">{{ number_format($full_data['totalAdminLoanDeposits']) }}</span>
                         </div>
                     </div>
-                    <div class="card-status d-flex align-items-center g-4 {{ $full_data['adminLoanPercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
-                        <div class="percentage">{{ $full_data['adminLoanPercentage']}}%</div>
+                    <div
+                        class="card-status d-flex align-items-center g-4 {{ $full_data['adminLoanPercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
+                        <div class="percentage">{{ $full_data['adminLoanPercentage'] }}%</div>
                         <span class="status">
-                            <i class="fa-solid {{($full_data['adminLoanPercentage'] > 0) ? 'fa-arrow-up' : 'fa-arrow-down'}}"></i>
+                            <i
+                                class="fa-solid {{ $full_data['adminLoanPercentage'] > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
                         </span>
                     </div>
                 </div>
@@ -174,13 +185,15 @@
                         <div class="card-title">Credit</div>
                         <div class="card-price">
                             <span>USD</span>
-                            <span class="amount">{{ number_format( $full_data['totalAdminCreditDeposits'] ) }}</span>
+                            <span class="amount">{{ number_format($full_data['totalAdminCreditDeposits']) }}</span>
                         </div>
                     </div>
-                    <div class="card-status d-flex align-items-center g-4 {{ $full_data['adminCreditPercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
-                        <div class="percentage">{{$full_data['adminCreditPercentage']}}%</div>
+                    <div
+                        class="card-status d-flex align-items-center g-4 {{ $full_data['adminCreditPercentage'] > 0 ? 'text-primary' : 'text-danger' }}">
+                        <div class="percentage">{{ $full_data['adminCreditPercentage'] }}%</div>
                         <span class="status">
-                            <i class="fa-solid {{( $full_data['adminCreditPercentage'] > 0) ? 'fa-arrow-up' : 'fa-arrow-down'}}"></i>
+                            <i
+                                class="fa-solid {{ $full_data['adminCreditPercentage'] > 0 ? 'fa-arrow-up' : 'fa-arrow-down' }}"></i>
                         </span>
                     </div>
                 </div>
@@ -196,7 +209,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="card d-grid align-items-center g-8" data-toggle="tab" href="#account-verification">
+                    <a class="card d-grid align-items-center g-8 account-verification-click" data-toggle="tab"
+                        href="#account-verification">
                         <div class="icon">
                             <i class="fa-solid fa-fingerprint"></i>
                         </div>
@@ -223,7 +237,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="card d-grid align-items-center g-8 live-chat-section" data-toggle="tab" href="#live-chat-section">
+                    <a class="card d-grid align-items-center g-8 live-chat-section" data-toggle="" href="#">
                         <div class="icon">
                             <i class="fa-brands fa-rocketchat"></i>
                         </div>
@@ -252,7 +266,7 @@
             @php
                 $country_code = $full_data['user_data']->addresses->country;
                 $country_name = config('countries.' . $country_code);
-                @endphp
+            @endphp
             <div class="personal-info-card-area">
                 <form action="{{ route('user.personal.info.update') }}" method="POST">
                     @csrf
@@ -415,11 +429,11 @@
                     <div class="card-body d-grid">
                         <div class="input-group">
                             <label class="form-label">Identity Card Type</label>
-                            <select class="form-control" id="identity-card-type"  name="kyc_type">
-                                @foreach(config('settingkeys.kyc_type') as $key => $value)
-                                <option value="{{ $key }} ">{{ $value }}</option>
-                            @endforeach
-                            
+                            <select class="form-control" id="identity-card-type" name="kyc_type">
+                                @foreach (config('settingkeys.kyc_type') as $key => $value)
+                                    <option value="{{ $key }} ">{{ $value }}</option>
+                                @endforeach
+
                             </select>
                         </div>
                         <div></div>
@@ -441,7 +455,7 @@
                                 <p style="color: green; font-size: 16px; margin-top: 20px; font-weight: bold;">Document verified</p>
                             @endif --}}
                         </div>
-                    
+
                         <!-- Upload ID Back -->
                         <div class="input-group attach-file-input-group">
                             <label class="form-label">Upload ID Back</label>
@@ -460,7 +474,7 @@
                                 <p style="color: green; font-size: 16px; margin-top: 10px; font-weight: bold;">Document verified</p>
                             @endif --}}
                         </div>
-                    
+
                         <!-- Upload Proof Of Address -->
                         <div class="input-group attach-file-input-group">
                             <label class="form-label">Upload Proof Of Address</label>
@@ -479,7 +493,7 @@
                                 <p style="color: green; font-size: 16px; margin-top: 20px; font-weight: bold;">Document verified</p>
                             @endif --}}
                         </div>
-                    
+
                         <!-- Upload Selfie -->
                         <div class="input-group attach-file-input-group">
                             <label class="form-label">Upload Selfie</label>
@@ -488,7 +502,8 @@
                                     class="attach-icon d-flex justify-content-between align-items-center w-100">
                                     <span type="placeholder">Upload Selfie</span>
                                     <input id="attach-user-selfie" class="d-none" type="file"
-                                        name="{{ config('settingkeys.kyc_selfie_proof') }}" accept="image/*" capture="environment">
+                                        name="{{ config('settingkeys.kyc_selfie_proof') }}" accept="image/*"
+                                        capture="environment">
                                     <i class="fa-solid fa-camera"></i>
                                 </label>
                             </div>
@@ -499,7 +514,7 @@
                             @endif --}}
                         </div>
                     </div>
-                    
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-submit-identification w-max">Submit identification</button>
                     </div>
@@ -636,75 +651,52 @@
             </form>
 
             <div class="area-title">Activate Two Factor (2FA) Authentication</div>
-            <div class="card common-card card-2fa">
-                <div class="card-body d-grid">
-                    <div class="input-group-area d-flex flex-column justify-content-between">
-                        <div class="input-group">
-                            <label class="form-label">Activation code for Google Authentication</label>
-                            <input class="form-control form-clone" type="text" id="activation-code-for-auth"
-                                placeholder="Activation code">
-                            <label for="activation-code-for-auth" class="form-icon clone-icon">
-                                <i class="fa-regular fa-clone"></i>
-                            </label>
-                        </div>
-                        <div class="input-group">
-                            <label class="form-label">Activate Authenticator and enter generated code in field
-                                below</label>
-                            <input class="form-control" type="text" id="generated-qr-code"
-                                placeholder="enter code here">
-                        </div>
-                    </div>
-                    <div class="qr-code-area">
-                        <div class="input-group">
-                            <label class="form-label">QR Code</label>
-                            <img class="img-qr-code" src="../assets/img/dev-qr-code.png" alt="qr-code">
-                        </div>
-                    </div>
-                    <a href="" class="btn btn-activation-2fa w-max">Activate 2FA Protection</a>
-                </div>
-            </div>
-        </section>
-        <!-- <section id="live-chat-section" class="tab-pane common-section in live-chat-section">
-            <div class="back-btn-area">
-                <ul class="nav nav-tabs list-style-none">
-                    <li class="nav-item d-flex align-items-center g-15">
-                        <a class="btn-tab d-flex align-items-center g-15" data-toggle="tab" href="#admin-account-grid">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            <span class="text">Account</span>
-                        </a>
-                        <p class="section-name d-flex g-15">
-                            <span>/</span>
-                            <span>Live chat</span>
-                        </p>
-                    </li>
-                </ul>
-            </div>
-            <div class="card d-grid scroll">
-                <div id="chat-body" class="card-body chat-body d-flex flex-column align-items-start w-100 g-20">
-                    <div class="admin-text-box d-flex align-items-start g-8">
-                        <div class="icon-area d-flex justify-content-center align-items-center">
-                            <img class="admin-icon" src="../assets/img/site-logo.png" alt="admin name">
-                        </div>
-                        <p class="message">Hello! How can i help you today?</p>
-                    </div>
-                    <div class="user-text-box d-flex align-items-start g-8">
-                        <p class="message">I want to make an enquiry about the account plans.</p>
-                        <div class="icon-area d-flex justify-content-center align-items-center">
-                            <img class="user-icon" src="../assets/img/site-logo.png" alt="user name">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="input-group live-chat-input-group">
-                        <input class="form-control" type="text" id="live-chat-input"
-                            placeholder="Type your message here" autocomplete="off" autofocus>
-                        <a id="send-message" class="form-icon">
-                            <i class="fa-regular fa-paper-plane"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section> -->
+            <form method="POST"
+                action="{{ $full_data['user_verifications']['2fa_verify_status'] == 1 ? route('user.2fa.disable') : route('user.2fa.verify') }}">
+                @csrf
+                <div class="card common-card card-2fa">
+                    <div class="card-body d-grid">
+                        <div class="input-group-area d-flex flex-column justify-content-between">
+                            <div class="toggle-container">
+                                <label class="form-label">Two-Factor Authentication</label>
+                                <label class="switch">
+                                    <input type="checkbox"
+                                        {{ $full_data['user_verifications']['2fa_verify_status'] == 1 ? 'checked' : '' }}
+                                        {{ $full_data['user_verifications']['2fa_verify_status'] == 0 ? 'disabled' : '' }}>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
 
+                            <div class="input-group">
+                                <label class="form-label" for="otp">Enter Activation code for Google
+                                    Authentication</label>
+                                <input class="form-control" type="text" id="generated-qr-code" name="otp"
+                                    {{ $full_data['user_verifications']['2fa_verify_status'] == 1 ? 'disabled' : '' }}
+                                    required placeholder="enter code here">
+                            </div>
+
+
+                        </div>
+
+                        <div class="qr-code-area">
+                            <div class="input-group">
+                                <label class="form-label">QR Code</label>
+                                <img src="{{ $full_data['qrCodeUrl'] }}" alt="QR Code">
+                            </div>
+                        </div>
+                    </div>
+                    @if ($full_data['user_verifications']['2fa_verify_status'] == 0)
+                        <button type="submit" class="btn btn-activation-2fa w-max" style="margin-top: 20px"> Activate
+                            2FA Protection</button>
+                        <input type="hidden" name="2fa_check" value="enable">
+                    @else
+                        <button type="submit" class="btn btn-danger w-max">Disable 2FA Protection</button>
+                        <input type="hidden" name="2fa_check" value="disable">
+                        <input type="hidden" name="2fa_check" value="disable">
+                    @endif
+                </div>
+            </form>
+        </section>
+        @extends('users.user-prompts')
     </article>
 @endsection

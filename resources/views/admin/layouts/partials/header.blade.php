@@ -20,14 +20,28 @@
     
     <link rel="stylesheet" href="{{ asset('assets') }}/css/admin-layout.css?v={{ env('SITE_CSS_JS_VERSION') }}">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/admin-style.css?v={{ env('SITE_CSS_JS_VERSION') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
         var apiUrlCrypto = "{{ url('/crypto.json') }}";
         var apiUrlForex = "{{ url('/forex.json') }}";
-        var apiUrlIndisis = "{{ url('/indisis.json') }}";
-        
-    </script>
+        var apiUrlIndices = "{{ url('/indices.json') }}";
+        var apiUrlStocks = "{{ url('/stocks.json') }}";
+        var apiUrlFutures = "{{ url('/futures.json') }}";
+        var apiUrletfs = "{{ url('/etfs.json') }}";
+        var urlSaveSoftware = "{{ route('admin.software.save') }}";
+        var urlUpdateTradingBot = "{{ route("admin.software.update") }}";
+        var urlEditTradingBot = "{{ route("admin.edit.bot.info") }}";
+        var enableDisableTradingBot = "{{ route("admin.software.enable-disable") }}";
 
+        @if(isset($full_data['user_data']) && isset($full_data['user_data']->id))
+            var upgradePromptUrl = "{{ route('admin.user.upgradeprompt', $full_data['user_data']->id) }}";
+            var DeletePromptUrl = "{{ route('admin.user.RemovePrompt', $full_data['user_data']->id) }}";
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        @endif
+
+    </script>
     <script src="{{ asset('assets') }}/jQuery/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('assets/js/admin-head-foot.js') }}?v={{ env('SITE_CSS_JS_VERSION') }}"></script>
     <script src="{{ asset('assets') }}/data-table-2.1.4/dataTables.js"></script>

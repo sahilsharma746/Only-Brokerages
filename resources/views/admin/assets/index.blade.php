@@ -10,9 +10,9 @@
                             <span class="icon"><i class="fa-solid fa-plus"></i></span>
                             <span>new market</span>
                         </a>
-                        <a class="btn btn-new-asset" data-toggle="modal" href="#add-asset-for-user">
+                        <a class="btn btn-new-asset" href="{{ route('admin.education.index') }}">
                             <span class="icon"><i class="fa-solid fa-plus"></i></span>
-                            <span>new asset</span>
+                            <span>education posts</span>
                         </a>
                     </div>
                 </div>

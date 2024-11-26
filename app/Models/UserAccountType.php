@@ -23,4 +23,6 @@ class UserAccountType extends Model
         return UserAccountType::pluck('id')->toArray();
     }
 
+
+
 }

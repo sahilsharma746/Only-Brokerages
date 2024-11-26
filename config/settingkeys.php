@@ -17,7 +17,7 @@
     "xmr_qr_code_key"=>"key_xmr_qr_code",
     "usdt_qr_code_key"=>"key_usdt_qr_code",
 
-    // default payment addresses 
+    // default payment addresses
     "ki_bitcoin_address" => 'default_ki_bitcoin_address',
     "ki_bitcoin_address_tag" => 'default_ki_bitcoin_address_tag',
     "ki_usdt_address" => 'default_ki_usdt_address',
@@ -35,26 +35,46 @@
 
 
 
-    // kyc verification keys 
+    // kyc verification keys
     "kyc_id_front" => "kyc_id_front",
     "kyc_id_back" => "kyc_id_back",
     "kyc_address_proof" => "kyc_address_proof",
     "kyc_selfie_proof" => "kyc_selfie_proof",
-    
+
     "kyc_type" => [
           'birth_certificate' => 'Birth Certificate',
           'id_card'=>'ID Card',
           'passport'=>'Passport',
       ],
-     
-  
+
+
     //  user trade settings
     "trade_result" => "random",
     "trade_percentage" => "10",
 
+    // PROMPS AND PERMISSIONS
+      "prompts_permissions" => [
+            "upgrade_prompt",
+            "identity_prompt",
+            "account_on_hold_prompt" ,
+            "kyc_verification_prompt" ,
+            "account_certificate_prompt",
+            "tax_reference_prompt",
+            "axillary_system_prompt",
+            "trade_limit_prompt",
+            "credit_facility_approval",
+            "loan_facility_approval"
+      ],
+
+
+
+    "axillary_system_status" => "axillary_system_status",
+    "trading_bot_status" => "trading_bot_status",
+
+
     // admin email
-    'admin_email' => 'admin@krustinvestement.com',
-    'support_email' => 'support@krustinvestement.com',
-    'phone_number' => '+1(213)293-2886',
+    'admin_email' => (env('APP_MODE') == 'production') ? 'admin@100xbrokerage.com' : 'demo@demo.com',
+    'support_email' =>  (env('APP_MODE') == 'production') ? 'support@100xbrokerage.com' : 'demo@demo.com',
+    'phone_number' => (env('APP_MODE') == 'production') ? '+1(213)293-2886' : "+1(111)111-1111",
 
 ];

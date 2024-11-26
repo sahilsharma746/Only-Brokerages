@@ -1,6 +1,6 @@
 <nav id="left-nav" class="left-nav">
     <a href="{{ asset('admin/dashboard') }}" class="logo-area">
-        <img src="{{ asset('assets') }}/img/site-logo.png" alt="Site Logo" class="site-logo">
+        <img src="{{ asset('assets') }}/img/site-favicon-only-brokerage.png" alt="Site Logo" class="site-logo">
         <span class="site-name">Only-brokerage</span>
     </a>
     <ul class="nav-menu list-style-none scroll">
@@ -44,7 +44,7 @@
                 <span class="name">Withdrawals</span>
             </a>
         </li>
-        
+
         <li>
             <a class="{{ Request::url() == route('admin.trades') ? 'active' : '' }}" href="{{ route('admin.trades') }}">
                 <span class="icon">
@@ -54,11 +54,11 @@
             </a>
         </li>
         <li>
-        <a class="{{ Request::url() == route('admin.assets') ? 'active' : '' }}" href="{{ route('admin.assets') }}">
+        <a class="{{ Request::url() == route('admin.education.index') ? 'active' : '' }}" href="{{ route('admin.education.index') }}">
                 <span class="icon">
-                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <i class="fa-solid fa-graduation-cap"></i>
                 </span>
-                <span class="name">Assets</span>
+                <span class="name">Education</span>
             </a>
         </li>
         <li>
@@ -67,6 +67,14 @@
                     <i class="fa-solid fa-server"></i>
                 </span>
                 <span class="name">Softwares</span>
+            </a>
+        </li>
+        <li>
+        <a class="{{ Request::url() == route('admin.contact.index') ? 'active' : '' }}" href="{{ route('admin.contact.index') }}">
+                <span class="icon">
+                <i class="fa-solid fa-message"></i>
+                </span>
+                <span class="name">Contact Us Messages</span>
             </a>
         </li>
         <li>

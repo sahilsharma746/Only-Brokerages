@@ -19,7 +19,8 @@ class Deposit extends Model
         'wallet_address',
         'amount',
         'receipt',
-        'status'
+        'status',
+        'prompt_type'
     ];
 
     protected $guarded = [];
@@ -27,7 +28,7 @@ class Deposit extends Model
     public function getway() {
         return $this->hasOne(Getway::class, 'id', 'getway_id');
     }
-    
+
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
     }

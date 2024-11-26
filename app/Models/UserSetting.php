@@ -40,6 +40,10 @@ class UserSetting extends Model
                 );
     }
 
-
+    public function deleteUserSetting($user_id, $option_name) {
+        return UserSetting::where('user_id', $user_id)
+            ->where('option_name', $option_name)
+            ->delete();
+    }
 
 }

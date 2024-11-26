@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use App\Models\Deposit;
 use App\Models\UserSetting;
@@ -18,7 +18,7 @@ class AdminDepositController extends Controller
     public function __construct(){
         $this->user_setting = new UserSetting();
     }
-   
+
     public function getAllDeposits() {
         $deposits = DB::table('deposits')
                     ->join('users', 'deposits.user_id', '=', 'users.id')
@@ -28,7 +28,7 @@ class AdminDepositController extends Controller
                     ->get();
         return view('admin.deposit.index', compact('deposits'));
     }
-    
+
     public function getPendingDeposits() {
         $deposits = DB::table('deposits')
                     ->join('users', 'deposits.user_id', '=', 'users.id')
@@ -44,7 +44,7 @@ class AdminDepositController extends Controller
         $deposits = DB::table('deposits')
                     ->join('users', 'deposits.user_id', '=', 'users.id')
                     ->select('deposits.*', 'users.first_name', 'users.last_name', 'users.email')
-                    ->where('deposits.status', 'approved') 
+                    ->where('deposits.status', 'approved')
                     ->orderBy('deposits.created_at', 'asc')
                     ->get();
         return view ('admin.deposit.index', compact('deposits'));
@@ -58,11 +58,12 @@ class AdminDepositController extends Controller
                     ->where('deposits.status', 'rejected')
                     ->orWhere('deposits.status', 'deleted')
                     ->orderBy('deposits.created_at', 'asc')
-                    ->get();    
+                    ->get();
         return view('admin.deposit.index', compact('deposits'));
     }
 
     public function approvedDepositStatus($id) {
+        
         $data = Deposit::where('id', $id)->first();
         if ($data) {
             $user = User::where('id', $data->user_id)->first();
@@ -70,16 +71,36 @@ class AdminDepositController extends Controller
             $user_balance = $user->balance;
             $this->user_setting->updatUserSetting('user_old_balance', $user_balance, $user->id);
             $user->increment('balance', $data->amount);
-            
+
             $plan_ids = UserAccountType::allPlansIds();
             if( $data->plan_id && in_array($data->plan_id, $plan_ids) ){
-                $user->account_type = $data->plan_id; 
+                $user->account_type = $data->plan_id;
             }
-            $user->save(); 
+
+            UserSetting::updateOrCreate(
+                ['user_id' => $user->id, 'option_name' => 'axillary_system_status'],
+                ['option_value' => '1']  
+            );
+            Log::info("axillary_system_status set to '1' for User ID: " . $user->id);
+    
+         
+            $settings = UserSetting::where('user_id', $user->id);
+            $settings->updateOrCreate(
+                ['user_id' => $user->id, 'option_name' => 'prompt_action'],
+                ['option_value' => '1']
+            );
+              Log::info("prompt_action set to '1' for User ID: " . $user->id);
+        
+            UserSetting::where('user_id', $data->user_id)
+            ->where('option_name', $data->prompt_type)
+            ->delete();
+
+
+            $user->save();
         }
         return back()->with('success', 'Updated Successfully');
     }
-    
+
 
     public function rejectedDepositStatus($id) {
         $data = Deposit::where('id', $id)->first();

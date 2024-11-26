@@ -1,12 +1,12 @@
 @extends('users.layouts.app_user')
 @section('content')
     <article class="tab-content trade-article">
-        <section id="payment-method-and-history" class="tab-pane common-section in active payment-method-and-history">
+        <section id="payment-method-and-history" class=" common-section active payment-method-and-history">
+
             @include('users.deposit.payment-method-menu')
 
-            <div id="trading-history" class="trading-history collapse">
                 <div class="area-title">trading history</div>
-                <div class="trading-history-table-area table-area scroll w-100">
+                <div class="trading-history-table-area table-area scroll">
                     <table id="trading-history-table" class="trading-history-table w-100">
                         <thead>
                             <tr>
@@ -31,19 +31,22 @@
                                             alt="{{ $trade->asset }}" style="width: 20px; height: 20px;">
                                         {{ $trade->asset }}
                                     </td>
-                                    <td>Manual</td> 
-                                    <td>{{ $trade->trade_type }}</td> 
+                                    <td style="color: {{ $trade->trade_execution_method === 'manual' ? 'orange' : 'blue' }};">
+                                    {{ $trade->trade_execution_method }}
+                                    </td>
+                                    <td>{{ $trade->trade_type }}</td>
                                     <td>${{$trade->capital }}</td>
-                                    <td>Currency</td> 
-                                    <td>{{$trade->pnl}}</td> 
-                                    <td >{{ $trade->trade_result }}</td>
+                                    <td>{{ ucfirst($trade->market) }}</td>
+                                    <td>${{$trade->pnl}}</td>
+                                    <td class="{{ $trade->trade_result === 'win' ? 'text-success' : 'text-danger' }}">
+                                    {{ $trade->trade_result }}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-            </div>
-            
+            @extends('users.user-prompts')
         </section>
     </article>
 @endsection

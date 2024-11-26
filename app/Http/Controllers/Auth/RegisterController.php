@@ -93,7 +93,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+      
         $user = User::latest()->first();
+
+       
         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -106,6 +110,8 @@ class RegisterController extends Controller
             'referal_id' => $data['referal_id'],
             'time_zone'=>$data['time-zone'],
         ]);
+
+
 
         UserVerifiedStatus::create([
             'user_id' => $user->id,

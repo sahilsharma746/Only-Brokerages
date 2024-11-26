@@ -232,7 +232,7 @@
             cursor: pointer;
             /* Change cursor to pointer */
         }
-</style>
+    </style>
 @endsection
 @section('content')
     @php
@@ -315,9 +315,6 @@
 
                         <ul class="list-style-none dropdown-menu d-flex flex-column">
                             <li class="dropdown-item">
-                                <a class="btn btn-default" href="">Edit Plan</a>
-                            </li>
-                            <li class="dropdown-item">
                                 <a class="btn btn-default" onclick="openModal('user-trade-limit')">Edit Trade
                                     limit</a>
                                 <div id="user-trade-limit" class="modal">
@@ -351,7 +348,7 @@
                                 </div>
                             </li>
                             <li class="dropdown-item">
-                                <a class="btn btn-default" data-toggle="modal" href="#user-trade-result">Edit Trade
+                                <a class="btn btn-default" data-toggle="modal" onclick="openModal('user-trade-result')">Edit Trade
                                     Result</a>
                             </li>
 
@@ -359,166 +356,85 @@
                                 <div class="modal-dialog">
                                     <div class="modal-header">
                                         <div class="modal-title">Trade Result :
-                                            <span>{{ $full_data['user_data']['first_name'] }}
-                                                {{ $full_data['user_data']['last_name'] }}</span>
+                                            <span>{{ $full_data['user_data']['first_name'] }} {{ $full_data['user_data']['last_name'] }}</span>
                                         </div>
                                         <button class="btn-modal-close" onclick="closeModal('user-trade-result')">
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
                                     </div>
-                                    <form action="{{ route('admin.trades.result', $full_data['user_data']->id) }}"
-                                        method="POST">
+                                    <form action="{{ route('admin.trades.result', $full_data['user_data']->id) }}" method="POST">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="input-group">
                                                 <label class="form-label">Trade Result</label>
-                                                <select class="form-control" id="trade_result" name="trade_result"
-                                                    onchange="updateLabel()">
-                                                    <option value="win"
-                                                        {{ isset($full_data['user_settings']['trade_result']) && $full_data['user_settings']['trade_result'] == 'win' ? 'selected' : '' }}>
-                                                        Win</option>
-                                                    <option value="loss"
-                                                        {{ isset($full_data['user_settings']['trade_result']) && $full_data['user_settings']['trade_result'] == 'loss' ? 'selected' : '' }}>
-                                                        Loss</option>
-                                                    <option value="random"
-                                                        {{ !isset($full_data['user_settings']['trade_result']) || $full_data['user_settings']['trade_result'] == 'random' ? 'selected' : '' }}>
-                                                        Random</option>
+                                                <select class="form-control" id="trade_result" name="trade_result" onchange="updateLabel()">
+                                                    <option value="win" {{ isset($full_data['user_settings']['trade_result']) && $full_data['user_settings']['trade_result'] == 'win' ? 'selected' : '' }}>
+                                                        Win
+                                                    </option>
+                                                    <option value="loss" {{ isset($full_data['user_settings']['trade_result']) && $full_data['user_settings']['trade_result'] == 'loss' ? 'selected' : '' }}>
+                                                        Loss
+                                                    </option>
+                                                    <option value="random" {{ !isset($full_data['user_settings']['trade_result']) || $full_data['user_settings']['trade_result'] == 'random' ? 'selected' : '' }}>
+                                                        Random
+                                                    </option>
                                                 </select>
                                             </div>
                                             <div class="input-group">
                                                 <label class="form-label" id="percentage_label">Percentage Win %</label>
-                                                <input type="number" class="form-control" id="percentage_win"
-                                                    name="trade_percentage"
-                                                    value="{{ isset($full_data['user_settings']['trade_percentage']) ? $full_data['user_settings']['trade_percentage'] : 10 }}"
-                                                    required>
+                                                <input type="number" class="form-control" id="percentage_win" name="trade_percentage"
+                                                    value="{{ isset($full_data['user_settings']['trade_percentage']) ? $full_data['user_settings']['trade_percentage'] : 10 }}" required>
                                             </div>
-
-
-
-                                            
-                                            </head>
-
-                                            <body>
-                                                <div class="input-group" style="margin: 20px;">
-                                                    <label class="form-label" id="margin">Margin</label>
-                                                    <div class="margin-options">
-                                                        <button type="button" value="2x"
-                                                            class="trade_reult_margin_btn">2x</button>
-                                                        <button type="button" value="5x"
-                                                            class="trade_reult_margin_btn">5x</button>
-                                                        <button type="button" value="10x"
-                                                            class="trade_reult_margin_btn">10x</button>
-                                                        <button type="button" value="15x"
-                                                            class="trade_reult_margin_btn">15x</button>
-                                                        <button type="button" value="25x"
-                                                            class="trade_reult_margin_btn">25x</button>
-                                                        <button type="button" value="50x"
-                                                            class="trade_reult_margin_btn">50x</button>
-                                                        <button type="button" value="100x"
-                                                            class="trade_reult_margin_btn">100x</button>
-                                                    </div>
-                                                </div>
-
-                                                <script>
-                                                    document.querySelectorAll('.trade_reult_margin_btn').forEach(button => {
-                                                        button.addEventListener('click', function() {
-                                                            // Toggle the 'selected' class on click
-                                                            this.classList.toggle('selected');
-
-                                                            // Get the values of the selected buttons
-                                                            const selectedValues = Array.from(document.querySelectorAll(
-                                                                '.trade_reult_margin_btn.selected')).map(btn => btn.value);
-                                                            console.log('Selected margins:', selectedValues); // Log selected values to the console
-                                                        });
-                                                    });
-                                                </script>
-
-
-
                                         </div>
-
                                         <div class="modal-footer">
                                             <input name="type" type="hidden" value="credit">
-                                            <button class="btn btn-confirm-info"
-                                                style=" margin-right: 10px; justify-content:center;background-color:white; color:#00b300; border: 1px solid #00b300"
-                                                onclick="closeModal('user-trade-result')">Close</button>
-                                            {{-- <input name="user_id" type="hidden" value="{{ $user->id }}"> --}}
-                                            <button class="btn btn-confirm-info"
-                                                style="margin-right: 10px
-                                        ; justify-content:center;">Update</button>
+                                            <button class="btn btn-confirm-info" style="margin-right: 10px; justify-content:center;background-color:white; color:#00b300; border: 1px solid #00b300" onclick="closeModal('user-trade-result')">Close</button>
+                                            <button type="submit" class="btn btn-confirm-info" style="margin-right: 10px; justify-content:center;">Update</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
 
+
                             <li class="dropdown-item">
-                                <a class="btn btn-default text-danger" style="text-decoration: line-through;">View
-                                    Password</a>
+                                <a class="btn btn-default " onclick="openModal('admin_change_password_user')">Change Password</a>
+
+                                <div id="admin_change_password_user" class="modal" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-header">
+                                            <div class="modal-title">
+                                                Change Password:
+                                                <span>{{ $full_data['user_data']['first_name'] }} {{ $full_data['user_data']['last_name'] }}</span>
+                                            </div>
+                                            <button class="btn-modal-close" onclick="closeModal('admin_change_password_user')">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- The form should be inside the modal body to make it work properly -->
+                                            <form id="change-password-form" action="{{ route('admin.change.userpassword') }}" method="POST">
+                                                @csrf
+                                                <div class="input-group">
+                                                    <label class="form-label">New Password</label>
+                                                    <input class="form-control" name="new_password" type="password" required>
+                                                    <input name="user_id" type="hidden" value="{{ $full_data['user_data']['id'] }}">
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!-- Add the Close button functionality -->
+                                            <button type="button" class="btn btn-confirm-info"
+                                                style="margin-right: 10px; justify-content:center;background-color:white; color:#00b300; border: 1px solid #00b300"
+                                                onclick="closeModal('admin_change_password_user')">Close</button>
+                                            <!-- Submit button -->
+                                            <button type="submit" class="btn btn-confirm-info"
+                                                style="margin-right: 10px; justify-content:center;">Submit</button>
+                                        </div>
+                                        </form> <!-- Closing the form tag here -->
+                                    </div>
+                                </div>
+
                             </li>
-                            <form action="{{ route('admin.prompt', $full_data['user_data']->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="prompt_type" value="upgrade_prompt">
-                                <input type="hidden" name="action"
-                                    value="{{ $full_data['verification_prompts_permissions_data']['upgrade_prompt'] == '1' ? 'off' : 'on' }}">
-                                <button type="submit" class="btn btn-default"
-                                    style="font-size:initial; font-family: Inter, sans-serif;">
-                                    Turn
-                                    {{ $full_data['verification_prompts_permissions_data']['upgrade_prompt'] == '1' ? 'Off' : 'On' }}
-                                    Upgrade Prompt
-                                </button>
-                            </form>
 
-                            <form action="{{ route('admin.prompt', $full_data['user_data']->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="prompt_type" value="certificate_prompt">
-                                <input type="hidden" name="action"
-                                    value="{{ $full_data['verification_prompts_permissions_data']['certificate_prompt'] == '1' ? 'off' : 'on' }}">
-                                <button type="submit" class="btn btn-default"
-                                    style="font-size:initial; font-family: Inter, sans-serif;">
-                                    Turn
-                                    {{ $full_data['verification_prompts_permissions_data']['certificate_prompt'] == '1' ? 'Off' : 'On' }}
-                                    Certificate Prompt
-                                </button>
-                            </form>
 
-                            <form action="{{ route('admin.prompt', $full_data['user_data']->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="prompt_type" value="identity_prompt">
-                                <input type="hidden" name="action"
-                                    value="{{ $full_data['verification_prompts_permissions_data']['identity_prompt'] == '1' ? 'off' : 'on' }}">
-                                <button type="submit" class="btn btn-default"
-                                    style="font-size:initial; font-family: Inter, sans-serif;">
-                                    Turn
-                                    {{ $full_data['verification_prompts_permissions_data']['identity_prompt'] == '1' ? 'Off' : 'On' }}
-                                    Identity Prompt
-                                </button>
-                            </form>
-
-                            <form action="{{ route('admin.prompt', $full_data['user_data']->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="prompt_type" value="custom_prompt">
-                                <input type="hidden" name="action"
-                                    value="{{ $full_data['verification_prompts_permissions_data']['custom_prompt'] == '1' ? 'off' : 'on' }}">
-                                <button type="submit" class="btn btn-default"
-                                    style="font-size:initial; font-family: Inter, sans-serif;">
-                                    Turn
-                                    {{ $full_data['verification_prompts_permissions_data']['custom_prompt'] == '1' ? 'Off' : 'On' }}
-                                    Custom Prompt
-                                </button>
-                            </form>
-
-                            <form action="{{ route('admin.prompt', $full_data['user_data']->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="prompt_type" value="demo">
-                                <input type="hidden" name="action"
-                                    value="{{ $full_data['verification_prompts_permissions_data']['demo'] == '1' ? 'off' : 'on' }}">
-                                <button type="submit" class="btn btn-default"
-                                    style="font-size:initial; font-family: Inter, sans-serif;">
-                                    Turn
-                                    {{ $full_data['verification_prompts_permissions_data']['demo'] == '1' ? 'Off' : 'On' }}
-                                    Demo
-                                </button>
-                            </form>
                             <li class="dropdown-item">
                                 <a class="btn btn-default" href="">Delete User</a>
                             </li>
@@ -710,9 +626,9 @@
                                 value="{{ $full_data['user_address']['zipcode'] }}" placeholder="Enter Address">
                         </div>
                         <!-- <div class="input-group grid-column-lg-2">
-                                                                        <label class="form-label">user password</label>
-                                                                        <input class="form-control" type="text" value="{{ $full_data['user_data']['password'] }}" placeholder="Enter user password">
-                                                                    </div> -->
+                                                                                    <label class="form-label">user password</label>
+                                                                                    <input class="form-control" type="text" value="{{ $full_data['user_data']['password'] }}" placeholder="Enter user password">
+                                                                                </div> -->
                     </div>
                 </div>
                 <div class="section-title">Verification Status</div>
@@ -991,83 +907,111 @@
                 @endif
 
                 <div class="section-title">Prompts & Permissions</div>
-
                 <div class="card common-card">
                     <div class="card-body">
                         <div class="input-group">
-                            <label class="form-label">Ban</label>
-                            <select class="form-control" id="userPermissionBan" searchable="false">
-                                <option {{ $full_data['user_data']['status'] == 'active' ? 'selected' : '' }}
-                                    value="0">No</option>
-                                <option {{ $full_data['user_data']['status'] == 'baned' ? 'selected' : '' }}
-                                    value="1">Yes</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label class="form-label">KYC Verified</label>
-                            <select class="form-control" id="userPermissionVerified" searchable="false">
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['kyc_verify_status'] == 'verified' ? 'selected' : '' }}
-                                    value="1">Yes</option>
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['kyc_verify_status'] != 'verified' ? 'selected' : '' }}
-                                    value="0">No</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group">
                             <label class="form-label">Upgrade Prompt</label>
-                            <select class="form-control" id="userPermissionUpgradePrompt" searchable="false">
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['upgrade_prompt'] == '0' ? 'selected' : '' }}
-                                    value="0">No</option>
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['upgrade_prompt'] == '1' ? 'selected' : '' }}
-                                    value="1">Yes</option>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionUpgradePrompt"
+                                data-type="upgrade_prompt">
+                                <option value="0" {{ $full_data['upgrade_prompt'] == false ? 'selected' : '' }}>No
+                                </option>
+                                <option value="1" {{ $full_data['upgrade_prompt'] == true ? 'selected' : '' }}>Yes
+                                </option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label class="form-label">Certificate Prompt</label>
-                            <select class="form-control" id="userPermissionCertificatePrompt" searchable="false">
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['certificate_prompt'] == '0' ? 'selected' : '' }}
-                                    value="0">No</option>
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['certificate_prompt'] == '1' ? 'selected' : '' }}
-                                    value="1">Yes</option>
+                            <label class="form-label">Axillary System Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionAxillarySystemPrompt"
+                                data-type="axillary_system_prompt">
+                                <option value="0"
+                                    {{ $full_data['axillary_system_prompt'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1"
+                                    {{ $full_data['axillary_system_prompt'] == true ? 'selected' : '' }}>Yes</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label class="form-label">Identity Prompt</label>
-                            <select class="form-control" id="userPermissionIdentityPrompt" searchable="false">
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['identity_prompt'] == '0' ? 'selected' : '' }}
-                                    value="0">No</option>
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['identity_prompt'] == '1' ? 'selected' : '' }}
-                                    value="1">Yes</option>
+                            <label class="form-label">Account Certificate Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionAccountCertificatePrompt"
+                                data-type="account_certificate_prompt">
+                                <option value="0"
+                                    {{ $full_data['account_certificate_prompt'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1"
+                                    {{ $full_data['account_certificate_prompt'] == true ? 'selected' : '' }}>Yes</option>
+
                             </select>
                         </div>
                         <div class="input-group">
-                            <label class="form-label">Custom Prompt</label>
-                            <select class="form-control" id="userPermissionCustomPrompy" searchable="false">
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['custom_prompt'] == '0' ? 'selected' : '' }}
-                                    value="0">No</option>
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['custom_prompt'] == '1' ? 'selected' : '' }}
-                                    value="1">Yes</option>
+                            <label class="form-label">Tax Reference Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionTaxReferencePrompt"
+                                data-type="tax_reference_prompt">
+                                <option value="0"
+                                    {{ $full_data['tax_reference_prompt'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1" {{ $full_data['tax_reference_prompt'] == true ? 'selected' : '' }}>
+                                    Yes</option>
+
                             </select>
                         </div>
                         <div class="input-group">
-                            <label class="form-label">Demo</label>
-                            <select class="form-control" id="userPermissionDemo" searchable="false">
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['demo'] == '0' ? 'selected' : '' }}
-                                    value="0">No</option>
-                                <option
-                                    {{ $full_data['verification_prompts_permissions_data']['demo'] == '1' ? 'selected' : '' }}
-                                    value="1">Yes</option>
+                            <label class="form-label ">Identity Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionIdentityPrompt"
+                                data-type="identity_prompt">
+                                <option value="0" {{ $full_data['identity_prompt'] == false ? 'selected' : '' }}>No
+                                </option>
+                                <option value="1" {{ $full_data['identity_prompt'] == true ? 'selected' : '' }}>Yes
+                                </option>
+                            </select>
+                            <input type="hidden" name="prompt_key" value="identity_prompt">
+                        </div>
+                        <div class="input-group">
+                            <label class="form-label">Account On Hold Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionAccountOnHoldPrompt"
+                                data-type="account_on_hold_prompt">
+                                <option value="0"
+                                    {{ $full_data['account_on_hold_prompt'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1"
+                                    {{ $full_data['account_on_hold_prompt'] == true ? 'selected' : '' }}>Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="form-label">Trade Limit Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionTradeLimitPrompt"
+                                data-type="trade_limit_prompt">
+                                <option value="0" {{ $full_data['trade_limit_prompt'] == false ? 'selected' : '' }}>
+                                    No</option>
+                                <option value="1" {{ $full_data['trade_limit_prompt'] == true ? 'selected' : '' }}>
+                                    Yes</option>
+
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="form-label">Credit Facility Approval</label>
+                            <select class="form-control no_prompt_prermisiion"
+                                id="userPermissionCreditFacilityApproval"data-type="credit_facility_approval">
+                                <option value="0"
+                                    {{ $full_data['credit_facility_approval'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1"
+                                    {{ $full_data['credit_facility_approval'] == true ? 'selected' : '' }}>Yes</option>
+
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="form-label ">KYC Verification Prompt</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionKYCVerificationPrompt"
+                                data-type="kyc_verification_prompt">
+                                <option value="0"
+                                    {{ $full_data['kyc_verification_prompt'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1"
+                                    {{ $full_data['kyc_verification_prompt'] == true ? 'selected' : '' }}>Yes</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="form-label">Loan Facility Approval</label>
+                            <select class="form-control no_prompt_prermisiion" id="userPermissionLoanFacilityApproval"
+                                data-type="loan_facility_approval">
+                                <option value="0"
+                                    {{ $full_data['loan_facility_approval'] == false ? 'selected' : '' }}>No</option>
+                                <option value="1"
+                                    {{ $full_data['loan_facility_approval'] == true ? 'selected' : '' }}>Yes</option>
                             </select>
                         </div>
                     </div>
@@ -1075,7 +1019,8 @@
 
                 <div class="section-title">Payment Information</div>
                 <div class="card common-card">
-                    <form action= "{{ route('admin.user.payments', $full_data['user_data']->id) }}" method="POST"  enctype="multipart/form-data">
+                    <form action= "{{ route('admin.user.payments', $full_data['user_data']->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="input-group">
@@ -1122,7 +1067,8 @@
                             </div>
                             <div class="input-group">
                                 <label class="form-label">Paypal Tag</label>
-                                <input class="form-control" type="text" name="{{ config('settingkeys.paypal_key') }}"
+                                <input class="form-control" type="text"
+                                    name="{{ config('settingkeys.paypal_key') }}"
                                     value="{{ isset($full_data['user_settings'][config('settingkeys.paypal_key')]) ? $full_data['user_settings'][config('settingkeys.paypal_key')] : '' }}"
                                     placeholder="Enter Paypal Tag">
                             </div>
@@ -1154,81 +1100,74 @@
                                     placeholder="Enter Sort Code">
                             </div>
                             <br>
-                            {{-- <div class="input-group attach-file-input-group">
-                                <label class="form-label">Bitcoin QR Code</label>
-                                <div class="form-control">
-                                    <label class="attach-icon d-flex justify-content-between align-items-center w-100">
-                                        @if(isset($full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]))
-                                        <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]}}</span>
-                                        @else
-                                        <span type="placeholder">XMR QR Code</span>
-                                        @endif                                      
-                                        <input class="d-none" type="file" name="{{ config('settingkeys.bitcoin_qr_code_key') }}">
-                                        <i class="fa-solid fa-link"></i>
-                                    </label>
-                                </div>
-                                @error(config('settingkeys.bitcoin_qr_code_key'))
-                                <span class="text-danger" style="font-size: 10px ">{{ $message }}</span>
-                            @enderror
-                            </div> --}}
                             <div class="input-group attach-file-input-group" style="position: relative;">
                                 <label class="form-label">Bitcoin QR Code</label>
                                 <div class="form-control">
                                     <label class="attach-icon d-flex justify-content-between align-items-center w-100">
-                                        @if(isset($full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]))
-                                            <span type="placeholder">{{ $full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')] }}</span>
+                                        @if (isset($full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')]))
+                                            <span
+                                                type="placeholder">{{ $full_data['user_settings'][config('settingkeys.bitcoin_qr_code_key')] }}</span>
                                         @else
                                             <span type="placeholder">Bitcoin QR Code</span>
                                         @endif
-                                        <input class="d-none" type="file" name="{{ config('settingkeys.bitcoin_qr_code_key') }}">
+                                        <input class="d-none" type="file"
+                                            name="{{ config('settingkeys.bitcoin_qr_code_key') }}">
                                         <i class="fa-solid fa-link"></i>
                                     </label>
                                 </div>
                                 @error(config('settingkeys.bitcoin_qr_code_key'))
-                                    <span class="text-danger" style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
+                                    <span class="text-danger"
+                                        style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
                                         {{ $message }}
                                     </span>
                                 @enderror
-                            </div>                    
+                            </div>
                             <div class="input-group attach-file-input-group" style="position: relative;">
                                 <label class="form-label">XMR QR Code</label>
                                 <div class="form-control">
                                     <label class="attach-icon d-flex justify-content-between align-items-center w-100">
-                                        @if(isset($full_data['user_settings'][config('settingkeys.xmr_qr_code_key')]))
-                                        <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.xmr_qr_code_key')]}}</span>
+                                        @if (isset($full_data['user_settings'][config('settingkeys.xmr_qr_code_key')]))
+                                            <span type="placeholder">
+                                                {{ $full_data['user_settings'][config('settingkeys.xmr_qr_code_key')] }}</span>
                                         @else
-                                        <span type="placeholder">XMR QR Code</span>
+                                            <span type="placeholder">XMR QR Code</span>
                                         @endif
-                                        <input class="d-none" type="file" name="{{ config('settingkeys.xmr_qr_code_key') }}">                                            <i class="fa-solid fa-link"></i>
+                                        <input class="d-none" type="file"
+                                            name="{{ config('settingkeys.xmr_qr_code_key') }}"> <i
+                                            class="fa-solid fa-link"></i>
 
                                     </label>
                                 </div>
                                 @error(config('settingkeys.xmr_qr_code_key'))
-                                <span class="text-danger" style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+                                    <span class="text-danger"
+                                        style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <div class="input-group attach-file-input-group" style="position: relative;">
                                 <label class="form-label">USDT QR Code</label>
                                 <div class="form-control">
                                     <label class="attach-icon d-flex justify-content-between align-items-center w-100">
-                                        @if(isset($full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]))
-                                        <span type="placeholder"> {{$full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]}}</span>
+                                        @if (isset($full_data['user_settings'][config('settingkeys.usdt_qr_code_key')]))
+                                            <span type="placeholder">
+                                                {{ $full_data['user_settings'][config('settingkeys.usdt_qr_code_key')] }}</span>
                                         @else
-                                        <span type="placeholder">USDT QR Code</span>
-                                        @endif                                            
-                                        <input  class="d-none" type="file" name="{{ config('settingkeys.usdt_qr_code_key') }}" >
-                                            <i class="fa-solid fa-link"></i>
+                                            <span type="placeholder">USDT QR Code</span>
+                                        @endif
+                                        <input class="d-none" type="file"
+                                            name="{{ config('settingkeys.usdt_qr_code_key') }}">
+                                        <i class="fa-solid fa-link"></i>
                                     </label>
                                 </div>
                                 @error(config('settingkeys.usdt_qr_code_key'))
-                                <span class="text-danger" style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
-                                    {{ $message }}
-                                </span>
-                            @enderror
+                                    <span class="text-danger"
+                                        style="font-size: 12px; position: absolute; bottom: -30px; left: 0;">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
-                            
+
                             <br>
                             <div class="">
                                 <button type="submit" class="btn btn-primary btn-sm"> Save Payment Info </button>
@@ -1236,41 +1175,154 @@
                         </div>
                     </form>
                 </div>
-            </section>
+
+                <div class="section-title">Bot Information</div>
+                <table id="all-bot-table" class="all-bot-table display">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date/Time</th>
+                            <th>Bot Name</th>
+                            <th>Market</th>
+                            <th>Asset</th>
+                            <th>Capital</th>
+                            <th>Status</th>
+                            <th>Time Frame</th>
+                            <th>gain/loss</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($full_data['bot_for_user'] as $bot)
+                            <tr>
+                                <input type="hidden" name="user_id" id="user_id" value="{{ $bot->user_id }}">
+                                <td>{{ $bot->bot_id }}</td>
+                                <td>{{ $bot->created_at->format('d M, Y') }}</td>
+                                <td>{{ $full_data['bot_names'][$bot->bot_id] ?? 'N/A' }}</td>
+                                <td>{{ ucfirst(strtolower($bot->market)) }}</td>
+                                <td>{{ $bot->trade_asset }}</td>
+                                <td>${{ number_format($bot->capital, 2) }}</td>
+                                <td
+                                    style="
+                               @if ($bot->status == 'pending') color: orange;
+                               @elseif($bot->status == 'in_progress') color: yellow;
+                               @elseif($bot->status == 'completed') color: green; @endif
+                               ">{{ ucfirst(str_replace('_', ' ', $bot->status)) }}</td>
+                                <td>{{ $bot->time_frame }}</td>
+                                <td>{{ $bot->trade_result }}</td>
+                                <td>
+                                    <div class="dropdown w-max">
+                                        <a class="btn-dropdown"> <i class="fa-solid fa-ellipsis-vertical"></i> </a>
+                                        <ul class="list-style-none dropdown-menu d-flex flex-column">
+                                            <li class="dropdown-item bot-main-card">
+                                                <a class="btn" href="#" data-bot-id="{{ $bot->bot_id }}"
+                                                    onclick="event.preventDefault(); openTradingBotInfoModal(this)">Edit
+                                                    Bot</a>
+                                                {{-- <a class="btn" href="{{ route('admin.delete.bot.info', ['bot_id' => $bot->bot_id]) }}">Deactivate Bot</a> --}}
+                                                {{-- <a class="btn" href="{{ route('admin.delete.bot', ['bot_id' => $bot->bot_id]) }}">Delete Bot</a> --}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="all-bot-table-no-data">
+                                <td class="text-center" colspan="10">No data available</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+                <div id="trading-bot-license-modal" class="modal trading-bot-license-modal">
+                    <div class="modal-dialog d-flex flex-column">
+                        <div class="modal-header">
+                            <div class="modal-title">Add Asset</div>
+                            <a class="icon btn-modal-close" onclick=closeTradingBotInfoModal()> <i
+                                    class="fa-solid fa-xmark"></i> </a>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" class="form" method="post">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="input-group">
+                                    <label for="bot-symbol" class="form-label">Loss/Gain</label>
+                                    <select id="bot-results" class="form-control"required>
+                                        <option value="win">Win</option>
+                                        <option value="loss">Loss</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="bot_order_type" class="form-label">Trade Action</label>
+                                    <select class="form-control" id="bot_order_type" required>
+                                        <option value="bullish">Buy</option>
+                                        <option value="bearish">Sell</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="bot-percentage" class="form-label">Percentage Gain/Loss</label>
+                                    <input id="bot-percentage" class="form-control" type="text"
+                                        placeholder="Enter percentage" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="bot-duration" class="form-label">Duration</label>
+                                    <select id="bot-duration-unit" class="form-control" required>
+                                        <option value="5minutes">5 Minutes</option>
+                                        <option value="30minutes">30 Minutes</option>
+                                        <option value="1hour">1 Hour</option>
+                                        <option value="4hours">4 Hours</option>
+                                        <option value="1day">1 Day</option>
+                                        <option value="1week">1 Week</option>
+                                        <option value="1month">1 Month</option>
+                                        <option value="1year">1 Year</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="bot-market" class="form-label">Market</label>
+                                    <select id="bot-market" class="form-control" required>
+                                        <option value="crypto">Crypto</option>
+                                        <option value="forex">Forex</option>
+                                        <option value="indices">Indices</option>
+                                        <option value="futures">Future</option>
+                                        <option value="stocks">Stocks</option>
+                                        <option value="etfs">ETFs</option>
+                                    </select>
+                                </div>
+                                <div class="input-group"> <label for="bot-asset" class="form-label">Asset</label>
+                                    <select id="bot-asset" class="form-control" required>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label class="form-label">Margin</label>
+                                    <select class="form-control margin" id="bot_margin" name="margin" required>
+                                        <option value="1">1x</option>
+                                        <option value="2">2x</option>
+                                        <option value="5">5x</option>
+                                        <option value="10">10x</option>
+                                    </select>
+                                </div>
+                                <div class="input-group"> <label for="bot-capital" class="form-label">Capital</label>
+                                    <input id="bot-capital" class="form-control" type="text"
+                                        placeholder="Enter capital" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="bot-trade-count" class="form-label">Trade Count</label>
+                                    <input type="number" id="bot-trade-count" class="form-control"
+                                        placeholder="Enter capital" required>
+                                </div>
+                            </form>
+                        </div>
+                        <input type="hidden" name="bot_id" id="bot_id">
+                        <div class="modal-footer">
+                            <button id="edit-bot-info-btn" class="btn btn-bot-edit-info"
+                                style="display: flex; justify-content: center; align-items: center"> Edit Bot Information
+                            </button>
+                        </div>
+                    </div>
+                </div>
         </div>
+        </section>
+        </div>
+
+        @include('admin.users.prompts-modals')
+        </div>
+
     </main>
-@endsection
-
-@section('scripts')
-    <script>
-        document.querySelectorAll('.trade_reult_margin_btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Toggle the 'selected' class on click
-                this.classList.toggle('selected');
-
-                // Get the values of the selected buttons
-                const selectedValues = Array.from(document.querySelectorAll(
-                    '.trade_reult_margin_btn.selected')).map(btn => btn.value);
-                console.log('Selected margins:', selectedValues); // Log selected values to the console
-            });
-        });
-
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        // Optionally, close modals if clicked outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        }
-    </script>
 @endsection

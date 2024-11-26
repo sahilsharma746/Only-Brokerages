@@ -66,4 +66,9 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'api_key' => \App\Http\Middleware\ApiKey::class
     ];
+
+
+    protected $routeMiddleware = [
+        '2fa' => \App\Http\Middleware\Ensure2FAIsVerified::class,
+    ];
 }

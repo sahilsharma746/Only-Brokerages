@@ -2306,3 +2306,371 @@ main > article .market-news-section .news-page .trading-news-container .news-bod
     height: 1em;            /* Keeps the aspect ratio consistent */
     vertical-align: middle; /* Aligns the icon vertically with text */
 }
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+/* custom style for 2fa */
+.card-2fa .switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 40px;
+}
+
+.card-2fa .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.card-2fa .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.card-2fa .slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  left: 5px;
+  bottom: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.card-2fa input:checked + .slider {
+  background-color: #3aa31a;
+}
+
+.card-2fa input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+.card-2fa input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.card-2fa .switch:hover .slider {
+  background-color: #b3b3b3;
+}
+
+.card-2fa input:checked:hover + .slider {
+  background-color: #2e7d13;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.toggle-container .form-label {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.card-2fa .input-group .form-label {
+  font-size: 14px;
+}
+
+.trading-button-group {
+  display: flex;
+  gap: 15px; /* Equal spacing between buttons */
+  margin: 15px 0;
+  width: 100%;
+}
+
+.trading-button-group form {
+  flex: 1; /* Each form takes equal space */
+}
+
+.trading-button {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .trading-button-group {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .trading-button-group form {
+      width: 100%;
+  }
+}
+
+.kurstone {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 28px;
+}
+@media (min-width: 768px) {
+  .kurstone {
+      width: 60px;
+  }
+}
+
+.kurstone input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.kruster {
+  position: absolute;
+  cursor: pointer;
+  top: 3px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #eb1c24;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.kruster .on,
+.kruster .off {
+  color: white;
+
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.on,
+.off {
+  display: none;
+}
+
+input:checked + .kruster .on {
+  display: block;
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+input:checked + .kruster .off {
+  display: none;
+}
+
+input:not(:checked) + .kruster .on {
+  display: none;
+}
+
+input:not(:checked) + .kruster .off {
+  display: block;
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.kruster:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 5px;
+  bottom: 5px;
+  top: 2px;
+  background-color: black;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .kruster {
+  background-color: #09a14c;
+}
+
+input:focus + .kruster {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .kruster:before {
+  transform: translateX(30px);
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-container.trading-bot-toggle .form-label {
+  color: white;
+  font-size: 13px;
+  margin: 0;
+  margin-top: 4px;
+}
+
+.toggle-container.asx-toggle .form-label {
+  color: white;
+  font-size: 12px;
+  margin: 0;
+  margin-top: 4px;
+}
+.asx-toggle {
+  max-width: 100px;
+
+  margin-bottom: 30px;
+}
+
+.trading-bot-toggle {
+  max-width: 142px;
+  margin-bottom: 30px;
+}
+
+/* user dasboard->tarding history ->button-> print as pdf css */
+
+/* Wrapper to control table layout */
+#trading-history-table_wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* Ensure only tbody scrolls */
+}
+
+/* Fixed header */
+#trading-history-table thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Makes sure column widths are fixed */
+}
+
+/* Scrollable tbody */
+#trading-history-table tbody {
+  display: block;
+  overflow-y: auto;
+  height: 400px; /* Fixed height for table data */
+  width: 100%;
+}
+
+/* Table body cells should align with header cells */
+#trading-history-table thead th,
+#trading-history-table tbody td {
+  min-width: 120px;
+  width: 137px; /* Set consistent width */
+  text-align: left;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Ensure rows align properly in scrollable tbody */
+#trading-history-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Styling for the search input and download button */
+.dataTables_wrapper .dataTables_filter {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Add spacing between elements */
+  margin-bottom: 10px; /* Adds space below search and button */
+}
+
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.print_as_pdf {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 10px; /* Adds space between search and button */
+}
+
+/* --------------------------------------trading bot histtory table css----------------------------- */
+
+/* Wrapper for responsive scrolling */
+.trading-bot-history-table-area {
+  overflow-x: auto;             /* Allows horizontal scrolling if needed */
+  width: 100%;                  /* Full width for responsiveness */
+  max-height: 400px;            /* Limits vertical scrolling */
+}
+
+/* DataTable wrapper for scroll settings */
+#trading-bot-history-table_wrapper .dataTables_scrollBody {
+  overflow-y: auto;             /* Enables vertical scrolling */
+  overflow-x: hidden;           /* No horizontal scroll in the body */
+  max-height: 400px;
+}
+
+/* Ensures the table layout remains intact for header alignment */
+#trading-bot-history-table {
+  table-layout: fixed;          /* Fixes cell width for alignment */
+  width: 100%;                  /* Full width to align with header */
+}
+
+/* Responsive table cell styling */
+#trading-bot-history-table th,
+#trading-bot-history-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+/* Optional: Adjustments for smaller screens */
+@media (max-width: 768px) {
+  #trading-bot-history-table th,
+  #trading-bot-history-table td {
+      font-size: 12px;
+      padding: 6px;
+  }
+}
+
+/* Style for search and pagination elements */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+  padding: 5px;
+  max-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
