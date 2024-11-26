@@ -35,7 +35,7 @@
         </a>
     </li>
     <li class="nav-item d-flex">
-        <a class="card" href="#">
+        <a class="card {{ Request::url() == route('user.education.index') ? 'active' : '' }}" href="{{ route('user.education.index') }}">
             <p>Education</p>
         </a>
     </li>
