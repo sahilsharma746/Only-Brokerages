@@ -20,7 +20,8 @@
         </a>
     </li>
     <li class="nav-item d-flex">
-        <a class="card {{ Request::url() == route('users.trading-bots.index') ? 'active' : '' }}" href="{{ route('users.trading-bots.index') }}">
+        {{-- <a class="card {{ Request::url() == route('users.trading-bots.index') ? 'active' : '' }}" href="{{ route('users.trading-bots.index') }}"> --}}
+           <a class="card" href="javascript:void(0);">
             <p>Tradings Bots</p>
         </a>
     </li>
