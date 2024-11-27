@@ -61,7 +61,7 @@
                 <p>Opening Hours Mon - Fri: 8AM to 6PM</p>
                 <a target="_blank" href="tel:{{ config('settingkeys.phone_number') }}">
                     <i class="fa-solid fa-phone-volume"></i>
-                    <span>+1(213)293-2886</span>
+                    <span>{{ config('settingkeys.phone_number') }}</span>
                 </a>
                 <a target="_blank" href="mailto:{{ config('settingkeys.support_email') }}">       
                     <i class="fa-regular fa-envelope"></i>

@@ -75,6 +75,6 @@
     // admin email
     'admin_email' => (env('APP_MODE') == 'production') ? 'admin@100xbrokerage.com' : 'demo@demo.com',
     'support_email' =>  (env('APP_MODE') == 'production') ? 'support@100xbrokerage.com' : 'demo@demo.com',
-    'phone_number' => (env('APP_MODE') == 'production') ? '+1(213)293-2886' : "+1(111)111-1111",
+    'phone_number' => (env('APP_MODE') == 'production') ? '+1646 499 2365' : "+1(111)111-1111",
 
 ];
