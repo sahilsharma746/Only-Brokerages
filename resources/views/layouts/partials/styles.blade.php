@@ -34,21 +34,12 @@
 <script src="{{ env('TIDO_APP_JS') ?? '' }}" async></script>
 
 <script>
-<<<<<<< Updated upstream
-     var apiUrlCrypto = "{{ url('/crypto.json') }}";
-=======
-   var apiUrlCrypto = "{{ url('/crypto.json') }}";
->>>>>>> Stashed changes
+    var apiUrlCrypto = "{{ url('/crypto.json') }}";
     var apiUrlForex = "{{ url('/forex.json') }}";
     var apiUrlIndices = "{{ url('/indices.json') }}";
     var apiUrlStocks = "{{ url('/stocks.json') }}";
     var apiUrlFutures = "{{ url('/futures.json') }}";
     var apiUrletfs = "{{ url('/etfs.json') }}";
-<<<<<<< Updated upstream
-
-=======
-    
->>>>>>> Stashed changes
     const countries = [
         "Luxembourg",
         "Switzerland",
