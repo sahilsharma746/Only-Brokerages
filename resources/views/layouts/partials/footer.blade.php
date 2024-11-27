@@ -25,6 +25,7 @@
                 <dt><a href="{{ route('frontend.faq') }}">Frequently Asked Questions (FAQ)</a></dt>
                 <dt><a href="{{ route('frontend.accountPlan') }}">Account Plans</a></dt>
                 <dt><a href="javascript:void(0)">Legal Documentations</a></dt>
+                <dt><a href="{{ route('frontend.contact') }}">Contact Us</a></dt>
                 
             </dl>
             <dl>
