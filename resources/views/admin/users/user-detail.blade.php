@@ -314,7 +314,7 @@
                         </a>
 
                         <ul class="list-style-none dropdown-menu d-flex flex-column">
-                            <li class="dropdown-item">
+                            {{-- <li class="dropdown-item">
                                 <a class="btn btn-default" onclick="openModal('user-trade-limit')">Edit Trade
                                     limit</a>
                                 <div id="user-trade-limit" class="modal">
@@ -346,7 +346,7 @@
 
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                             <li class="dropdown-item">
                                 <a class="btn btn-default" data-toggle="modal" onclick="openModal('user-trade-result')">Edit Trade
                                     Result</a>
@@ -435,9 +435,9 @@
                             </li>
 
 
-                            <li class="dropdown-item">
+                            {{-- <li class="dropdown-item">
                                 <a class="btn btn-default" href="">Delete User</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>

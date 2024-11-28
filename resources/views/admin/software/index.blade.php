@@ -6,7 +6,7 @@
          <div class="section-header">
             <div class="section-title">All Trading Bot Trades</div>
             <div class="btn-area">
-                <button id="toggleButton" class="btn enalbled_disabled btn-enabled" onclick="toggleButton()">Disable</button>
+                {{-- <button id="toggleButton" class="btn enalbled_disabled btn-enabled" onclick="toggleButton()">Disable</button> --}}
                <a class="btn btn-new-asset" href="javascript:void(0)" onclick="openModal('trading-bot-modal')">
                <span class="icon"><i class="fa-solid fa-plus"></i></span>
                <span>Add New Trading Bot</span>
@@ -175,10 +175,10 @@
                   </td>
                </tr>
                @empty
-               <tr class="">
-                  <td colspan="6" class="text-center">No trading bots available.</td>
-               </tr>
-               @endforelse
+                       <tr class="all-admin-table-no-data">
+                            <td class="text-center" colspan="8">No data available</td>
+                        </tr>
+                    @endforelse
             </tbody>
          </table>
       </section>

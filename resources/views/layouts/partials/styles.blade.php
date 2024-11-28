@@ -7,6 +7,7 @@
 <meta name="description" content="Open up a world of possibilities with Only Brokerage">
 <meta name="keywords" content="Investments, Only Brokerage, trade">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="robots" content="noindex, nofollow">
 
 @yield('styles')
 

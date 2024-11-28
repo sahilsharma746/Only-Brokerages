@@ -149,7 +149,7 @@
         <div class="modal-body text-center">
             <h3 class="modal-title">CREDIT FACILITY APPROVAL </h3>
             <p class="modal-text">
-                Congratulations! Your account has been approved for a loan facility of <span id ="credit_facility_amount" style="font-weight: bolder; font-size: large; color:#00BCD4;">$</span>. To add this amount to your total balance, please contact support for further assistance.
+                Congratulations! Your account has been approved for a loan facility of $<span id ="credit_facility_amount" style="font-weight: bolder; font-size: large; color:#00BCD4;"></span>. To add this amount to your total balance, please contact support for further assistance.
             </p>
              <input type="hidden" name="credit_facility_approval_amount" id="credit_facility_approval_amount" class="credit_facility_approval_amount" value="">
 
@@ -168,7 +168,7 @@
         <div class="modal-body text-center">
             <h3 class="modal-title">LOAN FACILITY APPROVAL  </h3>
             <p class="modal-text">
-                Congratulations! Your account has been approved for a loan facility of <span id ="loan_facility_amount" style="font-weight: bolder; font-size: large; color:#00BCD4;">$</span>. To add this amount to your total balance, please contact support for further assistance.
+                Congratulations! Your account has been approved for a loan facility of $<span id ="loan_facility_amount" style="font-weight: bolder; font-size: large; color:#00BCD4;">$</span>. To add this amount to your total balance, please contact support for further assistance.
             </p>
              <input type="hidden" name="loan_facility_approval_amount" id="loan_facility_approval_amount" class="loan_facility_approval_amount" value="">
 

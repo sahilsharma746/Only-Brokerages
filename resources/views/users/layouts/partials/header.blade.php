@@ -10,6 +10,7 @@
     <link rel="icon" href="{{ asset('assets') }}/img/site-favicon-only-brokerage.png">
     <meta name="description" content="Open up a world of possibilities with Only Brokerage">
     <meta name="keywords" content="Investments, Only Brokerage, trade">
+    <meta name="robots" content="noindex, nofollow">
 
     <script src="{{ env('TIDO_APP_JS') ?? '' }}" async></script>
 
