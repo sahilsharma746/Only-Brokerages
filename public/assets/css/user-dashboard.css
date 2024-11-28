@@ -2674,3 +2674,27 @@ input:checked + .kruster:before {
   width: 100%;
 }
 
+
+/* For larger screens (above 1200px) */
+@media (min-width: 1200px) {
+  .education-image-large{
+      width: 900px;
+      height: 500px;
+  }
+}
+
+/* For small screens (below 768px, e.g., mobile phones) */
+@media (max-width: 768px) {
+  .education-image-large {
+      width: 100%; /* Full width for responsiveness */
+      height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* For medium screens (between 768px and 1200px, e.g., tablets) */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .education-image-large{
+      width: 600px;
+      height: 350px;
+  }
+}

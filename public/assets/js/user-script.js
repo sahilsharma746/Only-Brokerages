@@ -167,7 +167,7 @@ function loadEducationPost(id) {
                 $('#trading-news-container .news-content').show();
                 var educationPost = response.data;
                 var newsContainer = $('#trading-news-container');
-                newsContainer.find('.news-title-img').html('<img src="../uploads/education_images/' + educationPost.image + '">');
+                newsContainer.find('.news-title-img').html('<img src="../uploads/education_images/' + educationPost.image + '" class="education-image-large">');
                 newsContainer.find('.news-title').text(educationPost.title);
                 newsContainer.find('.short_description').html(educationPost.short_description);
                 jQuery('.short_description').css({
