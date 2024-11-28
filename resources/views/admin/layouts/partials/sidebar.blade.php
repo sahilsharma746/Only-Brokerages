@@ -62,7 +62,8 @@
             </a>
         </li>
         <li>
-        <a class="{{ Request::url() == route('admin.software') ? 'active' : '' }}" href="{{ route('admin.software') }}">
+            <a href="javascript:void(0)">
+        {{-- <a class="{{ Request::url() == route('admin.software') ? 'active' : '' }}" href="{{ route('admin.software') }}"> --}}
                 <span class="icon">
                     <i class="fa-solid fa-server"></i>
                 </span>
