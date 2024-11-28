@@ -118,10 +118,10 @@
                             </td>
                         </tr>
                         @empty
-                        <tr>
-                            <td colspan="5">No education posts available.</td>
-                        </tr>
-                        @endforelse
+                        <tr class="all-admin-table-no-data">
+                             <td class="text-center" colspan="8">No data available</td>
+                         </tr>
+                     @endforelse
                     </tbody>
                 </table>
             </section>

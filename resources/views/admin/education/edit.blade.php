@@ -11,15 +11,24 @@
                             <div class="input-group">
                                 <label class="form-label">Title</label>
                                 <input class="form-control" name="education_title" value="{{ $educationPosts->title }}" type="text" placeholder="Enter Title" required>
+                                @error('education_title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-group">
                                 <label class="form-label">Short Description</label>
                                 <textarea class="form-control" name="education_short_description"  placeholder="Enter Short Description" required>{{ $educationPosts->short_description }}</textarea>
+                                @error('education_title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-group">
                                 <label class="form-label">Description</label>
                                 <textarea id="editor" name="education_description" class="form-control"
                                 rows="10">{{ $educationPosts->description }}</textarea>
+                                @error('education_description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-group">
                                 <label class="form-label">Market</label>
@@ -33,6 +42,9 @@
                             <div class="input-group">
                                     <img src="{{ asset('uploads/education_images/' . $educationPosts->image) }}" alt="Image" width="200" height="100"><br>
                                     <input class="form-control" type="file" name="education_image" required>
+                                    @error('education_image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                         </div>
